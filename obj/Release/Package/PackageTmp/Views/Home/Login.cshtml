@@ -1,0 +1,226 @@
+﻿@model Abstracts.Models.Pbo.UserModel
+@{
+    Layout = null;
+    ViewBag.Title = "شاشة تسجيل الدخول";
+}
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>جهاز تنمية مدينة حدائق أكتوبر - المستخلصات</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    @*<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>*@
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/lib/kendo/js/jquery.min.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+     @Scripts.Render("~/bundles/ie")
+     <![endif]-->
+
+</head>
+<body>
+    <section class="container animated fadeInUp">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div id="login-wrapper">
+                    <header>
+                        <div class="brand">
+                            <a href="#" class="logo" style="margin: 0px">
+                                @*<img src="~/Images/Logo.png" alt="site logo" />*@
+                                <span style="color: #556b8d;">جهاز تنمية مدينة حدائق أكتوبر</span>
+                            </a>
+                        </div>
+                    </header>
+                    <div class="panel panel-primary" style=" direction: rtl;">
+                        <div class="panel-heading">
+                            <h1 class="panel-title" style=" font-size: inherit;">
+                                تسجيل الدخول
+                            </h1>
+                        </div>
+                        <div class="panel-body">
+                            @*@if (Abstracts.Models.Pbo.PublicVariables.systemVersion == ViewBag.sysVersion)
+                            {*@
+                                <p>
+                                    تسجيل الدخول للوصول إلى حسابك.
+                                </p>
+                                @using (Html.BeginForm())
+                                {
+                                    <div class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.TextBoxFor(m => m.UserName, new { @id = "email", @class = "form-control", placeholder = "إسم المستخدم" })
+                                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                @Html.PasswordFor(m => m.Password, new { @id = "password", @class = "form-control password", placeholder = "كلمة المرور" })
+                                                <button class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
+                                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                              
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-6">
+                                                @Html.RadioButtonFor(m => m.type, 3)  مكتب إستشاري
+                                            </div>
+                                            <div class="col-md-6">
+                                                @Html.RadioButtonFor(m => m.type, 2)  شركة
+                                            </div>
+                                            <div class="col-md-6">
+                                                @Html.RadioButtonFor(m => m.type, 1, new { @checked = true }) موظف
+                                            
+                                            </div>
+                                        </div>
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.AntiForgeryToken()
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            @*}
+                            else
+                            {
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <h1 style="color:red;"> يرجى الاتصال بمسؤول النظام لتثبيت أخر إصدار من برنامج المستخلصات </h1>
+                                    </div>
+                                </div>
+                            }*@
+                            @*<div class="col-md-2 col-md-offset-3">
+                                    <p>
+                                        سيستم :
+                                    </p>@Abstracts.Models.Pbo.PublicVariables.systemVersion
+                                </div>
+                                <div class="col-md-2 col-md-offset-3">
+                                    <p>
+                                        داتابيز  :
+                                    </p>@ViewBag.sysVersion
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById("email").focus();
+            $('.unmask').on('click', function () {
+
+                if ($(this).prev('input').attr('type') == 'password')
+                    changeType($(this).prev('input'), 'text');
+
+                else
+                    changeType($(this).prev('input'), 'password');
+
+                return false;
+            });
+        });
+        function changeType(x, type) {
+            if (x.prop('type') == type)
+                return x; //That was easy.
+            try {
+                return x.prop('type', type); //Stupid IE security will not allow this
+            } catch (e) {
+                //Try re-creating the element (yep... this sucks)
+                //jQuery has no html() method for the element, so we have to put into a div first
+                var html = $("<div>").append(x.clone()).html();
+                var regex = /type=(\")?([^\"\s]+)(\")?/; //matches type=text or type="text"
+                //If no match, we add the type attribute to the end; otherwise, we replace
+                var tmp = $(html.match(regex) == null ?
+                    html.replace(">", ' type="' + type + '">') :
+                    html.replace(regex, 'type="' + type + '"'));
+                //Copy data from old element
+                tmp.data('type', x.data('type'));
+                var events = x.data('events');
+                var cb = function (events) {
+                    return function () {
+                        //Bind all prior events
+                        for (i in events) {
+                            var y = events[i];
+                            for (j in y)
+                                tmp.bind(i, y[j].handler);
+                        }
+                    }
+                }(events);
+                x.replaceWith(tmp);
+                setTimeout(cb, 10); //Wait a bit to call function
+                return tmp;
+            }
+        }
+    </script>
+    <style>
+        .show-password {
+            width: 100%;
+        }
+
+            .show-password label {
+                position: absolute;
+                left: -9999px;
+                text-indent: -9999px;
+            }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password + .unmask {
+            position: absolute;
+            left: 23px;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            text-indent: -9999px;
+            width: 25px;
+            height: 25px;
+            background: #556b8d;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            -webkit-appearance: none;
+        }
+
+        .password + .unmask:before {
+                content: "";
+                position: absolute;
+                top: 4px;
+                left: 4px;
+                width: 17px;
+                height: 17px;
+                background: #e3e3e3;
+                z-index: 1;
+                border-radius: 50%;
+            }
+
+        .password[type="text"] + .unmask:after {
+            content: "";
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 13px;
+            height: 13px;
+            background: #aaa;
+            z-index: 2;
+            border-radius: 50%;
+        }
+    </style>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/plugins/navgoco")
+    @Scripts.Render("~/plugins/pace")
+    @Scripts.Render("~/bundles/app")
+</body>
+</html>

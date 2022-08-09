@@ -1,0 +1,342 @@
+﻿@using Kendo.Mvc.UI
+
+@{ ViewData["Title"] = "وحدات القياس";}
+
+<div class="pageheader">
+    <h1>وحدات القياس</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff;  " href="javascript:void(0);">البيانات الرئيسية</a>
+            </li>
+            <li class="active">وحدات القياس</li>
+        </ol>
+    </div>
+</div>
+
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <form id="unitfrm">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Code">
+                                        إسم الوحدة
+                                    </label>
+                                    <input type="text" class="form-control" name="ARName" id="ARName" placeholder="أدخل إسم الوحدة" maxlength="12">
+                                </div>
+                            </div>
+                            <div class="col-md-2" style="text-align: center;">
+                                <br />
+                                @(Html.Kendo().CheckBox()
+        .Name("lock")
+       )
+                                <label for="Code">
+                                    إيقاف وحدة القياس
+                                </label>
+
+                            </div>
+
+                            <div class="col-md-2">
+                                <br />
+                                <a id="savebutton" class="btn btn-success" onclick="saveUnit();">
+                                    <i class="fa fa-save"></i> إضافة
+                                </a>
+                            </div>
+
+
+
+
+
+                        </form>
+
+                        <div id="GridView" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid<Abstracts.Models.Refactored.Units>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Select().Width(50);
+        columns.Bound(p => p.UnitName).Width(133).Title("إسم وحدة القياس").ClientFooterTemplate("إجمالي عدد الوحدات: #=count#");
+        columns.Bound(p => p.Locked).Width(62).Title("تم ايقاف");
+        columns.Command(command => command.Custom("تعطيل").Click("Lock")).Width(76);
+        columns.Command(command => { command.Destroy().Text("حذف"); }).Width(89);
+
+    })
+    //.ClientRowTemplate(
+    //    "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+    //        "<td role='gridcell'> " +
+    //        "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+    //        "</td>" +
+    //        "<td role='gridcell' class='details'>" +
+    //           "<span class='description'> #: UnitName# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell' class='details'>" +
+    //            "<span class='description'> #: Locked# </span>" +
+    //        "</td>" +
+    //           "<td class='k-command-cell k-command-cell' role='gridcell'><a role='button' class='k-button k-button-icontext k-grid-ViewDocument' onclick='Lock(e)' href='javascript:void(0);'>تعطيل</a><a role='button' class='k-button k-button-icontext k-grid-delete' href='javascript:void(0);'><span class='k-icon k-i-close'></span>حذف</a></td>" +
+    //     "</tr>"
+    //).ClientAltRowTemplate(
+    //    "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+    //        "<td role='gridcell'> " +
+    //        "<input class=' k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+    //        "</td>" +
+    //        "<td role='gridcell' class='details'>" +
+    //           "<span class='description'> #: UnitName# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell' class='details'>" +
+    //            "<span class='description'> #: Locked# </span>" +
+    //        "</td>" +
+    //           "<td class='k-command-cell k-command-cell' role='gridcell'><a role='button' class='k-button k-button-icontext k-grid-ViewDocument' onclick='Lock(e)' href='javascript:void(0);'>تعطيل</a><a role='button' class='k-button k-button-icontext k-grid-delete' href='javascript:void(0);'><span class='k-icon k-i-close'></span>حذف</a></td>" +
+    //     "</tr>"
+    //)
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+    })
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Selectable(selectable => selectable
+            .Mode(GridSelectionMode.Single))
+    .PersistSelection()
+    .Events(ev => ev.Change("onChangeSelection")
+      .Page("onPaging"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.UnitName).Count();
+            //aggregates.Add(p => p.TotalQty).Sum();
+            //aggregates.Add(p => p.UnitPrice).Sum();
+            //aggregates.Add(p => p.TotalIssuedQty).Sum();
+        })
+        .PageSize(20)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.UnitId))
+    .Read(read => read.Action("GetUnitList", "Unit"))
+    .Destroy(read => read.Action("DeleteUnit", "Unit"))
+
+    )
+)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script type="text/javascript">
+
+    function onPaging(arg) {
+        LastselectedLength = 0;
+        var grid = $("#grid").data("kendoGrid");
+        grid.clearSelection();
+    }
+
+    var selected = 0;
+    var LastselectedLength = 0;
+
+    var UnitID = 0;
+    var locked = "";
+    var ARName = "";
+    function onPaging(arg) {
+        LastselectedLength = 0;
+        var grid = $("#grid").data("kendoGrid");
+        grid.clearSelection();
+    }
+
+    function onChangeSelection(arg) {
+        var grid = $("#grid").data("kendoGrid");
+
+        selected = this.selectedKeyNames();
+        if (LastselectedLength == selected[0]) {
+            selected = [];
+            grid.clearSelection();
+        }
+        LastselectedLength = selected[0];
+        if (selected.length == 0) {
+
+            $("#savebutton").html('<i class="fa fa-save"></i> إضافة');
+            $('#lock').prop('checked', false);
+            $("#ARName").val('');
+
+            UnitID = 0;
+            locked = "";
+            ARName = "";
+            return;
+        }
+        var selectedRows = this.select();
+        var selectedDataItems = [];
+        for (var i = 0; i < selectedRows.length; i++) {
+            var dataItem = this.dataItem(selectedRows[i]);
+            selectedDataItems.push(dataItem);
+        }
+
+        if (selectedDataItems.length === 1 && selectedDataItems != []) {
+            $("#savebutton").html('<i class="fa fa-save"></i> تعديل');
+            ARName = selectedDataItems[0].UnitName;
+
+            UnitID = selectedDataItems[0].UnitId;
+            locked = selectedDataItems[0].IsLocked;
+            $('#lock').prop('checked', locked);
+            $("#ARName").val(ARName);
+
+        }
+    }
+    function Lock(e) {
+
+        var obj = this.dataItem($(e.target).closest("tr"));
+        $.ajax(
+            {
+                type: "POST",
+                url: '/Unit/SaveUnit',
+                data: {
+                    UnitId: obj.UnitId,
+                    IsLocked: true
+
+                },
+                error: function (result) {
+                    alert("There is a Problem, Try Again!");
+                },
+                success: function (result) {
+                    alert("تم التعطيل بنجاح");
+                    var grid = $("#grid").data("kendoGrid");
+                    grid.dataSource.read();
+                }
+            });
+
+    }
+    $(document).ready(function () {
+        $('.k-grid-ViewDocument').attr('onclick', 'Lock();');
+        $("#unitfrm").validate({
+            rules:
+            {
+                ARName:
+                {
+                    required: true
+                }
+            },
+            messages: {
+                ARName:
+                {
+                    required: "من فضلك أدخل وحده القياس"
+                }
+            }
+        });
+
+        //for search on any char like string or numbers or boolean or date
+        $('.k-input').on('input', function (e) {
+            var grid = $('#grid').data('kendoGrid');
+            var columns = grid.columns;
+
+            var filter = { logic: 'or', filters: [] };
+            columns.forEach(function (x) {
+                if (x.field) {
+                    var type = grid.dataSource.options.schema.model.fields[x.field].type;
+                    if (type == 'string') {
+                        filter.filters.push({
+                            field: x.field,
+                            operator: 'contains',
+                            value: e.target.value
+                        })
+                    }
+                }
+            });
+            grid.dataSource.filter(filter);
+        });
+
+        $('#popover-left,#popover-top,#popover-bottom,#popover-right').popover();
+        $('#tooltip-left,#tooltip-top,#tooltip-bottom,#tooltip-right').tooltip();
+        $('.k-grid-EditModal').attr('data-toggle', 'modal');
+        $('.k-grid-EditModal').attr('data-target', '#RoleEditModalPopup');
+        $('.k-grid-CreateModal').attr('data-toggle', 'modal');
+        $('.k-grid-CreateModal').attr('data-target', '#WorkOrderCreateModalPopup');
+        $('.k-grid-DeleteModal').attr('data-toggle', 'modal');
+        $('.k-grid-DeleteModal').attr('data-target', '#WorkOrderDeleteModalPopup');
+        var element = document.querySelector('[aria-label="Select all rows"]');
+        element.disabled = true;
+        element.style.visibility = 'hidden';
+
+    });
+
+    function saveUnit() {
+        if (!$("#unitfrm").valid()) {
+            return;
+        }
+        $.ajax(
+            {
+                type: "POST",
+                url: '@Url.Action("SaveUnit", "Unit")',
+                data: {
+                    UnitId: UnitID,
+                    UnitName: $("#ARName").val(),
+                    IsLocked: $("#lock").prop("checked")
+
+                },
+
+                error: function (result) {
+                    alert("There is a Problem, Try Again!");
+                },
+                success: function (result) {
+                    if (result == -1) {
+                        alert('الإسم متكرر');
+                        $("#ARName").val('');
+                    } else if (result.Errors == null) {
+                        $('#lock').prop('checked', false);
+                        //$("#GridView").css("display", "block");
+                        alert("تم الحفظ بنجاح");
+                        var grid = $("#grid").data("kendoGrid");
+                        $(".k-grid-search .k-input").val('');
+                        //grid.dataSource.filter(null);
+                        //grid.clearSelection();
+                        grid.dataSource.read();
+                        $("#ARName").val('');
+
+                    }
+                }
+            });
+    }
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+            var grid = $("#grid").data("kendoGrid");
+            grid.cancelChanges();
+            grid.dataSource.read();
+        }
+    }
+
+</script>
+
+
+
+@section styles{
+    <style>
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+}

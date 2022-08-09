@@ -1,0 +1,126 @@
+﻿<aside class="sidebar sidebar-left">
+    <div class="sidebar-profile" style="display: block;">
+        <div class="avatar">
+            <img class="img-circle profile-image" src="~/Images/profile.jpg" alt="profile">
+        </div>
+    </div>
+    <nav>
+        <ul class="nav nav-pills nav-stacked">
+            <li class="@Html.IsSelected(controller: "Home")">
+                <a href="@Url.Action("Index", "Home")">
+                    <i class="fa fa-fw fa-tachometer"></i><i style="margin-right: 10px">       الصفحة الرئيسية</i>
+                </a>
+            </li>
+
+            <li class="nav-dropdown @Html.IsSelected(controller: "department",action:"Index") @Html.IsSelected(controller: "unit",action:"Index") @Html.IsSelected(controller: "Company",action:"Index") @Html.IsSelected(controller: "ItemClass",action:"Index") @Html.IsSelected(controller: "Company",action:"CompanyUser")">
+                <a href="#">
+                    <i class="fa  fa-fw fa-edit"></i>  <i style="margin-right: 10px">البيانات الرئيسية  </i>
+                </a>
+                <ul class="nav-sub">
+                    <li class="@Html.IsSelected(controller: "unit",action:"Index")">
+                        <a href="@Url.Action("Index", "unit")">
+                            <i class="fa fa-fw fa-fw fa-cogs"></i> <i style="margin-right: 10px">  وحدات القياس</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "department",action:"Index")">
+                        <a href="@Url.Action("Index", "department")">
+                            <i class="fa fa-fw fa-fw fa-cogs"></i> <i style="margin-right: 10px"> القسم</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "Company",action:"Index")">
+                        <a href="@Url.Action("Index", "Company")">
+                            <i class="fa fa-fw fa-fw fa-cogs"></i><i style="margin-right: 10px"> الشركات</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "Company",action:"CompanyUser")">
+                        <a href="@Url.Action("CompanyUser", "Company")">
+                            <i class="fa fa-fw fa-fw fa-cogs"></i><i style="margin-right: 10px"> بيانات مستخدمين الشركات</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "ItemClass",action:"Index")">
+                        <a href="@Url.Action("Index", "ItemClass")">
+                            <i class="fa fa-fw fa-fw fa-cogs"></i><i style="margin-right: 10px"> فئات البند</i>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class="nav-dropdown @Html.IsSelected(controller: "Request",action:"Index") @Html.IsSelected(controller: "Request",action:"DeliverRequest") @Html.IsSelected(controller: "Request",action:"RequestDetails")">
+                <a href="#">
+                    <i class="fa  fa-fw fa-desktop"></i> <i style="margin-right: 10px">العملية أو المشروع</i>
+                </a>
+                <ul class="nav-sub">
+                    <li class="@Html.IsSelected(controller: "Request",action:"Index")">
+                        <a href="@Url.Action("Index", "Request")">
+                            <i class="fa  fa-fw fa-cogs"></i><i style="margin-right: 10px"> إنشاء العملية أو المشروع</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "Request",action:"DeliverRequest")">
+                        <a href="@Url.Action("DeliverRequest", "Request")">
+                            <i class="fa  fa-fw fa-cogs"></i><i style="margin-right: 10px"> محضر إستلام الموقع</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "Request",action:"RequestDetails")">
+                        <a href="@Url.Action("RequestDetails", "Request")">
+                            <i class="fa  fa-fw fa-cogs"></i> <i style="margin-right: 10px">مقايسة الأعمال</i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-dropdown @Html.IsSelected(controller: "WorkOrder",action:"WorkOrderApproval") @Html.IsSelected(controller: "WorkOrder",action:"WorkOrderDetails") @Html.IsSelected(controller: "WorkOrder",action:"Index")@Html.IsSelected(controller: "WorkOrder",action:"GetWorkOrderApproved") ">
+                <a href="#">
+                    <i class="fa  fa-fw fa-desktop"></i> <i style="margin-right: 10px">المستخلصات</i>
+                </a>
+                <ul class="nav-sub">
+                    <li class="@Html.IsSelected(controller: "WorkOrder",action:"Index")">
+                        <a href="@Url.Action("Index", "WorkOrder")">
+                            <i class="fa  fa-fw fa-cogs"></i> <i style="margin-right: 10px">تقديم مستخلص جديد</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "WorkOrder",action:"WorkOrderApproval")">
+                        <a href="@Url.Action("WorkOrderApproval", "WorkOrder")">
+                            <i class="fa  fa-fw fa-cogs"></i> <i style="margin-right: 10px">موافقه علي صرف المستخلص</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "WorkOrder",action:"GetWorkOrderApproved")">
+                        <a href="@Url.Action("GetWorkOrderApproved", "WorkOrder")">
+                            <i class="fa  fa-fw fa-cogs"></i> <i style="margin-right: 10px">المستخلصات التي تمت الموافقة عليها</i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-dropdown @Html.IsSelected(controller: "User",action:"UserRequests") @Html.IsSelected(controller: "User",action:"Index") @Html.IsSelected(controller: "Role") @Html.IsSelected(controller: "Setting",action:"Index")">
+                <a href="#">
+                    <i class="fa fa-fw fa-cogs"></i><i style="margin-right: 10px"> الصلاحيات</i>
+                </a>
+                <ul class="nav-sub">
+                    <li class="@Html.IsSelected(controller: "User",action:"Index")">
+                        <a href="@Url.Action("Index", "User")">
+                            <i class="fa  fa-fw fa-cogs"></i><i style="margin-right: 10px"> بيانات المستخدمين</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "Role",action:"Index")">
+                        <a href="@Url.Action("Index", "Role")">
+                            <i class="fa  fa-fw fa-magic"></i> <i style="margin-right: 10px">الصلاحيات</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "User",action:"UserRequests")">
+                        <a href="@Url.Action("UserRequests", "User")">
+                            <i class="fa  fa-fw fa-magic"></i> <i style="margin-right: 10px">تعيين العملية للمهندس التنفيذي</i>
+                        </a>
+                    </li>
+                    <li class="@Html.IsSelected(controller: "Setting",action:"Index")">
+                        <a href="@Url.Action("Index", "Setting")">
+                            <i class="fa  fa-fw fa-magic"></i> <i style="margin-right: 10px">بيانات المسئولين</i>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="@Html.IsSelected(controller: "Report",action:"Index")">
+                <a href="@Url.Action("Index", "Report")">
+                    <i class="fa fa-fw fa-fw fa-desktop"></i><i style="margin-right: 10px">التقارير</i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>

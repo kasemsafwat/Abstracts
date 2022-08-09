@@ -1,0 +1,375 @@
+﻿@{ ViewData["Title"] = "تقديم مستخلص جديد";}
+<div class="pageheader">
+    <h1>تقديم مستخلص جديد</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff;  " href="javascript:void(0);">المستلخصات</a>
+            </li>
+            <li class="active">تقديم مستخلص جديد</li>
+        </ol>
+    </div>
+</div>
+<link rel="stylesheet" href="lib/kendo/css/web/kendo.rtl.min.css" />
+
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+
+                        <form id="requestfrm">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="Code"> العملية رقم</label>
+
+                                <input type="text" class="form-control" name="RequestNo" id="RequestNo">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="Code">تاريخ أمر الإسناد</label>
+                                @(Html.Kendo().DatePicker()
+                                                    .Name("RequestDate")
+                                                    .Format("dd/MM/yyyy")
+                                                    .HtmlAttributes(new { style = "width: 100%" ,@class = "form-control", title = "datepicker" })
+                                                )
+
+                            </div>
+                        </div>
+                        <div class="col-md-1" style="margin-bottom: -18px;">
+                            <div class="form-group">
+                                <br />
+                                <a href="#" class="btn btn-success" onclick="Search();"> <i class="fa fa-search"></i> بحث</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2" style="margin-bottom: -18px;">
+                            <div class="form-group">
+                                <br />
+                                <a href="#" data-toggle="modal" class="btn btn-success" data-target="#RequestSearchModalPopup"> <i class="fa fa-search"></i> بحث مفصل</a>
+                            </div>
+                        </div>
+
+                        </form>
+                        <form id="requestDetailsfrm">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Code">شركة المقاولات المسند إليها العملية</label>
+                                    <input type="text" class="form-control" name="Company" id="Company" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Code">العملية أو المشروع</label>
+                                    <input type="text" class="form-control" name="RequestName" id="RequestName" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2" style="margin-bottom: -18px;">
+                                <div class="form-group">
+                                    <label for="Code">قيمة العملية</label>
+                                    <input type="number" class="form-control" name="RequestAmount" id="RequestAmount" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-1" style="margin-bottom: -18px;">
+                                <div class="form-group">
+                                    <label for="Code">مدة العملية</label>
+                                    <input type="number" class="form-control" name="RequestDuration" id="RequestDuration" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-1" style="margin-bottom: -18px;">
+                                <div class="form-group">
+                                    <br />  <br />
+                                    <label for="Code">شهر</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ إستلام الموقع</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestStartDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ النهو التعاقدي</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestEndDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+                            <div class="col-md-2" style="margin-bottom: -18px;">
+                                <div class="form-group">
+                                    <label for="Code">مستخلص جاري رقم</label>
+                                    <input type="text" class="form-control" name="WorkOrderCode" id="WorkOrderCode" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">الأعمال المنفذ من</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("WorkOrderStartDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+                            <div class="col-md-3 k-ltr">
+                                <div class="form-group">
+                                    <label for="Code">حتي</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("WorkOrderEndDate")
+                .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Code">ملاحظات</label>
+                                    <input type="text" class="form-control" name="Note" id="Note">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="margin-bottom: 40px;">
+                                <div class="form-group">
+                                    <label for="Email">إختر صورة المستخلص</label>
+                                    <div class="demo-section k-content">
+                                        @(Html.Kendo().Upload()
+                                            .Name("FileName")
+                                            .HtmlAttributes(new { aria_label = "files" })
+                                            .Async(a => a
+                                                .Save("Async_Save", "WorkOrder")
+                                                //.Remove("Async_Remove", "WorkOrder")
+                                                .AutoUpload(false)
+                                            )
+                                            .Events(events => events
+
+                                                .Select("onSelect")
+
+                                            )
+                                            )
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                            <div class="col-md-3" style="margin-bottom: 40px;">
+                                <div class="form-group">
+                                    <label for="Email">تحميل نموذج المستخلص</label>
+                                    <div class="demo-section k-content">
+                                        @(Html.Kendo().Upload()
+            .Name("WorkOrderExcelFileName")
+            .HtmlAttributes(new { aria_label = "files" })
+            .Async(a => a
+               .Save("Async_Save_WorkOrderExcel", "WorkOrder")
+               .AutoUpload(false)
+            )
+             .Events(events => events
+            .Select("onWorkOrderExcelSelect")
+
+        )
+
+        )
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <br />
+                                <a class="btn btn-success" href="/ImportData/ExportWorkOrderExcelData">
+                                    <i class="fa fa-download"></i>تصدير نموذج المستخلص
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <br />
+                                <a class="btn btn-success" style="text-align: center;" href="javascript:void(0);" onclick="uploadExcel();">
+                                    <i class="fa fa-upload"></i>رفع النموذج
+                                </a>
+                            </div>
+
+                            <div class="col-md-2" style="text-align: center;">
+                                <br />
+                                <a class="btn btn-success" onclick="saveWorkOrder();">
+                                    <i class="fa fa-save"></i>حفظ المستخلص
+                                </a>
+                            </div>
+
+                            <div class="col-md-2" id="Browse" style="text-align: center; display:none;">
+                                <br />
+                                <a class="btn btn-success" onclick="browse();">
+                                    <i class="fa fa-save"></i> عرض صورة المستخلص
+                                </a>
+                            </div>
+
+                            <div class="col-md-2" id="submitbtn" style="display:none">
+                                <br />
+                                <a class="btn btn-success" onclick="SetWorkOrderSubmitted();">
+                                    <i class="fa fa-save"></i> تأكيد المستخلص
+                                </a>
+                            </div>
+
+
+                       
+                        <div id="GridViewWorkOrder" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid <Abstracts.Models.Refactored.WorkOrderDetails>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.RequestDetailCode).Width(93).Title("كود البند").Editable("productNameEditable").Locked(true).Lockable(false).ClientFooterTemplate("عدد البنود: #=count#");
+        columns.Bound(p => p.RequestDetailSerial).Width(65).Title("البند").Editable("productNameEditable").Locked(true);
+        columns.Bound(p => p.RequestDetailName).Width(260).Title("الوصف").Editable("productNameEditable").Locked(true);
+        columns.Bound(p => p.Unit).Width(74).Title("الوحدة").Editable("productNameEditable");
+        columns.Bound(p => p.Qty).Width(93).Title("الكمية المقدرة").Editable("productNameEditable");
+        columns.Bound(p => p.UnitPrice).Width(136).Title("سعر الوحدة بالجنيه").Editable("productNameEditable").ClientFooterTemplate("إجمالي: #=sum#");
+        columns.Bound(p => p.TotalPrice).Width(98).Title("السعر الإجمالي").Editable("productNameEditable").ClientFooterTemplate("إجمالي: #=sum#");
+        columns.Bound(p => p.PreviousQty).Width(234).Title("كمية الأعمال التى تمت حتى المستخلص السابق").Editable("productNameEditable");
+        columns.Bound(p => p.NowQty).Width(179).Title("كمية الأعمال التى تمت خلال الفترة");
+
+        columns.Bound(p => p.InventoryBookNo).Width(77).Title("رقم الدفتر");
+        columns.Bound(p => p.InventoryBookPage).Width(80).Title("رقم الصفحة");
+
+        columns.Bound(p => p.TotalQty).Width(207).Title("إجمالى كمية الأعمال التي تمت حتى الآن").Editable("productNameEditable");
+        columns.Bound(p => p.NowTotalPrice).Width(198).Title("قيمة جملة الأعمال التى تمت حتى الآن").Editable("productNameEditable");
+        columns.Bound(p => p.NotePercentagePrice).Width(141).Title("استقطاعات ومبالغ معلاه").Editable("productNameEditable").ClientFooterTemplate("إجمالي: #=sum#");
+        columns.Bound(p => p.WorkOrderNote).ClientTemplate("#=WorkOrderNote.WorkOrderNoteId# - #=WorkOrderNote.NoteTitle# - #=WorkOrderNote.NotePercentage# %").Title("رقم الملاحظه").Width(500);
+        columns.Bound(p => p.NeededPrice).Width(131).Title("صافى المستحق صرفه").Editable("productNameEditable").ClientFooterTemplate("إجمالي: #=sum#");
+
+        columns.Command(command => { command.Edit().Text("تعديل"); command.Destroy().Text("مسح"); }).Width(220);
+    })
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+        toolbar.Custom().Text("إختيار بند جديد").Name("CreateModal");
+        toolbar.Custom().Text("إضافة ملاحظة").Name("CreateNote");
+    })
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Groupable(g => g.ShowFooter(true))
+    .PersistSelection(true)
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.RequestDetailCode).Count();
+            aggregates.Add(p => p.Qty).Sum();
+            aggregates.Add(p => p.UnitPrice).Sum();
+            aggregates.Add(p => p.TotalPrice).Sum();
+            aggregates.Add(p => p.PreviousQty).Sum();
+            aggregates.Add(p => p.NowQty).Sum();
+            aggregates.Add(p => p.TotalQty).Sum();
+            aggregates.Add(p => p.NowTotalPrice).Sum();
+            aggregates.Add(p => p.NotePercentagePrice).Sum();
+            aggregates.Add(p => p.NeededPrice).Sum();
+        })
+        .PageSize(8)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => {
+            model.Id(p => p.RequestDetailId);
+            model.Field(p => p.Qty).Editable(false);
+            model.Field(p => p.WorkOrderNote).DefaultValue(
+                    ViewData["defaultCategory"] as Abstracts.Models.WorkOrderNotes);
+        }
+        )
+        .Update(update => update.Action("SaveWorkOrderDetailForGrid", "WorkOrder"))
+        .Destroy(update => update.Action("DeleteWorkOrderDetail", "WorkOrder"))
+        .Read(read => read.Action("GetWorkOrderDetailList1", "WorkOrder"))
+    )
+)
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/lib/kendo/js/kendo.upload.min.js"></script>
+<script src="~/Scripts/jszip.min.js"></script>
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Ajax/WorkOrder.js"></script>
+
+
+
+@section styles{
+    <style>
+        .k-clear-selected, .k-upload-selected {
+            display: none !important;
+        }
+
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .product-photo {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-size: 32px 35px;
+            background-position: center center;
+            vertical-align: middle;
+            line-height: 32px;
+            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+            margin-right: 5px;
+        }
+
+        .product-name {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 32px;
+            padding-left: 3px;
+        }
+
+        .k-rating-container .k-rating-item {
+            padding: 4px 0;
+        }
+
+            .k-rating-container .k-rating-item .k-icon {
+                font-size: 16px;
+            }
+
+        .dropdown-country-wrap {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+            .dropdown-country-wrap img {
+                margin-right: 10px;
+            }
+
+        #grid .k-grid-edit-row > td > .k-rating {
+            margin-left: 0;
+            width: 100%;
+        }
+    </style>
+}

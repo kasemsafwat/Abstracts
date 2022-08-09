@@ -1,0 +1,166 @@
+﻿@using Kendo.Mvc.UI
+
+@{ ViewData["Title"] = "المكاتب الإستشارية";}
+
+<div class="pageheader">
+    <h1>المكاتب الإستشارية</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff;  " href="javascript:void(0);">البيانات الرئيسية</a>
+            </li>
+            <li class="active">المكاتب الإستشارية</li>
+        </ol>
+    </div>
+</div>
+
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <form id="frm">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">إسم المكتب</label>
+                                    <input type="text" class="form-control" name="Name" id="Name" placeholder="أدخل إسم المكتب">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code"> رقم التواصل</label>
+                                    @(Html.Kendo().MaskedTextBox()
+.Name("Phone")
+.Mask("(999) 000-00000")
+.Value("555 123 45675")
+.HtmlAttributes(new { style = "width: 100%;  direction: ltr;" })
+            )
+                                    @*<input type="number" class="form-control" name="Phone" id="Phone" placeholder="أدخل رقم التواصل">*@
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">الايميل</label>
+                                    <input type="email" class="form-control" name="Email" id="Email" placeholder="أدخل الايميل">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">الباسورد</label>
+                                    <input type="password" class="form-control" name="Password" id="Password" placeholder="أدخل الباسورد">
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-12" style="text-align: center;">
+                                <br />
+                                <a id="savebutton" class="btn btn-success" onclick="saveConsultationUsers();">
+                                    <i class="fa fa-save"></i> إضافة
+                                </a>
+                            </div>
+                        </form>
+
+                        <div id="GridView" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid <Abstracts.Models.Refactored.ConsultationUser>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Select().Width(50);
+        columns.Bound(p => p.ConsultationName).Width(183).Title("إسم المكتب").ClientFooterTemplate("إجمالي عدد المكاتب الإستشارية: #=count#");
+        columns.Bound(p => p.Email).Width(220).Title("الإيميل");
+
+        columns.Bound(p => p.PhoneNumber).Width(129).Title("رقم التواصل");
+    }).ClientRowTemplate(
+        "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'> " +
+            "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>"  +
+            "<td role='gridcell'>" +
+               "<span> #: ConsultationName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Email# </span>" +
+            "</td>" +
+
+            "<td role='gridcell'>" +
+               "<span> #: PhoneNumber# </span>" +
+            "</td>" +
+         "</tr>"
+    ).ClientAltRowTemplate(
+        "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+                   "<td role='gridcell'> " +
+            "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: ConsultationName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Email# </span>" +
+            "</td>" +
+
+            "<td role='gridcell'>" +
+               "<span> #: PhoneNumber# </span>" +
+            "</td>" +
+         "</tr>"
+    )
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+    })
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Selectable(selectable => selectable.Mode(GridSelectionMode.Single))
+    //.Groupable(g => g.ShowFooter(true))
+    .PersistSelection(true)
+    .Events(ev => ev.Change("onChangeSelection")
+    .Page("onPaging"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.ConsultationName).Count();
+        })
+        .ServerOperation(false)
+        .PageSize(8)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.ConsultationUserId))
+    .Read(read => read.Action("GetConsultationUsersList", "Consultation"))
+    )
+)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Ajax/ConsultationUser.js"></script>
+
+
+
+@section styles{
+    <style>
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+}

@@ -1,0 +1,112 @@
+﻿
+<div class="modal fade" id="RequestSearchModalPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:1300px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"> بحث في أمر الإسناد</h4>
+            </div>
+            <div id="validation-summary">
+            </div>
+            <div class="panel-body">
+                <div id="GridView" class="k-rtl col-md-12">
+                    @(Html.Kendo().Grid<Abstracts.Models.Refactored.Requests>()
+.Name("grid2")
+.Columns(columns =>
+{
+    columns.Select().Width(35);
+    columns.Bound(p => p.RequestNo).Width(100).Title("رقم العملية").ClientFooterTemplate("عدد العمليات: #=count#");
+    columns.Bound(p => p.RequestDateString).Width(100).Title("تاريخ العملية");
+    columns.Bound(p => p.Company).Width(100).Title("شركة المقاولات");
+    columns.Bound(p => p.RequestName).Width(100).Title("إسم العملية");
+    columns.Bound(p => p.RequestAmount).Width(100).Title("قيمة العملية");
+    columns.Bound(p => p.RequestDuration).Width(100).Title("مدة العملية");
+    columns.Bound(p => p.Notes).Width(100).Title("ملاحظات");
+})
+.ClientRowTemplate(
+        "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td > " +
+            "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: RequestNo# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: RequestDateString# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: Company# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: RequestName# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: RequestAmount# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: RequestDuration# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: Notes# </span>" +
+            "</td>" +
+         "</tr>"
+    ).ClientAltRowTemplate(
+        "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td > " +
+            "<input class=' k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: RequestNo# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: RequestDateString# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: Company# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: RequestName# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: RequestAmount# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: RequestDuration# </span>" +
+            "</td>" +
+            "<td >" +
+               "<span> #: Notes# </span>" +
+            "</td>" +
+         "</tr>"
+    )
+.ToolBar(toolbar =>
+{
+    toolbar.Search().Text("بحث");
+})
+.Pageable()
+.Resizable(r => r.Columns(true))
+.Reorderable(r => r.Columns(true))
+.Sortable()
+.Selectable(selectable => selectable.Mode(GridSelectionMode.Single))
+.PersistSelection(true)
+.Events(ev => ev.Change("onChangeSelection2").Page("onPaging2"))
+.Scrollable(ev => ev.Height(376))
+.HtmlAttributes(new { style = "height:600px;" })
+.DataSource(dataSource => dataSource
+.Ajax()
+.Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.RequestNo).Count();
+
+        })
+.PageSize(20)
+.ServerOperation(false)
+.Events(events => events.Error("error_handler"))
+.Model(model => model.Id(p => p.RequestId))
+.Read(read => read.Action("GetRequestList", "Request"))
+)
+)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

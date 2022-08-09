@@ -1,0 +1,372 @@
+﻿@using Kendo.Mvc.UI
+
+@{ ViewData["Title"] = "الصلاحيات";}
+
+<div class="pageheader">
+    <h1>الصلاحيات</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff;  " href="javascript:void(0);">البيانات الرئيسية</a>
+            </li>
+            <li class="active">الصلاحيات</li>
+        </ol>
+    </div>
+</div>
+
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <form id="rolefrm">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="Code">
+                                        إسم الصلاحية
+                                    </label>
+                                    <input type="text" class="form-control" name="RoleName" id="RoleName" placeholder="أدخل إسم الصلاحية">
+                                </div>
+                                <div class="form-group">
+                                    <label for="Code">
+                                        تفاصيل الصلاحية
+                                    </label>
+                                    <input type="text" class="form-control" name="RoleDescription" id="RoleDescription" placeholder="أدخل تفاصيل الصلاحية">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="text-align: center;">
+                                <br />
+                                <a id="savebutton" class="btn btn-success" onclick="saveRole();">
+                                    <i class="fa fa-save"></i> إضافة
+                                </a>
+                            </div>
+
+
+
+
+
+                        </form>
+
+                        <div id="GridView" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid<Abstracts.Models.MasterLoginModel.Roles>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Select().Width(15);
+        columns.Bound(p => p.RoleName).Width(100).Title("إسم الصلاحية").ClientFooterTemplate("إجمالي عدد الصلاحيات: #=count#"); ;
+        columns.Bound(p => p.RoleDescription).Width(100).Title("تفاصيل الصلاحية");
+    }).ClientRowTemplate(
+        "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'> " +
+            "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RoleName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RoleDescription# </span>" +
+            "</td>" +
+           
+         "</tr>"
+    ).ClientAltRowTemplate(
+        "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'> " +
+            "<input class=' k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+             "<td role='gridcell'>" +
+               "<span> #: RoleName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RoleDescription# </span>" +
+            "</td>" +
+
+         "</tr>"
+    )
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+    })
+   .Selectable(selectable => selectable
+            .Mode(GridSelectionMode.Single))
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .PersistSelection(true)
+    .Events(ev => ev.Change("onChangeSelection"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.RoleName).Count();
+        })
+        .PageSize(20)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.RoleId))
+    .Read(read => read.Action("GetRoleList", "Role"))
+    )
+)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Scripts/jszip.min.js"></script>
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script>
+        function isNumeric(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+        function getBoolean(str) {
+            if ("true".startsWith(str)) {
+                return true;
+            } else if ("false".startsWith(str)) {
+                return false;
+            } else {
+                return null;
+            }
+        }
+
+    var selected = 0;
+    var lastSelected = "";
+    var row;
+    var RoleID = 0;
+    var RoleName = "";
+    var LastselectedLength = 0;
+    var RoleDescription = "";
+
+    function onChangeSelection(arg) {
+        var grid = $("#grid").data("kendoGrid");
+
+        selected = this.selectedKeyNames();
+        if (LastselectedLength === selected[0]) {
+            selected = [];
+            grid.clearSelection();
+        }
+        LastselectedLength = selected[0];
+        if (selected.length === 0) {
+            $("#RoleName").val('');
+            $("#RoleDescription").val('');
+
+            return;
+        }
+        var selectedRows = this.select();
+        var selectedDataItems = [];
+        for (var i = 0; i < selectedRows.length; i++) {
+            var dataItem = this.dataItem(selectedRows[i]);
+            selectedDataItems.push(dataItem);
+        }
+
+        if (selectedDataItems.length === 1 && selectedDataItems !== []) {
+            RoleName = selectedDataItems[0].RoleName;
+            RoleDescription = selectedDataItems[0].RoleDescription;
+            $("#savebutton").html('<i class="fa fa-save"></i> تعديل');
+            RoleID = selectedDataItems[0].RoleId;
+            $("#RoleName").val(RoleName);
+            $("#RoleDescription").val(RoleDescription);
+        }
+    }
+    //function onChangeSelection(arg) {
+    //    var grid = $("#grid").data("kendoGrid");
+
+    //    selected = this.selectedKeyNames();
+    //    if (LastselectedLength === selected[0]) {
+    //        selected = [];
+    //        grid.clearSelection();
+    //        $("#RoleName").val('');
+    //        $("#RoleDescription").val('');
+    //    }
+    //    LastselectedLength = selected[0];
+    //    if (selected.length == 0) {
+    //        $("#savebutton").html('<i class="fa fa-save"></i> إضافة');
+
+    //        $("#RoleName").val(RoleName);
+    //        $("#RoleDescription").val(RoleDescription);
+    //        return;
+    //    }
+    //    var selectedRows = this.select();
+    //    var selectedDataItems = [];
+    //    for (var i = 0; i < selectedRows.length; i++) {
+    //        var dataItem = this.dataItem(selectedRows[i]);
+    //        selectedDataItems.push(dataItem);
+    //    }
+
+    //    if (selectedDataItems.length <= 1 && selectedDataItems != []) {
+    //        RoleName = selectedDataItems[0].RoleName;
+    //        RoleDescription = selectedDataItems[0].RoleDescription;
+    //        $("#savebutton").html('<i class="fa fa-save"></i> تعديل');
+    //        RoleID = selectedDataItems[0].RoleId;
+    //        $("#RoleName").val(RoleName);
+    //        $("#RoleDescription").val(RoleDescription);
+
+    //    }
+    //}
+    $(document).ready(function () {
+
+        $("#rolefrm").validate({
+            rules:
+            {
+                RoleName:
+                {
+                    required: true
+                },
+                RoleDescription:
+                {
+                    required: true
+                }
+            },
+            messages: {
+                RoleName:
+                {
+                    required: "من فضلك أدخل إسم الصلاحية"
+                },
+                RoleDescription:
+                {
+                    required: "من فضلك أدخل تفاصيل الصلاحية"
+                }
+            }
+        });
+
+        //for search on any char like string or numbers or boolean or date
+        $('.k-input').on('input', function (e) {
+            var grid = $('#grid').data('kendoGrid');
+            var columns = grid.columns;
+
+            var filter = { logic: 'or', filters: [] };
+            columns.forEach(function (x) {
+                if (x.field) {
+                    var type = grid.dataSource.options.schema.model.fields[x.field].type;
+                    if (type == 'string') {
+                        filter.filters.push({
+                            field: x.field,
+                            operator: 'contains',
+                            value: e.target.value
+                        })
+                    }
+                }
+            });
+            grid.dataSource.filter(filter);
+        });
+
+        $('#popover-left,#popover-top,#popover-bottom,#popover-right').popover();
+        $('#tooltip-left,#tooltip-top,#tooltip-bottom,#tooltip-right').tooltip();
+        var element = document.querySelector('[aria-label="Select all rows"]');
+        element.disabled = true;
+    });
+
+    function saveRole() {
+        if (!$("#rolefrm").valid()) {
+            return;
+        }
+        $.ajax(
+            {
+                type: "POST",
+                url: '@Url.Action("SaveRole", "Role")',
+                data: {
+                    RoleId: RoleID,
+                    RoleName: $("#RoleName").val(),
+                    RoleDescription: $("#RoleDescription").val()
+
+                },
+
+                error: function (result) {
+                    alert("There is a Problem, Try Again!");
+                },
+                success: function (result) {
+                    if (result.Errors == null) {
+                        $("#RoleName").val('');
+                        $("#RoleDescription").val('');
+                        alert("تم الحفظ بنجاح");
+                        var grid = $("#grid").data("kendoGrid");
+                        
+                        grid.dataSource.read();
+
+                    }
+                }
+            });
+    }
+
+    function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+    }
+
+</script>
+
+
+
+@section styles{
+    <style>
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .product-photo {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-size: 32px 35px;
+            background-position: center center;
+            vertical-align: middle;
+            line-height: 32px;
+            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+            margin-right: 5px;
+        }
+
+        .product-name {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 32px;
+            padding-left: 3px;
+        }
+
+        .k-rating-container .k-rating-item {
+            padding: 4px 0;
+        }
+
+            .k-rating-container .k-rating-item .k-icon {
+                font-size: 16px;
+            }
+
+        .dropdown-country-wrap {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+            .dropdown-country-wrap img {
+                margin-right: 10px;
+            }
+
+        #grid .k-grid-edit-row > td > .k-rating {
+            margin-left: 0;
+            width: 100%;
+        }
+    </style>
+}

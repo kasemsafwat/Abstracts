@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جهاز تنمية حدائق أكتوبر | @ViewBag.Title</title>
+
+    <script src="~/lib/kendo/js/jquery.min.js"></script>
+    <script src="~/lib/kendo/js/kendo.all.min.js"></script>
+    <script src="~/lib/kendo/js/messages/kendo.ar-JO.js"></script>
+    <script src="~/lib/kendo/js/kendo.aspnetmvc.min.js"></script>
+
+    <link href="~/lib/kendo/css/web/kendo.default-v2.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/web/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/web/kendo.default.mobile.min.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/web/kendo.blueopal.min.css" rel="stylesheet" />
+
+    <script src="~/lib/kendo/js/kendo.grid.min.js"></script>
+    <script src="~/NeuBoard/Scripts/src/app.js"></script>
+    <script src="~/lib/kendo/js/kendo.upload.min.js"></script>
+    <link href="~/NeuBoard/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/NeuBoard/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/simple-line-icons.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/clndr.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/dropzone.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Scripts/plugins/switchery/switchery.min.css" rel="stylesheet" />
+
+    <link href="~/NeuBoard/Content/morris.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/animate.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/main.css" rel="stylesheet" />
+
+    <script src="~/NeuBoard/Scripts/modernizr-2.6.2.js"></script>
+
+    <script src="~/NeuBoard/Scripts/html5shiv.min.js"></script>
+    <script src="~/NeuBoard/Scripts/respond.js"></script>
+    <script src="~/js/moment.js"></script>
+    <style>
+        .dropbtn {
+            color: #bdbdbd !important;
+            padding: 15px 15px 15px 15px;
+            display: block;
+            font-size: 22px;
+            background-color: transparent;
+            line-height: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: max-content;
+            text-align: center;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: #556b8d;
+                padding: 12px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            color: white !important;
+        }
+    </style>
+</head>
+<!-- Page Wrapper-->
+<body style="font-family: Stc!important;">
+    <section id="main-wrapper" class="theme-default sidebar-mini">
+
+        <!-- Top Header -->
+        @Html.Partial("~/Views/Shared/_Header.cshtml")
+
+        <section class="main-content-wrapper">
+            @{
+                bool workOrders = false;
+                if (Html.IsSelected(controller: "WorkOrder", action: "Index") == "active open") { workOrders = true; }
+                bool workOrderDetails = false;
+                if (Html.IsSelected(controller: "WorkOrder", action: "WorkOrderDetails") == "active open") { workOrderDetails = true; }
+                bool GetWorkOrderApproved = false;
+                if (Html.IsSelected(controller: "WorkOrder", action: "GetWorkOrderApproved") == "active open") { GetWorkOrderApproved = true; }
+                bool WorkOrderApproval = false;
+                if (Html.IsSelected(controller: "WorkOrder", action: "WorkOrderApproval") == "active open") { WorkOrderApproval = true; }
+                bool WorkOrdersForCompany = false;
+                if (Html.IsSelected(controller: "WorkOrder", action: "WorkOrdersForCompany") == "active open") { WorkOrdersForCompany = true; }
+                bool RequestEdit = false;
+                if (Html.IsSelected(controller: "Request", action: "Edit") == "active open" || Html.IsSelected(controller: "Request", action: "EditReport") == "active open") { RequestEdit = true; }
+                bool WorkOrderStatus = false;
+                if (Html.IsSelected(controller: "WorkOrder", action: "WorkOrderStatus") == "active open") { WorkOrderStatus = true; }
+                bool SetConsultation = false;
+                if (Html.IsSelected(controller: "Consultation", action: "SetConsultation") == "active open") { SetConsultation = true; }
+                bool Technical = false;
+                if (Html.IsSelected(controller: "Technical", action: "Index") == "active open") { Technical = true; }
+                bool UserRequests = false;
+                if (Html.IsSelected(controller: "User", action: "UserRequests") == "active open") { UserRequests = true; }
+            }
+            <div class="container body-content" style="        width: auto;
+        padding: 0 1.875em 1.875em 1.875em;
+        border: 1px solid transparent;
+        overflow: hidden;">
+                <!-- Main view  -->
+                @RenderBody()
+            </div>
+            @if (Html.PageClass() == "DeliverRequest" || Html.PageClass() == "RequestDetails" || RequestEdit || UserRequests || Technical)
+            {
+                @Html.Partial("~/Views/Shared/PartialViews/_RequestSearchModal.cshtml");
+            }
+            @if (workOrders || workOrderDetails || WorkOrderApproval || GetWorkOrderApproved || WorkOrderStatus || SetConsultation)
+            {
+                @Html.Partial("~/Views/Shared/PartialViews/_RequestSearchModal2.cshtml");
+            }
+            @if (Html.PageClass() == "RequestDetails")
+            {
+                @Html.Partial("~/Views/Shared/PartialViews/_RequestDetailsCreateModal.cshtml");
+                @Html.Partial("~/Views/Shared/PartialViews/_RequestDetailsEditModal.cshtml");
+            }
+            @if (RequestEdit)
+            {
+                @Html.Partial("~/Views/Shared/PartialViews/_RequestDetailsCreateModal2.cshtml");
+                @Html.Partial("~/Views/Shared/PartialViews/_RequestDetailsEditModal2.cshtml");
+
+            }
+            @if (workOrders || WorkOrderApproval || WorkOrderStatus)
+            {
+                @Html.Partial("~/Views/Shared/PartialViews/_CreateNoteModal.cshtml");
+            }
+            @if (workOrders)
+            {
+                @Html.Partial("~/Views/Shared/PartialViews/_WorkOrderModal.cshtml");
+            }
+            @if (WorkOrdersForCompany)
+            {
+                @Html.Partial("~/Views/Shared/PartialViews/_WorkOrderModal.cshtml");
+                @Html.Partial("~/Views/Shared/PartialViews/_RequestSearchModal3.cshtml");
+            }
+
+            @Html.Partial("~/Views/Shared/PartialViews/_AdminChangePassword.cshtml");
+        </section>
+        <!-- /Content wraper-->
+
+    </section><!-- /Page Wrapper-->
+    <!-- Right Sidebar -->
+    @Html.Partial("~/Views/Shared/_RightSideBar.cshtml")
+
+    <!--Theme Config -->
+
+    <script src="~/NeuBoard/Scripts/bootstrap.js"></script>
+
+    <script src="~/NeuBoard/Scripts/plugins/navgoco/jquery.navgoco.min.js"></script>
+
+    <script src="~/NeuBoard/Scripts/plugins/fullscreen/jquery.fullscreen-min.js"></script>
+
+    <script src="~/NeuBoard/Scripts/plugins/switchery/switchery.min.js"></script>
+
+    <script src="~/Scripts/Ajax/common.js"></script>
+
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+</body>
+</html>

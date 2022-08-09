@@ -1,0 +1,235 @@
+﻿@using Kendo.Mvc.UI
+
+@{ ViewData["Title"] = "الشركات";}
+
+<div class="pageheader">
+    <h1>الشركات</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff;  " href="javascript:void(0);">البيانات الرئيسية</a>
+            </li>
+            <li class="active">الشركات</li>
+        </ol>
+    </div>
+</div>
+
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <form id="companyfrm">
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">كود الشركة</label>
+                                    <input type="text" class="form-control" name="CompanyCode" id="CompanyCode" value="@ViewBag.CompanyCode" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Code">إسم الشركة</label>
+                                    <input type="text" class="form-control" name="CompanyName" id="CompanyName" placeholder="أدخل إسم الشركة">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Code">الايميل</label>
+                                    <input type="email" class="form-control" name="Email" id="Email" placeholder="أدخل الايميل">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">الرقم التأميني</label>
+                                    <input type="number" class="form-control" name="InsuranceNo" id="InsuranceNo" placeholder="أدخل رقم التأميني">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">رقم الموبيل</label>
+                                    @(Html.Kendo().MaskedTextBox()
+                  .Name("Mobile")
+                  .Mask("(999) 000-000000")
+                  .Value("555 123 456174")
+                  .HtmlAttributes(new { style = "width: 100%;  direction: ltr;" })
+            )
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">تليفون المكتب</label>
+                                    @(Html.Kendo().MaskedTextBox()
+                  .Name("Phone")
+                  .Mask("(999) 000-0000")
+                  .Value("555 123 4567")
+                  .HtmlAttributes(new { style = "width: 100%;  direction: ltr;" })
+            )
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">السجل الضريبي</label>
+                                    <input type="text" class="form-control" name="TaxRecordNo" id="TaxRecordNo" placeholder="أدخل السجل الضريبي">
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-1" style="text-align: center;">
+                                <br />
+                                @(Html.Kendo().CheckBox()
+.Name("lock")
+)
+                                <label for="Code">
+                                    إيقاف الشركة
+                                </label>
+
+                            </div>
+
+
+                            <div class="col-md-2" style="text-align: center;">
+                                <br />
+                                <a id="savebutton" class="btn btn-success" onclick="saveCompany();">
+                                    <i class="fa fa-save"></i> إضافة
+                                </a>
+                            </div>
+                        </form>
+
+                        <div id="GridView" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid <Abstracts.Models.Refactored.Companies>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Select().Width(50);
+        columns.Bound(p => p.CompanyCode).Width(134).Title("كود الشركة").ClientFooterTemplate("إجمالي عدد الشركات: #=count#");
+        columns.Bound(p => p.CompanyName).Width(287).Title("إسم الشركة");
+        columns.Bound(p => p.Email).Width(159).Title("الإيميل");
+        columns.Bound(p => p.InsuranceNo).Width(107).Title("الرقم التأميني");
+        columns.Bound(p => p.Mobile).Width(121).Title("الموبيل");
+        columns.Bound(p => p.Phone).Width(114).Title("تليفون المكتب");
+        columns.Bound(p => p.TaxRecordNo).Width(97).Title("السجل الضريبي");
+        columns.Bound(p => p.Locked).Width(62).Title("تم ايقاف");
+    }).ClientRowTemplate(
+        "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'> " +
+            "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: CompanyCode# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: CompanyName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Email# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: InsuranceNo# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Mobile# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Phone# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: TaxRecordNo# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+                "<span> #: Locked# </span>" +
+            "</td>" +
+         "</tr>"
+    ).ClientAltRowTemplate(
+        "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'> " +
+            "<input class=' k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+               "<td role='gridcell'>" +
+               "<span> #: CompanyCode# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: CompanyName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Email# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: InsuranceNo# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Mobile# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Phone# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: TaxRecordNo# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+                "<span> #: Locked# </span>" +
+            "</td>" +
+         "</tr>"
+    )
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+    })
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Selectable(selectable => selectable.Mode(GridSelectionMode.Single))
+    .Groupable(g => g.ShowFooter(true))
+    .PersistSelection(true)
+    .Events(ev => ev.Change("onChangeSelection")
+    .Page("onPaging"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.CompanyCode).Count();
+        })
+        .ServerOperation(false)
+        .PageSize(8)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.CompanyId))
+    .Read(read => read.Action("GetCompanyList", "Company"))
+    )
+)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Ajax/Company.js"></script>
+
+
+
+@section styles{
+    <style>
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+}

@@ -1,0 +1,33 @@
+1- Install-Package Microsoft.EntityFrameworkCore.Tools 
+2- Install-Package Microsoft.EntityFrameworkCore.SqlServer
+
+Install-Package Unity.mvc3
+
+3- Scaffold-DbContext "Server=.;Initial Catalog=HHCustomsDB;Persist Security Info=False;User ID=sa;Password=123456" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+3- Scaffold-DbContext "Server=SQL5080.site4now.net;Database=DB_A70D6C_Mesco;Trusted_Connection=False;;User ID=DB_A70D6C_Mesco_admin;Password=Ahmed1993" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+Scaffold-DbContext "Server=SQL5080.site4now.net;Database=DB_A70D6C_Mesco;Trusted_Connection=False;;User ID=DB_A70D6C_Mesco_admin;Password=Ahmed1993" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+
+in configuration for connection string :)
+   IConfigurationRoot configuration = new ConfigurationBuilder()
+                            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                            .AddJsonFile("appsettings.json")
+                            .Build();
+                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+
+4- change connection string in appsettings.json 
+
+"ConnectionStrings": {
+    "DefaultConnection": "Server=.;Database=Mesco;Trusted_Connection=True;MultipleActiveResultSets=true"
+    //"DefaultConnection": "Server=SQL5080.site4now.net;Database=DB_A70D6C_Mesco;Trusted_Connection=false;User Id=DB_A70D6C_Mesco_admin;Password=Ahmed1993;MultipleActiveResultSets=true"
+  }
+
+Scaffold-DbContext "Server=DESKTOP-5BHLPC0\MSSQLSERVER01;Initial Catalog=HHCustomsDB;Persist Security Info=False;User ID=sa;Password=123456" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+
+
+Scaffold-DbContext "Server=DESKTOP-5BHLPC0\MSSQLSERVER01;Initial Catalog=AbstractsDB;Persist Security Info=False;User ID=sa;Password=123456" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -force
+
+optionsBuilder.UseSqlServer(System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnectionString"].ConnectionString.ToString());

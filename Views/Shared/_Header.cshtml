@@ -1,0 +1,249 @@
+﻿@{ var Username = Session["name"];}
+<header id="header">
+    <div class="navbar navbar-inverse navbar-fixed-top" style=" position: relative; background-color: #556b8d;">
+        <div class="container" style="width:fit-content; float: right;">
+            <div class="navbar-header" style=" float: right;">
+                <a href="#" class="logo" style="margin: 0px">
+                    <img src="~/Images/Logo.png" alt="site logo" />
+                </a>
+
+            </div>
+
+            <div class="navbar-collapse collapse" style=" float: right;">
+                <ul class="nav navbar-nav">
+                    @if (Session["UserID"] != null)
+                    {
+                        if (Session["menus"] != null)
+                        {
+                            var a = Newtonsoft.Json.JsonConvert.DeserializeObject<List<string>>((string)Session["menus"]);
+                            <li>
+                                <div class="dropdown">
+                                    <a href="javascript:void(0);" class="nav-link dropbtn">@Username</a>
+                                    <div class="dropdown-content">
+                                        <a href="/Home/Logout">
+                                            تسجيل الخروج
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            if (a != null && a.Contains("/Report/Index"))
+                            {
+                                <li>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="nav-link dropbtn">التقارير</a>
+                                        <div class="dropdown-content">
+                                            <a href="@Url.Action("Index", "Report")" class="nav-link text-center text-uppercase">
+                                                التقارير
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                            if (a != null && (a.Contains("/User/Index") || a.Contains("/Company/CompanyUser") || a.Contains("/Role/Index") || a.Contains("/User/UserRequests") || a.Contains("/Setting/Index")))
+                            {
+                                <li>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="nav-link dropbtn">الصلاحيات</a>
+                                        <div class="dropdown-content">
+                                            @if (a != null && a.Contains("/User/Index"))
+                                            {
+                                                <a href="@Url.Action("Index", "User")" class="nav-link text-center text-uppercase">
+                                                    بيانات المستخدمين
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Company/CompanyUser"))
+                                            {
+                                                <a href="@Url.Action("CompanyUser", "Company")" class="nav-link text-center text-uppercase">
+                                                    بيانات مستخدمين الشركات
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Role/Index"))
+                                            {
+                                                <a href="@Url.Action("Index", "Role")" class="nav-link text-center text-uppercase">
+                                                    الصلاحيات
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/User/UserRequests"))
+                                            {
+                                                <a href="@Url.Action("UserRequests", "User")" class="nav-link text-center text-uppercase">
+                                                    تعيين العملية للمهندس التنفيذي
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Setting/Index"))
+                                            {
+                                                <a href="@Url.Action("Index", "Setting")" class="nav-link text-center text-uppercase">
+                                                    بيانات المسئولين
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                            if (a != null && (a.Contains("/WorkOrder/Index") || a.Contains("/WorkOrder/WorkOrderApproval") || a.Contains("/Technical/Index") || a.Contains("/WorkOrder/GetWorkOrderApproved") || a.Contains("/WorkOrder/WorkOrderStatus")))
+                            {
+                                <li>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="nav-link dropbtn">المستخلصات</a>
+                                        <div class="dropdown-content">
+
+
+
+                                            @if (a != null && a.Contains("/WorkOrder/Index"))
+                                            {
+                                                <a href="@Url.Action("Index", "WorkOrder")" class="nav-link text-center text-uppercase">
+                                                    تقديم مستخلص جديد
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/WorkOrder/WorkOrderApproval"))
+                                            {
+                                                <a href="@Url.Action("WorkOrderApproval", "WorkOrder")" class="nav-link text-center text-uppercase">
+                                                    موافقه علي صرف المستخلص
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Technical/Index"))
+                                            {
+                                                <a href="@Url.Action("Index", "Technical")" class="nav-link text-center text-uppercase">
+                                                    إعتماد المكتب الفني
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/WorkOrder/GetWorkOrderApproved"))
+                                            {
+                                                <a href="@Url.Action("GetWorkOrderApproved", "WorkOrder")" class="nav-link text-center text-uppercase">
+                                                    المستخلصات التي تمت الموافقة عليها
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/WorkOrder/WorkOrderStatus"))
+                                            {
+                                                <a href="@Url.Action("WorkOrderStatus", "WorkOrder")" class="nav-link text-center text-uppercase">
+                                                    إستعلام عن حالة المستخلص
+                                                </a>
+                                            }
+
+
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                            if (a != null && (a.Contains("/Request/Edit") || a.Contains("/Request/EditReport")))
+                            {
+                                <li>
+                                    <div class="dropdown">
+
+                                        <a href="#" class="nav-link dropbtn">لجنة التعديلات</a>
+                                        <div class="dropdown-content">
+                                            @if (a != null && a.Contains("/Request/Edit"))
+                                            {
+                                                <a href="@Url.Action("Edit", "Request")" class="nav-link text-center text-uppercase">
+                                                    لجنة التعديل
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Request/EditReport"))
+                                            {
+                                                <a href="@Url.Action("EditReport", "Request")" class="nav-link text-center text-uppercase">
+                                                    تقارير لجنة التعديل
+                                                </a>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                            if (a != null && (a.Contains("/Request/Index") || a.Contains("/Request/DeliverRequest") || a.Contains("/Consultation/Index") || a.Contains("/Consultation/SetConsultation") || a.Contains("/Request/RequestDetails")))
+                            {
+                                <li>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0);" class="nav-link dropbtn">العملية أو المشروع</a>
+                                        <div class="dropdown-content">
+
+
+                                            @if (a != null && a.Contains("/Request/Index"))
+                                            {
+                                                <a href="@Url.Action("Index", "Request")" class="nav-link text-center text-uppercase">
+                                                    إنشاء العملية أو المشروع
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Consultation/Index"))
+                                            {
+
+                                                <a href="@Url.Action("Index", "Consultation")" class="nav-link text-center text-uppercase">
+                                                    المكاتب الإستشارية
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Consultation/SetConsultation"))
+                                            {
+                                                <a href="@Url.Action("SetConsultation", "Consultation")" class="nav-link text-center text-uppercase">
+                                                    تعيين المكاتب الإستشارية للعملية
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Request/DeliverRequest"))
+                                            {
+                                                <a href="@Url.Action("DeliverRequest", "Request")" class="nav-link text-center text-uppercase">
+                                                    محضر إستلام الموقع
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Request/RequestDetails"))
+                                            {
+                                                <a href="@Url.Action("RequestDetails", "Request")" class="nav-link text-center text-uppercase">
+                                                    مقايسة الأعمال
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                            if (a != null && (a.Contains("/Company/Index") || a.Contains("/Unit/Index") || a.Contains("/Department/Index") || a.Contains("/ItemClass/Index")))
+                            {
+                                <li>
+                                    <div class="dropdown">
+
+                                        <a href="javascript:void(0);" class="nav-link dropbtn">البيانات الرئيسية</a>
+                                        <div class="dropdown-content">
+                                            @if (a != null && a.Contains("/Unit/Index"))
+                                            {
+                                                <a href="@Url.Action("Index", "unit")" class="nav-link text-center text-uppercase">
+                                                    وحدات القياس
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Department/Index"))
+                                            {
+                                                <a href="@Url.Action("Index", "department")" class="nav-link text-center text-uppercase">
+                                                    القسم
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/Company/Index"))
+                                            {
+                                                <a href="@Url.Action("Index", "Company")" class="nav-link text-center text-uppercase">
+                                                    الشركات
+                                                </a>
+                                            }
+                                            @if (a != null && a.Contains("/ItemClass/Index"))
+                                            {
+                                                <a href="@Url.Action("Index", "ItemClass")" class="nav-link text-center text-uppercase">
+                                                    فئات البند
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+
+        </div>
+        <div class="container" style="width:fit-content; float: left;    margin-left: 42px;">
+
+            <div class="pull-left" style=" float: left;">
+
+                <a class="sidebar-toggle nav-link text-center text-uppercase form-control" style="height:42px!important;" id="toggle-right">
+
+                    <i class="icon-bell"></i>   <span id="NumOfWorkOrderItems" class="NumOfWorkOrderItems"></span><h2>الإشعارات</h2>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+</header>

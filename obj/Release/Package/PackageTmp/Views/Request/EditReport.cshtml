@@ -1,0 +1,329 @@
+﻿@{ ViewData["Title"] = "تقارير لجنة التعديل";}
+
+<div class="pageheader">
+    <h1>تقارير لجنة التعديل</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff;  " href="javascript:void(0);">لجنة التعديل</a>
+            </li>
+            <li class="active">تقارير لجنة التعديل</li>
+        </ol>
+    </div>
+</div>
+
+<script src="~/lib/kendo/js/kendo.upload.min.js"></script>
+
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <form id="requestfrm">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="Code"> العملية رقم</label>
+
+                                    <input type="text" class="form-control" name="RequestNo" id="RequestNo">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ أمر الإسناد</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestDate")
+            .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <br />
+                                    <a href="#" class="btn btn-success" onclick="Search();"> <i class="fa fa-search"></i> بحث</a>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <br />
+                                    <a href="#" data-toggle="modal" class="btn btn-success" data-target="#RequestSearchModalPopup"> <i class="fa fa-search"></i> بحث مفصل</a>
+                                </div>
+                            </div>
+                        </form>
+                     
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Code">شركة المقاولات المسند إليها العملية</label>
+                                <input type="text" class="form-control" name="Company" id="Company" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Code">العملية أو المشروع</label>
+                                <input type="text" class="form-control" name="RequestName" id="RequestName" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Code">قيمة العملية</label>
+                                <input type="number" class="form-control" name="RequestAmount" id="RequestAmount" disabled>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="Code">مدة العملية</label>
+                                <input type="number" class="form-control" name="RequestDuration" id="RequestDuration" min="0" disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <br />  <br />
+                                <label for="Code">شهر</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Code">تاريخ إستلام الموقع</label>
+                                @(Html.Kendo().DatePicker()
+            .Name("RequestStartDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="Code">تاريخ النهو التعاقدي</label>
+                                @(Html.Kendo().DatePicker()
+            .Name("RequestEndDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                            </div>
+                        </div>
+                        
+
+                      
+                        <div class="col-md-2" id="Browse" style="display:none">
+                            <br />
+                            <a class="btn btn-success" onclick="browse();">
+                                <i class="fa fa-download"></i> عرض صورة قرار الموافقة
+                            </a>
+                        </div>
+
+               
+                        <div id="GridViewLog" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid <Abstracts.Models.Refactored.RequestLog>()
+    .Name("RequestLogGrid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.RequestCode).Width(100).Title("كود العملية").ClientFooterTemplate("الإجمالي : #=count#");
+        columns.Bound(p => p.RequestDetailCode).Width(100).Title("كود البند");
+
+        columns.Bound(p => p.RequestDuration).Width(100).Title("المدة");
+        columns.Bound(p => p.NewRequestDuration).Width(200).Title("المدة الجديدة");
+
+        columns.Bound(p => p.Qty).Width(100).Title("الكمية");
+        columns.Bound(p => p.NewQty).Width(100).Title("الكمية الجديدة");
+        columns.Bound(p => p.UnitPrice).Width(200).Title("السعر الإجمالي");
+        columns.Bound(p => p.NewUnitPrice).Width(200).Title("السعر الإجمالي الجديد");
+        columns.Bound(p => p.TypeName).Width(200).Title("نوع التعديل");
+        columns.Bound(p => p.LogFileName).Width(160).Title("ملف قرار التعديل");
+        columns.Bound(p => p.UserAddName).Width(160).Title("إسم الموظف");
+        columns.Bound(p => p.DateAdd).Width(160).Title("تاريخ الإضافة");
+
+    }).ClientRowTemplate(
+        "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestCode# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestDetailCode# </span>" +
+            "</td>" +
+             "<td role='gridcell'>" +
+               "<span> #: RequestDuration# </span>" +
+            "</td>" +
+            "<td role='gridcell' style='color: red;'>" +
+               "<span> #: NewRequestDuration# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Qty# </span>" +
+            "</td>" +
+            "<td role='gridcell' style='color: red;'>" +
+               "<span> #: NewQty# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: UnitPrice# </span>" +
+            "</td>" +
+            "<td role='gridcell' style='color: red;'>" +
+               "<span> #: NewUnitPrice# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: TypeName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: LogFileName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: UserAddName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: DateAdd# </span>" +
+            "</td>" +
+         "</tr>"
+    ).ClientAltRowTemplate(
+        "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestCode# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestDetailCode# </span>" +
+            "</td>" +
+             "<td role='gridcell'>" +
+               "<span> #: RequestDuration# </span>" +
+            "</td>" +
+            "<td role='gridcell' style='color: red;'>" +
+               "<span> #: NewRequestDuration# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Qty# </span>" +
+            "</td>" +
+            "<td role='gridcell' style='color: red;'>" +
+               "<span> #: NewQty# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: UnitPrice# </span>" +
+            "</td>" +
+            "<td role='gridcell' style='color: red;'>" +
+               "<span> #: NewUnitPrice# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: TypeName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: LogFileName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: UserAddName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: DateAdd# </span>" +
+            "</td>" +
+         "</tr>"
+    )
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+        toolbar.Custom().Text("إضافة بند").Name("CreateModal");
+        toolbar.Custom().Text("تعديل البند").Name("EditModal");
+    })
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Selectable(selectable => selectable.Mode(GridSelectionMode.Single))
+    .Groupable(g => g.ShowFooter(true))
+    .PersistSelection(true)
+    .Events(ev => ev.Change("onChangeSelectionLog")
+    .Page("onPagingLog"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.RequestCode).Count();
+        })
+        .ServerOperation(false)
+        .PageSize(8)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.RequestLogId))
+    .Read(read => read.Action("GetRequestLogList", "Request"))
+    )
+)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<script src="~/Scripts/jszip.min.js"></script>*@
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Ajax/RequestEditReport.js"></script>
+
+
+
+@section styles{
+    <style>
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .k-clear-selected, .k-upload-selected {
+            display: none !important;
+        }
+
+        .k-header {
+            text-align: center;
+        }
+
+        .product-photo {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-size: 32px 35px;
+            background-position: center center;
+            vertical-align: middle;
+            line-height: 32px;
+            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+            margin-right: 5px;
+        }
+
+        .product-name {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 32px;
+            padding-left: 3px;
+        }
+
+        .k-rating-container .k-rating-item {
+            padding: 4px 0;
+        }
+
+            .k-rating-container .k-rating-item .k-icon {
+                font-size: 16px;
+            }
+
+        .dropdown-country-wrap {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+            .dropdown-country-wrap img {
+                margin-right: 10px;
+            }
+
+        #grid .k-grid-edit-row > td > .k-rating {
+            margin-left: 0;
+            width: 100%;
+        }
+    </style>
+}

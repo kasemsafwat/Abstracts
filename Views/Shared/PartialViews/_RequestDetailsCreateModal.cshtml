@@ -1,0 +1,128 @@
+﻿
+<div class="modal fade" id="RequestDetailsCreateModalPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:1300px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"> إنشاء مقايسة الأعمال</h4>
+            </div>
+            <div id="validation-summary">
+            </div>
+            <div class="panel-body">
+                <form id="CreateRequestDetailsPopup">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>كود البند</label>
+                            <input type="text" class="form-control" name="CreateRequestDetailCode" id="CreateRequestDetailCode" value="@ViewBag.RequestDetailsCode" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>البند</label>
+                            <input type="number" class="form-control" name="CreateRequestDetailSerial" id="CreateRequestDetailSerial">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>فئة البند</label>
+                            @(Html.Kendo().MultiSelect()
+          .Name("itemClass")
+          .AutoClose(false)
+          .Placeholder("إختر فئة البند")
+           .DataTextField("ItemClassName")
+          .DataValueField("ItemClassId")
+           .DataSource(source =>
+           {
+               source.Read(read =>
+               {
+                   read.Action("GetAllItemClass", "ItemClass");
+               })
+               .ServerFiltering(false);
+           })
+    )
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>الوصف</label>
+                            <textarea class="form-control" name="CreateRequestDetailName" style="height:auto !important;" id="CreateRequestDetailName"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>الوحدة</label>
+                            @(Html.Kendo().ComboBox()
+        .Name("CreateUnit")
+        .DataTextField("UnitName")
+        .DataValueField("UnitId")
+        .Placeholder("إختار الوحدة")
+        .HtmlAttributes(new { style = "width:100%" })
+        .Filter("contains")
+        .DataSource(source =>
+        {
+    source.Read(read =>
+    {
+        read.Action("GetAllUnits", "Unit");
+    })
+    .ServerFiltering(false);
+})
+    )
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>الكمية المقدرة</label>
+                            <input type="number" class="form-control" name="CreateQty" id="CreateQty">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>سعر الوحدة بالجنيه</label>
+                            <input type="number" class="form-control" name="CreateUnitPrice" id="CreateUnitPrice">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>السعر الإجمالي</label>
+                            <input type="number" class="form-control" name="CreateTotalPrice" id="CreateTotalPrice" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>القسم المختص</label>
+                            @(Html.Kendo().ComboBox()
+        .Name("CreateDepartment")
+        .DataTextField("DepartmentName")
+        .DataValueField("DepartmentId")
+        .Placeholder("إختار القسم المختص")
+        .HtmlAttributes(new { style = "width:100%" })
+        .Filter("contains")
+        .DataSource(source =>
+        {
+    source.Read(read =>
+    {
+        read.Action("GetAllDepartments", "Home");
+    })
+    .ServerFiltering(false);
+})
+    )
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <br />
+                        <a class="btn btn-success" onclick="saveRequestDetails();">
+                            <i class="fa fa-save"></i> حفظ
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+﻿@using Kendo.Mvc.UI
+
+@{ ViewData["Title"] = "التقارير";}
+
+<div class="pageheader">
+    <h1>التقارير</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff;  " href="javascript:void(0);">البيانات الرئيسية</a>
+            </li>
+            <li class="active">التقارير</li>
+        </ol>
+    </div>
+</div>
+
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <form id="companyfrm">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">إسم فئة البند</label>
+                                    @(Html.Kendo().ComboBox()
+.Name("ItemClass")
+.DataTextField("ItemClassName")
+.DataValueField("ItemClassId")
+.Placeholder("إسم فئة البند")
+.Events(e =>
+{
+    //e.Select("onChangeWorkOrder");
+}).DataSource(dataSource => dataSource
+    .Read(read => read.Action("GetAllItemClass", "ItemClass"))
+    )
+
+.Filter("contains")
+ .HtmlAttributes(new { style = "width:100%;" })
+)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code"> تاريخ من </label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestStartDate")
+            .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">حتي </label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestEndDate")
+            .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-6" style="text-align: center;">
+                                <br />
+                                <a class="btn btn-success" onclick="SearchForReport();">
+                                    <i class="fa fa-search"></i> بحث
+                                </a>
+                            </div>
+                        </form>
+
+                        <div id="GridView" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid <Abstracts.Models.Refactored.Report>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.RequestCode).Width(130).Title("كود العملية").ClientFooterTemplate("عدد العمليات: #=count#");
+        columns.Bound(p => p.RequestName).Width(160).Title("إسم العملية");
+        columns.Bound(p => p.RequestDate).Width(100).Title("تاريخ العملية");
+        columns.Bound(p => p.RequestStartDate).Width(250).Title("تاريخ المقايسة من");
+        columns.Bound(p => p.RequestDuration).Width(130).Title("مدة العملية");
+        columns.Bound(p => p.RequestEndDate).Width(250).Title("تاريخ المقايسة إلي");
+        columns.Bound(p => p.CompanyCode).Width(130).Title("كود الشركة");
+        columns.Bound(p => p.CompanyName).Width(130).Title("إسم الشركة");
+        columns.Bound(p => p.RequestDetailSerial).Width(130).Title("رقم البند");
+        columns.Bound(p => p.RequestDetailCode).Width(130).Title("كود البند");
+        columns.Bound(p => p.RequestDetailName).Width(700).Title("إسم البند");
+        columns.Bound(p => p.ItemClassName).Width(130).Title("إسم فئة البند");
+        columns.Bound(p => p.UnitName).Width(130).Title("إسم الوحدة");
+        columns.Bound(p => p.TotalQty).Width(130).Title("الكمية الكلية").ClientFooterTemplate("الكمية الكلية: #=sum#");
+        columns.Bound(p => p.UnitPrice).Width(300).Title("سعر الوحدة بالجنية").ClientFooterTemplate("السعر الكلي: #=sum#");
+        columns.Bound(p => p.WorkOrderCode).Width(130).Title("كود المستخلص");
+        columns.Bound(p => p.WorkOrderStartDate).Width(130).Title("تاريخ المستخلص من");
+        columns.Bound(p => p.WorkOrderEndDate).Width(130).Title("تاريخ المستخلص إلي");
+        columns.Bound(p => p.TotalIssuedQty).Width(130).Title("مجموع الوحدات المستخدمة").ClientFooterTemplate("المجموع الكلي: #=sum#");
+        columns.Bound(p => p.InventoryBookNo).Width(130).Title("رقم الدفتر");
+        columns.Bound(p => p.InventoryBookPage).Width(130).Title("رقم الصفحة");
+        columns.Bound(p => p.NoteTitle).Width(130).Title("عنوان الملحوظة");
+        columns.Bound(p => p.NotePercentage).Width(130).Title("نسبة الملاحظة");
+        columns.Bound(p => p.NoteStatus).Width(130).Title("الوصف");
+    })
+    .ToolBar(tools => tools.Excel())
+    //.ToolBar(tools => tools.Pdf())
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Groupable(g => g.ShowFooter(true))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.RequestCode).Count();
+            aggregates.Add(p => p.TotalQty).Sum();
+            aggregates.Add(p => p.UnitPrice).Sum();
+            aggregates.Add(p => p.TotalIssuedQty).Sum();
+        })
+        .PageSize(8)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.ReportId))
+    .Read(read => read.Action("GetReport", "Report"))
+    )
+)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.4.0/jszip.min.js"></script>
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Ajax/Report.js"></script>
+
+
+
+@section styles{
+    <style>
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+}

@@ -1,0 +1,1027 @@
+﻿<!doctype html>
+<!--[if lte IE 8]><html class="ie8 no-js" lang="en"><![endif]-->
+<html>
+
+<head>
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <link href="/JS/flagplugin/flagcss.css" rel="stylesheet" />
+    <style type="text/css">
+        .intl-tel-input .flag-dropdown {
+            padding-top: 5px;
+        }
+        .content-body {
+          opacity: 0;
+        }
+    </style>
+	
+
+
+
+    <title>@(ViewBag.pageTitle != null ? ViewBag.pageTitle : "")</title>
+    <meta name="description" content="@(ViewBag.DescTag != null ? ViewBag.DescTag : "الموقع الإداري الأول في العالم العربي يلخص أفضل الكتب العالمية ، به أكثر من 10,000 ملخص كتاب ومقال واستشارة وكتب صوتية، يضم خلاصات كتب إدارة الأعمال وتنمية الذات و خلاصات كتب التربية والتعليم ونشرة المختار الإداري ومجلة علاقات العمل والعملاء والكتب العربية")" />
+    <meta id="keywords" runat="server" name="Keywords" content="@(ViewBag.ProductKeyWords != null ? ViewBag.ProductKeyWords : "ادارة, مدير, قيادة, كتب pdf, كتب مجانية, كتب صوتية, ادارة اعمال, ادارة دوت كوم, كتب عربية, ملخصات, تلخيص كتب, التمتين, تطوير الذات, تحميل كتب, الادارة, موارد, استثمار, تدريب, نجاح, تنمية بشرية, Management, Leadership, edara.com, Business")" />
+    @RenderSection("socialmediatags", false)
+    <link href="/css/inner-style.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--[if lt IE 9]>
+        <script src="js/respond.min.js"></script>
+        <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <link href="css/ie.css" rel="stylesheet">
+    <![endif]-->
+    <script src="/js/jquery.js"></script>
+    <link href="/images/favicon.ico" rel="icon">
+    @*<link href="css/bootstrap.rtl.css" rel="stylesheet">
+        <link href="css/font-awesome.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/animate.css" rel="stylesheet">
+        <link href="css/owl.carousel.css" rel="stylesheet">
+        <link href="css/owl.theme.css" rel="stylesheet">
+       
+        <script src="js/bootstrap.js"></script>
+        <script src="js/owl.carousel.js"></script>
+        <script type="text/javascript" src="js/html5lightbox.js"></script>*@
+    <style type="text/css">
+        label.error {
+            color: red
+        }
+    </style>
+    <link href="~/js/ratitplugin/rateit.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//www.fontstatic.com/f=DroidKufi-Regular" />
+    <meta name="google-site-verification" content="AGe8sne16g-WO_SBtOC4Q7paw4OyndpylUWBk3QmRoA" />
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="/js/jquery-ui.min.js"></script>
+
+    <script type="text/javascript">
+        var html5lightbox_options = {
+            watermark: false,
+            watermarklink: " "
+        };
+    </script>
+
+    @*<script src="js/function.js"></script>*@
+	
+
+		@*<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>*@
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+@*<script async src="https://www.googletagmanager.com/gtag/js?id=UA-86237410-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-86237410-1');
+</script>*@
+
+</head>
+
+<body>
+<!-- Start Alexa AMP Certify Javascript -->
+<amp-analytics type="alexametrics">
+<script type="application/json"> {"vars": { "atrk_acct": "/2FLt1DTcA20Ug", "domain": "edara.com" }}</script>
+</amp-analytics>
+<!-- End Alexa AMP Certify Javascript -->    
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c63cdf47cf662208c954fb7/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+Tawk_API.onLoad = function(){
+    $(window).scroll(function() {
+      if(($(window).scrollTop() + $(window).height() > $(document).height() - 200) || ($(window).scrollTop() < 200)) {
+        console.log("chat shown!");
+        Tawk_API.showWidget();
+      }
+      else {
+        console.log("chat hidden!");
+        Tawk_API.hideWidget();
+      }
+    });
+};
+</script>
+<!--End of Tawk.to Script-->
+    @{
+        if (Session["ProductList"] != null)
+        {
+            Session["ProductList"] = null;
+        }
+        if (Session["EdaraInCarAudioProducts"] != null)
+        {
+            Session["EdaraInCarAudioProducts"] = null;
+        }
+        if (Session["TotalCount"] != null)
+        {
+            Session["TotalCount"] = null;
+        }
+		int firstTimePopUp = 0;
+        if (Session["Offer"] != null)
+        {
+            firstTimePopUp = 1;
+            Session["Offer"] = null;
+        }
+    }
+	    <input type="hidden" id="hdnOffer" value="@firstTimePopUp" />
+    @*<input type="hidden" id="hdnCountryCode" value="@ViewBag.Country" />*@
+    <input type="hidden" id="hdnCountryCode" value="default" />
+    <div class="loader"></div>
+
+
+<div class="content-body">
+@{ EdaraFramework.DOC.Customer.Customer customer = new NewEdaraWeb.Managers.LoginManager().LoggedCustomer;
+    string customername = "";
+    string newSplittedCustomerName = "";
+    if (customer != null)
+    {
+        //customername = NewEdaraWeb.Managers.StringExtensions.CropWholeWords(customer.FullName, 7);
+        customername = customer.FullName;
+		int counter =0;
+		 if (customername.Length >= 13)
+        {
+            string[] str = customername.Split(' ');
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i].Length <= 13 && counter <= 13)
+                {
+                    newSplittedCustomerName += str[i];
+                    counter += str[i].Length;
+                    newSplittedCustomerName += " ";
+                }
+                else { break; }
+
+            }
+        }
+		else{
+		newSplittedCustomerName = customer.FullName;
+		}
+    }
+}
+
+<div class="fixed-menu" data-expanded="false">
+    <div class="topia">
+        <a class="backi"><img src="/images/back.png" alt=""></a>
+        <a href="/"><img src="/images/logo.png" alt=""></a>
+    </div>
+    <!---->
+    @if (customer == null)
+    {
+        <div class="log-links">
+            <a href="/MyAccount/Login"><img src="/images/user.PNG" alt="">تسجيل الدخول</a>
+            <a href="/MyAccount/Register"> عضوية جديدة</a>
+        </div>
+    }
+    else
+    {
+        <div class="user-a">
+            <img src="/images/after-l.PNG" alt="">
+            <a class="user-link2" role="button" data-toggle="collapse" href="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">أهلاً .. @newSplittedCustomerName<i class="fa fa-angle-down"></i></a>
+            @*@{EdaraFramework.DOC.Customer.Customer cust = new NewEdaraWeb.Managers.LoginManager().LoggedCustomer;}*@
+            <div class="collapse" id="collapseExample2">
+                <div class="mod-b">
+                    <a href="/Product/MyProducts"><img src="/images/icon_3.PNG">مكتبتك </a>
+                    <a href="/Product/MyProducts?Status=2"><img src="/images/icon_2.PNG">بياناتى الشخصية</a>
+                    <a href="/Product/MyProducts?Status=1"><img src="/images/icon_4.PNG"> اسأل مستشارك</a>
+                    <a href="/Product/MyProducts?Status=3"><img src="/images/icon_6.PNG"> اشتراكك المجاني $ </a>
+                    <a href="/Product/MyProducts?Status=2"><img src="/images/icon_1.PNG">تغيير كلمة السر</a>
+
+
+                    <a href="/MyAccount/LogOut"><img src="/images/icon_5.PNG">تسجيل الخروج</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="log-links lef">
+            <a href="/Product/MyProducts" class="free-m"><img src="/images/my-lib.png" alt=""> مكتبتك </a>
+        </div>
+    }
+    <ul class="s-menu">
+        <li class="has-drop">
+            <a href="javascript:void(0)"><img src="/images/m-icon.png" alt=""> إصداراتنا<i class="fa fa-angle-down"></i></a>
+            <ul>
+                <li><a href="/Khulasat"> ملخصات كتب الإدارة</a></li>
+                <li><a href="/KhulasatTarbia"> ملخصات كتب التربية والتعليم</a></li>
+                <li><a href="/Mukhtar"> المختار الإدارى</a></li>
+                <li><a href="/Elakat"> علاقات</a></li>
+                @*<li><a href="/HealthWealth"> صحتك ثروتك</a></li>*@
+                <li><a href="/ArabicBooks"> كتب عربية</a></li>
+            </ul>
+        </li>
+        <li><a href="/EdaraInCar"><img src="/images/m-icon-1.png" alt="">كتب صوتية </a></li>
+        <li class="has-drop">
+            <a><img src="/images/m-icon-2.png" alt=""> الاشتراكات <i class="fa fa-angle-down"></i></a>
+            <ul>
+                <li><a href="/Subscription/Index">باقة 3 شهور</a></li>
+                <li><a href="/Subscription/Index">باقة 6 شهور</a></li>
+                <li><a href="/Subscription/Index"> باقة 12 شهرا</a></li>
+                <li><a href="/Subscription#divCorporate">اشتراك مؤسسي</a></li>
+            </ul>
+        </li>
+        <li><a href="/Training"><img src="/images/m-icon-3.png" alt="">التدريب </a></li>
+        <li><a href="/Consultation"><img src="/images/m-icon-4.png" alt="">الاستشارات </a></li>
+        <li><a href="/Article"><img src="/images/m-icon-5.png" alt="">المقالات </a></li>
+        <li><a href="/ShoppingCart"><img src="/images/m-icon-6.png" alt="">المشتريات  <span id="NumOfShopingCarItems" class="NumOfShopingCarItems"></span></a></li>
+        <li><a href="/Home/ContactUs"><img src="/images/m-icon-7.png" alt=""> تواصل معنا </a></li>
+        <li><a href="/Home/About"><img src="/images/m-icon-8.png" alt="">من نحن </a></li>
+    </ul>
+    <a class="moreat" href="/Product/FreeProducts">الأعداد المجانية</a>
+    <ul class="social-menu text-center">
+	    <li><a href="https://www.linkedin.com/company/edarasummaries" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a href="https://www.facebook.com/EdaraDotCom?ref=ts&fref=ts" target="_blank"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="http://twitter.com/edaradotcom" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://www.instagram.com/edaradotcom/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="https://www.youtube.com/user/Zoayter" target="_blank"><i class="fa fa-youtube"></i></a></li>
+		
+		
+    </ul>
+</div>
+<!-- start header -->
+<div class="header">
+<div class="container">
+<div class="top-aside">
+    <div class="row">
+        <div class="col-md-4 m-t-10">
+
+            @if (customer == null)
+            {
+                <div class="log-links">
+                    <a href="javascript:void(0)" id="btnPopUpLogin"><img src="/images/user.PNG" alt="">تسجيل الدخول</a>
+                    <a href="javascript:void(0)" id="btnPopUpRegister"> عضوية جديدة</a>
+                </div>
+
+                                @*<div class="log-links">
+                                    <a href="javascript:void(0)" id="btnPopUpLogin" data-toggle="modal" data-target="#login-modal"><img src="/images/user.PNG" alt="">تسجيل الدخول</a>
+                                    <a href="/MyAccount/Register"> عضوية جديدة</a>
+                                </div>*@
+            }
+            else
+            {
+                <div class="user-a">
+
+                    <a class="user-link orange-btn" role="button" data-toggle="collapse" href="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"><img src="/images/after-l.PNG" alt=""> أهلاً .. @newSplittedCustomerName<i class="fa fa-angle-down"></i></a>
+                    @*@{EdaraFramework.DOC.Customer.Customer cust = new NewEdaraWeb.Managers.LoginManager().LoggedCustomer;}*@
+                    @if (customer != null && customer.Protmotions != null)
+                    {
+                        <a class="user-link balance" href="/Product/MyProducts?Status=3">
+                            محفظتك<span id="priceAfterBalance">
+                                @*@(new NewEdaraWeb.Managers.LoginManager().LoggedCustomer.Protmotions.Balance) $*@
+
+                                @{
+                                    EdaraFramework.DOC.Customer.CustomerPromotions promotion = new EdaraFramework.DOC.Customer.CustomerPromotions();
+
+                                    if (ViewBag.Promotion != null)
+                                    {
+                                        promotion = ViewBag.Promotion;
+                                    }
+                                    else
+                                    {
+                                        promotion =
+                                            EdaraFramework.BusinessLogic.Customer.CustomerPromotionsManager.FindPromotionByCustomerID(customer.ID);
+                                    }
+                                }
+                                $@(promotion.Balance)
+                            </span>
+                        </a>
+                    }
+                    <div class="collapse" id="collapseExample1" aria-expanded="false">
+                        <div class="mod-b">
+                            <a href="/Product/MyProducts"><img src="/images/icon_3.PNG">مكتبتك</a>
+                            <a href="/Product/MyProducts?Status=2"><img src="/images/icon_2.PNG">بياناتى الشخصية</a>
+                            <a href="/Product/MyProducts?Status=1"><img src="/images/icon_4.PNG"> اسأل مستشارك</a>
+                            <a href="/Product/MyProducts?Status=3"><img src="/images/icon_6.PNG"> اشتراكك المجاني $ </a>
+                            <a href="/Product/MyProducts?Status=2"><img src="/images/icon_1.PNG">تغيير كلمة السر</a>
+
+
+
+
+                            <a href="/MyAccount/LogOut"><img src="/images/icon_5.PNG">تسجيل الخروج</a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+        <div class="col-md-4">
+            <div class="search-group">
+                <div class="input-group input-group-lg searchBarBeforeHeader">
+                    <input type="text" class="form-control" id="txtSeachTextInHeader" placeholder="عن كتاب أو مؤلف أو موضوع">
+                </div>
+            </div>
+        </div>
+        <!---->
+        <div class="col-md-4 m-t-10">
+            <div class="log-links lef makta">
+                <!--<a href="" class="aske"> ؟ </a>-->
+                <a href="/Product/FreeProducts" class="free-m">  الأعداد المجانية</a>
+                <a data-toggle="collapse" href="#collapseExample" aria-expanded="true" aria-controls="collapseExample">
+                    المشتريات <!--<img src="/images/cart.PNG" alt>-->
+                    <span class="fa fa-shopping-cart shopping-cart">
+                        <i id="cart-items-count" class="cart-items-count">0</i>
+                    </span>
+                </a>
+            </div>
+            <!---->
+        </div>
+        <!---->
+    </div>
+    <!---->
+    <div class="collapse" id="collapseExample" aria-expanded="true">
+        @Html.Action("GetCartPopUp", "ShoppingCart");
+        <!---->
+    </div>
+</div>
+<!-- end top-aside -->
+<div class="nav-area heady" role="banner" data-spy="affix" data-offset-top="122">
+    @*<div class="row">
+                        <div class="col-md-6 alphonse">
+                            <div class="col-md-2">
+                                <a href="/" class="logo2"><img alt="" src="/images/load.png"></a>
+                                <a href="/" class="logo"><img src="/images/logo.png" alt=""></a>
+                            </div>
+                            <!---->
+                            <div class="col-md-8">
+
+                                <div class="navigation">
+                                    <div class="navbar-header navbar-default">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                                    </div>
+                                    <!-- end navbar-header -->
+                                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+                                        <ul class="nav navbar-nav">
+                                            <li class="dropdown-m">
+                                                <a class="text-normal">  إصداراتنا</a>
+                                                <ul class="dropdown-menu">
+                                                    <li> <a href="~/Khulasat"> ملخصات كتب الإدارة  </a></li>
+                                                    <li> <a href="~/KhulasatTarbia"> ملخصات كتب التربية والتعليم </a></li>
+                                                    <li> <a href="~/Mukhtar"> المختار الإداري </a></li>
+                                                    <li> <a href="~/Elakat"> علاقات </a></li>
+                                                    <li> <a href="~/HealthWealth"> صحتك ثروتك </a></li>
+                                                    <li> <a href="~/ArabicBooks">كتب عربية</a></li>
+                                                </ul>
+                                            </li>
+                                            <li id="LiSub" class="dropdown-m">
+                                                <a>  الاشتراكات</a>
+                                                <ul class="dropdown-menu">
+                                                    <li> <a href="/Subscription/Index">باقة 3 شهور</a></li>
+                                                    <li> <a href="/Subscription">باقة 6 شهور </a></li>
+                                                    <li> <a href="/Subscription/Index/3">باقة 12 شهرا </a></li>
+                                                    <li> <a href="/Subscription/Index/4"> الاشتراك المؤسسي </a></li>
+                                                </ul>
+                                            </li>
+                                            <li> <a href="/Training"> التدريب </a></li>
+                                            <li> <a href=""> الدبلومات </a></li>
+                                            <li> <a href="/Consultation"> الاستشارات </a></li>
+                                            <li> <a href="/Article"> المقالات </a></li>
+                                            <li> <a href=""> الدعم </a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- end collapse -->
+                                </div>
+
+                            </div>
+                            <!---->
+                            <div class="col-md-2">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="txtSeachTextInHeader" placeholder="أبدأ البحث ...." aria-describedby="sizing-addon2">
+                                    <span class="input-group-addon" id="sizing-addon2" onclick=" SearchWithTextInHeader()"><i class="fa fa-search"></i></span>
+                                </div>
+                                <ul class="social-menu">
+								    <li><a href=""><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href=""><i class="fa fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                            <!---->
+                        </div>
+                        <!---->
+                    </div>*@
+
+    <div class="row">
+        <div class="col-md-5 alphonse">
+            <a class="logo2 si-menu"><img class="side-menu-image" alt="" src="/images/menu.png"></a>
+            @if (customer == null)
+            {
+                <div class="log-links">
+                    <a href="/MyAccount/Login"><img src="/images/user.PNG" alt="">تسجيل الدخول</a>
+                    <a href="/MyAccount/Register"> عضوية جديدة</a>
+                </div>
+            }
+            <!---->
+            @if (customer != null)
+            {
+                <div class="log-links lef">
+                    <a href="/Product/MyProducts" class="free-m"><img src="/images/my-lib.png" alt=""> مكتبتك </a>
+                </div>
+            }
+        </div>
+        <!---->
+        <div class="col-md-4 alphonse">
+            <div class="search-group">
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" id="txtSeachTextInHeaderScrolled" placeholder="ابحث عن كتاب أو مؤلف أو موضوع">
+                </div>
+            </div>
+            <!---->
+        </div>
+        <!---->
+        <div class="col-md-3 no-gutters alphonse">
+            <a href="/Product/Search" class="especific">البحث المفصل</a>
+            <div class="log-links lef text-left">
+                <a href="/ShoppingCart">
+                    المشتريات <!--<img src="/images/cart.PNG" alt="">-->
+                    <span class="fa fa-shopping-cart shopping-cart">
+                        <i id="cart-items-count" class="cart-items-count">0</i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!---->
+        <div class="col-md-2 edward">
+            <a href="/" class="logo"><img src="/images/logo.png" alt=""></a>
+        </div>
+        <!---->
+        <div class="col-md-8 edward">
+
+            <div class="navigation">
+                <!-- end navbar-header -->
+                <div class="collapse no-gutters navbar-collapse" id="bs-example-navbar-collapse-2">
+                    <ul class="nav navbar-nav">
+                        <li id="LiPro" class="dropdown-m">
+                            <a href="/Product/ProductType">  إصداراتنا</a>
+                            <ul class="dropdown-menu">
+                                <li> <a href="/Khulasat"> ملخصات كتب الإدارة  </a></li>
+                                <li> <a href="/KhulasatTarbia"> ملخصات كتب التربية والتعليم </a></li>
+                                <li> <a href="/Mukhtar"> المختار الإداري </a></li>
+                                <li> <a href="/Elakat"> علاقات </a></li>
+                                @*<li> <a href="/HealthWealth"> صحتك ثروتك </a></li>*@
+                                <li> <a href="/ArabicBooks">كتب عربية</a></li>
+                            </ul>
+                        </li>
+                        <li id="LiSub" class="dropdown-m">
+                            <a href="/Subscription">  الاشتراكات</a>
+                            <ul class="dropdown-menu">
+                                <li> <a href="/Subscription/Index">باقة 3 شهور</a></li>
+                                <li> <a href="/Subscription/Index">باقة 6 شهور</a></li>
+                                <li> <a href="/Subscription/Index">باقة 12 شهرا</a></li>
+                                <li> <a href="/Subscription#divCorporate">اشتراك مؤسسي</a></li>
+                            </ul>
+                        </li>
+                        <li id="LiAud"> <a href="/EdaraInCar"> كتب صوتية </a></li>
+                        <li id="LiTra"> <a href="/Training"> التدريب </a></li>
+                        <li id="LiCon"> <a href="/Consultation"> الاستشارات </a></li>
+                        <li id="LiArt"> <a href="/Article"> المقالات </a></li>
+                        <li id="LiCont" class="dropdown-m">
+                            <a href="javascript:void(0)">  تواصل معنا</a>
+                            <ul class="dropdown-menu">
+                                <li> <a href="/Home/ContactUs">اتصل بنا  </a></li>
+                                <li> <a href="/Home/About">من نحن </a></li>
+                                <li> <a href="/Complains/AddComplain">الاقتراحات والشكاوى</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- end collapse -->
+            </div>
+
+        </div>
+        <!---->
+        <div class="col-md-2 no-gutters edward">
+            <div class="input-group">
+
+                <input type="text" class="form-control" id="txtSeachTextInHeader1" placeholder="أبدأ البحث ...." aria-describedby="sizing-addon2">
+                <span class="input-group-addon" id="sizing-addon2" onclick="SearchWithText()"><i class="fa fa-search"></i></span>
+            </div>
+            <ul class="social-menu">
+				<li><a href="https://www.linkedin.com/company/edarasummaries" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://www.facebook.com/EdaraDotCom?ref=ts&fref=ts" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="http://twitter.com/edaradotcom" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.instagram.com/edaradotcom/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://www.youtube.com/user/Zoayter" target="_blank"><i class="fa fa-youtube"></i></a></li>
+			
+            </ul>
+            <a class="visible-xs visible-sm mobile-side-toggle si-menu"><img class="side-menu-image" alt="" src="/images/menu.png"></a>
+        </div>
+        <!---->
+    </div>
+</div>
+@RenderSection("HeaderInsideContainer", false)
+</div>
+
+<!-- end nav-area -->
+@*</div>*@
+@RenderSection("HeaderOutContainer", false)
+<!-- end container -->
+<!---->
+</div>
+<!-- start main sections -->
+@RenderBody()
+
+<div class="modal fade" id="custom-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <a class="close butti" data-dismiss="modal" aria-label="Close">x</a>
+        <div class="modal-content">
+             <div class="modal-body" style="padding-top: 10px; padding-bottom: 50px;">
+                        <label id="lblMessage" style="margin-right: 30px"></label>
+                        <a data-dismiss="modal" style=" margin-right: 300px;" aria-label="Close" onclick="Modifying_Customer();" class="addy trie">Ok</a>
+
+                    </div>
+        </div>
+    </div>
+</div>
+<!---->
+@RenderSection("Partners", false)
+
+@*<div class="footer-1">
+
+        <div class="container">
+
+
+
+
+            <div class="row mar-8">
+                <div class="col-md-9">
+                    <div class="row mar-8">
+                        <div class="col-md-15 foot-log">
+                            <img src="images/foot-logo.png" alt="">
+
+
+
+                        </div>
+                        <!-- end col -->
+                        <div class="col-md-15">
+
+                            <h3> الرئيسية</h3>
+                            <ul>
+                                <li> <a href="">تسجيل الدخول</a> </li>
+                                <li> <a href="">عضوية جديدة</a> </li>
+                                <li><a href=""> التدريب</a></li>
+                                <li><a href=""> المقالات </a></li>
+                                <li><a href=""> الاستشارات </a></li>
+                                <li><a href=""> سياسة الخصوصية </a></li>
+                                <li><a href=""> شروط الاستخدام </a></li>
+                            </ul>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-md-15">
+                            <h3> الإصدارات</h3>
+                            <ul>
+                                <li> <a href=""> ملخصات الإدارة</a> </li>
+                                <li> <a href=""> ملخصات التعليم</a> </li>
+                                <li><a href=""> المختار الإداري </a></li>
+                                <li><a href=""> علاقات</a></li>
+                                <li> <a href="">  صحتك ثروتك</a> </li>
+                                <li> <a href=""> كتب عربية</a> </li>
+                                <li><a href="">  كتب صوتية </a></li>
+                            </ul>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-md-15">
+                            <h3> الاشتراكات</h3>
+                            <ul>
+                                <li> <a href="">باقة 3 شهور</a> </li>
+                                <li> <a href=""> باقة 6 شهور</a> </li>
+                                <li><a href=""> باقة 12 شهرا</a></li>
+                                <li><a href="">اشتراك مؤسسي</a></li>
+                            </ul>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-md-15">
+                            <h3> من نحن</h3>
+                            <ul>
+                                <li> <a href=""> اتصل بنا </a> </li>
+                                <li> <a href=""> الشكاوى والاقتراحات</a> </li>
+                                <li><a href="">  المساعدة والدعم </a></li>
+                            </ul>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!---->
+
+
+                </div>
+                <!---->
+
+                <div class="col-md-3">
+
+                    <h3>القائمة البريدية </h3>
+
+                    <div class="input-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="بريدك الالكترونى" id="TxtMailList">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"> انضم </button>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+
+
+                <!---->
+
+
+
+
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <p>جميع الحقوق محفوظة © لموقع إدارة.كوم</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="social-menu text-left">
+						 <a class="linkedin" href="" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            <a class="facebook" href="" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a class="twitter" href="" target="_blank"><i class="fa fa-twitter"></i></a>
+
+
+                            <a class="instagram" href="" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a class="youtube" href="" target="_blank"><i class="fa fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!---->
+
+        </div>*@
+@*<div class="footer-1">
+
+            <div class="container">
+
+                <div class="qaute">
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <img class="" src="/images/logo.png" alt="">
+                        </div>
+                        <!---->
+
+                        <div class="col-md-10">
+                            <p>في عام 1992 وعدناك زائرنا وعميلنا الكريم .. بأن نسد الفجوة بين الممارسات والنظريات والخبرات الإدارية العالمية وبين بيئة الإدارة العربية .. ولقد أوفينا .. و وفَّـرْنا لك حتى الآن: 680 خلاصة للكتب الرائعة و 5000 مقال و 1200 استشارة و 770 حلقة إدارية صوتية مسموعة، </p>
+                        </div>
+                        <!---->
+
+
+                    </div>
+                    <!---->
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <h3><i class="fa fa-globe"></i> القائمة الرئيسية</h3>
+                        <ul>
+                            <li> <a href="">  من نحن </a> </li>
+                            <li> <a href="">المقالات</a> </li>
+                            <li><a href=""> الاستشارات</a></li>
+                            <li><a href=""> اتصل بنا</a></li>
+                        </ul>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-md-2">
+                        <h3><i class="fa fa-link"></i>أحدث الإصدارات</h3>
+                        <ul>
+                            <li> <a href="~/Khulasat"> ملخصات كتب الإدارة </a></li>
+                            <li> <a href="~/KhulasatTarbia">ملخصات كتب التربية والتعليم</a> </li>
+                            <li><a href="~/Mukhtar"> المختار الإداري </a></li>
+                            <li><a href="~/Elakat"> علاقات</a></li>
+                        </ul>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-md-2">
+                        <h3>	&nbsp; </h3>
+                        <ul>
+                            <li> <a href="~/HealthWealth">  صحتك ثروتك</a> </li>
+                            <li> <a href="~/ArabicBooks"> كتب عربية</a> </li>
+                            <li><a href=""> كتب صوتية </a></li>
+                        </ul>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-md-2">
+                        <h3><i class="fa fa-film"></i> الاشتراكات</h3>
+                        <ul>
+                            <li> <a href="">باقة 3 شهور</a> </li>
+                            <li> <a href=""> باقة 6 شهور</a> </li>
+                            <li><a href=""> باقة 12 شهرا</a></li>
+                            <li><a href="">  اشتراك مؤسسي </a></li>
+                        </ul>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-md-4">
+                        <h3><i class="fa fa-envelope-open-o"></i>القائمة البريدية </h3>
+                        <p>اشترك الآن في القائمة البريدية لتصلك أحدث عروض وأخبار إدارة.كوم وأبقى على تواصل دائم معنا</p>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="إلى قوائمنا البريدية ليصلك كل جديد" id="TxtMailList">
+                            <span class="input-group-btn">
+                                <button id="btn-sub" class="btn btn-default" type="button"> <i class="fa fa-long-arrow-left"></i> </button>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- end col -->
+                </div>
+
+            </div>
+            <!---->
+        </div>*@
+@*<div class="footer-1">
+
+            <div class="container">
+
+                <div class="qaute">
+                    <div class="row">
+
+                        <div class="col-md-2">
+                            <img class="" src="/images/logo.png" alt="">
+                        </div>
+
+                            <!---->
+
+                        <div class="col-md-10">
+                            <p></p>
+                        </div>
+
+                            <!---->
+
+
+                    </div>
+
+                        <!---->
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <h3><i class="fa fa-globe"></i></h3>
+                        <ul>
+                            <li><a href=""></a></li>
+                            <li><a href=""></a></li>
+                            <li><a href=""></a></li>
+                            <li><a href=""></a></li>
+                        </ul>
+                    </div>
+
+                        <!-- end col -->
+                    <div class="col-md-2">
+                        <h3><i class="fa fa-link"></i></h3>
+                        <ul>
+                            <li><a href="~/Khulasat"></a></li>
+                            <li><a href="~/KhulasatTarbia"></a></li>
+                            <li><a href="~/Mukhtar"></a></li>
+                            <li><a href="~/Elakat"></a></li>
+                        </ul>
+                    </div>
+
+                        <!-- end col -->
+                    <div class="col-md-2">
+                        <h3></h3>
+                        <ul>
+                            <li><a href="~/HealthWealth"></a></li>
+                            <li><a href="~/ArabicBooks"></a></li>
+                            <li><a href=""></a></li>
+                        </ul>
+                    </div>
+
+                        <!-- end col -->
+                    <div class="col-md-2">
+                        <h3><i class="fa fa-film"></i></h3>
+                        <ul>
+                            <li><a href=""></a></li>
+                            <li><a href=""></a></li>
+                            <li><a href=""></a></li>
+                            <li><a href=""></a></li>
+                        </ul>
+                    </div>
+
+                        <!-- end col -->
+                    <div class="col-md-4">
+                        <h3><i class="fa fa-envelope-open-o"></i></h3>
+                        <p></p>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="إلى قوائمنا البريدية ليصلك كل جديد" id="TxtMailList">
+                            <span class="input-group-btn">
+                                <button id="btn-sub" class="btn btn-default" type="button"><i class="fa fa-long-arrow-left"></i></button>
+                            </span>
+                        </div>
+                    </div>
+
+                        <!-- end col -->
+                </div>
+
+            </div>
+
+                <!---->
+        </div>*@
+<div class="footer-1">
+
+    <div class="container">
+
+        <div class="row mar-8">
+            <div class="col-md-9">
+                <div class="row mar-8">
+                    <div class="col-md-15 foot-log">
+                        <a href="/"><img src="/images/foot-logo.png" alt=""></a>
+
+                    </div>
+                    <!-- end col -->
+                    <div class="col-md-15">
+
+                        <h3> الرئيسية</h3>
+                        <ul>
+                            @if (customer == null)
+                            {
+                                <li> <a href="/MyAccount/Login">تسجيل الدخول</a> </li>
+                                <li> <a href="/MyAccount/Register">عضوية جديدة</a> </li>
+                            }
+                            <li><a href="/Training"> التدريب</a></li>
+                            <li><a href="/Article"> المقالات </a></li>
+                            <li><a href="/Consultation"> الاستشارات </a></li>
+                            <li><a href="/Home/PrivacyPolicy"> سياسة الخصوصية </a></li>
+                            <li><a href="/home/TermsofService"> شروط الاستخدام </a></li>
+                        </ul>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-md-15">
+                        <h3> إصداراتنا</h3>
+                        <ul>
+                            <li> <a href="/Khulasat"> ملخصات كتب الإدارة</a> </li>
+                            <li> <a href="/KhulasatTarbia">ملخصات كتب التربية والتعليم</a> </li>
+                            <li><a href="/Mukhtar"> المختار الإداري </a></li>
+                            <li><a href="/Elakat"> علاقات</a></li>
+                            @*<li> <a href="/HealthWealth">  صحتك ثروتك</a> </li>*@
+                            <li> <a href="/ArabicBooks"> كتب عربية</a> </li>
+                            <li><a href="/EdaraInCar">  كتب صوتية </a></li>
+                        </ul>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-md-15">
+                        <h3> الاشتراكات</h3>
+                        <ul>
+                            <li> <a href="/Subscription/Index">باقة 3 شهور</a> </li>
+                            <li> <a href="/Subscription/Index"> باقة 6 شهور</a> </li>
+                            <li><a href="/Subscription/Index"> باقة 12 شهرا</a></li>
+                            <li><a href="/Subscription#divCorporate"> اشتراك مؤسسي </a></li>
+                        </ul>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-md-15">
+                        <h3>التواصل</h3>
+                        <ul>
+                            <li> <a href="/Home/ContactUs"> اتصل بنا </a> </li>
+                            <li> <a href="/Complains/AddComplain"> الشكاوى والاقتراحات </a> </li>
+                            <li> <a href="/Home/About">من نحن</a> </li>
+                        </ul>
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!---->
+
+
+            </div>
+            <!---->
+
+            <div class="col-md-3">
+
+                <h3>القائمة البريدية </h3>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="بريدك الإلكتروني" id="TxtMailList">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="btn-sub"> انضم </button>
+                    </span>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+
+
+        <!---->
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <p>جميع الحقوق محفوظة © لموقع إدارة.كوم</p>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="social-menu text-left">
+				  <a class="linkedin" href="https://www.linkedin.com/company/edarasummaries" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <a class="facebook" href="https://www.facebook.com/EdaraDotCom?ref=ts&fref=ts" target="_blank"><i class="fa fa-facebook"></i></a>
+                    <a class="twitter" href="http://twitter.com/edaradotcom" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a class="instagram" href="https://www.instagram.com/edaradotcom/" target="_blank"><i class="fa fa-instagram"></i></a>
+                    <a class="youtube" href="https://www.youtube.com/user/Zoayter" target="_blank"><i class="fa fa-youtube"></i></a>
+					
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!---->
+
+</div>
+<div id="divpreferences"> </div>
+
+<div id="signin">
+    @Html.Partial("Partial_Views/_Login")
+</div>
+
+@RenderSection("scripts", false)
+
+</div>
+
+<!-- Popup -->
+@*<div id="mobile-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content ">
+            <div class="modal-inner clearfix">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="p-t-40 p-b-20">
+                    <h3 class="text-center">لتصفح أفضل على أجهزتكم المحمولة، حمّل الآن تطبيق إدارة.كوم الجديد.</h3>
+                    <p></p>
+                    <a href="https://play.google.com/store/apps/details?id=edara.com" target="_blank" class="col-sm-offset-2 col-sm-8 text-center"><img src="/images/playstore.jpg" class="img-responsive" /></a>
+                    <a href="https://apps.apple.com/eg/app/edara-com/id1478638629" target="_blank" class="col-sm-offset-2 col-sm-8 text-center"><img src="/images/appstore.jpg" class="img-responsive" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="#" id="trigger-mobile-view" class="hidden" data-toggle="modal" data-target="#mobile-modal"></a>*@
+</body>
+
+
+</html>
+<script src="/js/notify.min.js"></script>
+<script src="~/js/ratitplugin/jquery.rateit.js"></script>
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-53e9cf8d319d2b47"></script>
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $(function () {
+                if ($("#hdnOffer").val() == "1") {
+                    $("#hdnOffer").val("0");
+                    //$("#lblMessage").html("معاك بروموكود edara25 هينزل رصيد في محفظتك 25$ اشتري بهم ما تريد على الموقع <b style='font-size:large;font-weight:bold;'>فعل البروموكود وسجل الدخول<br/></b>");
+                    //$("#custom-modal").modal('show');
+                }
+            });
+
+        });
+
+        $('.fixed-menu ul li.has-drop').click(function () {
+            $(this).toggleClass('active');
+            $(this).find('ul').slideToggle();
+        });
+        $('.si-menu').click(function () {
+            $('.fixed-menu').css('right', '0');
+            $('.fixed-menu').attr('data-expanded', 'true');
+        });
+        $('.backi').click(function () {
+            $('.fixed-menu').css('right', '-301px');
+            $('.fixed-menu').attr('data-expanded', 'false');
+        });
+        $('span.delei').click(function () {
+            $(this).parent().slideUp();
+        });
+    });
+	function Modifying_Customer() {
+        window.location = "/Product/MyProducts?Status=2";
+        return;
+    }
+</script>
+
+@*<script>
+    $(window).on('resize', function () {
+        mobileview();
+    });
+    $(document).ready(function () {
+        $(window).trigger('setup');
+    });
+    function mobileview() {
+        if ($(window).width() < 600) {
+            //console.log("mobile view");
+            $("#trigger-mobile-view").click();
+        }
+        else {
+            $("#mobile-modal .close").click();
+        }
+    }
+    $(window).bind('setup', function () {
+        //code here...
+        mobileview();
+    });
+
+</script>*@
+<script src="/JS/flagplugin/oldplugin.js"></script>

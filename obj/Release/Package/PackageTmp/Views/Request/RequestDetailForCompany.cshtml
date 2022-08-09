@@ -1,0 +1,769 @@
+﻿@{ Layout = null;
+    ViewData["Title"] = "مقايسة الأعمال";}
+
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جهاز تنمية حدائق أكتوبر | @ViewBag.Title</title>
+
+    <script src="~/lib/kendo/js/jquery.min.js"></script>
+    <script src="~/lib/kendo/js/kendo.all.min.js"></script>
+    <script src="~/lib/kendo/js/messages/kendo.ar-JO.js"></script>
+ 
+    <script src="~/lib/kendo/js/kendo.aspnetmvc.min.js"></script>
+  
+    <link href="~/lib/kendo/css/web/kendo.default-v2.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/web/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/web/kendo.default.mobile.min.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/web/kendo.blueopal.min.css" rel="stylesheet" />
+ 
+    <script src="~/lib/kendo/js/kendo.grid.min.js"></script>
+    <script src="~/NeuBoard/Scripts/src/app.js"></script>
+    <script src="~/lib/kendo/js/kendo.upload.min.js"></script>
+
+ 
+    <link href="~/NeuBoard/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/simple-line-icons.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/clndr.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/dropzone.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Scripts/plugins/switchery/switchery.min.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/morris.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/animate.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/main.css" rel="stylesheet" />
+
+
+ 
+    <script src="~/NeuBoard/Scripts/modernizr-2.6.2.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]><![endif]-->
+    <script src="~/NeuBoard/Scripts/html5shiv.min.js"></script>
+    <script src="~/NeuBoard/Scripts/respond.js"></script>
+
+</head>
+
+<body style="font-family: Stc!important; background:#556b8d;">
+    <section id="main-wrapper" class="theme-default" style="background: #556b8d;">
+
+     
+
+        <header style="margin-bottom: 68px;">
+            <div class="navbar navbar-header  navbar-fixed-top  pull-right">
+                <img id="siteLogo" src="/Images/logo.png" class="pull-right"
+                     style=" max-width: 100%; max-height: 50px; margin-left: 10px; margin-right: 10px;" />
+                <div class="container pull-right" style=" margin-top: 10px;">
+                    <div class="navbar-collapse collapse pull-right">
+                        <ul id="menu">
+                           
+                            <li class="parent pull-left"> <a href="/Home/Logout" style="color: #ff0000" class="nav-link text-center text-uppercase">تسجيل خروج</a></li>
+                           
+                            <li class="parent" style="margin-left: 15px;"><a href="@Url.Action("RequestDetailForCompany", "Request")">عمل مقايسة</a></li>
+                            <li class="parent" style="margin-left: 15px;"><a href="@Url.Action("WorkOrdersForCompany", "Workorder")">تقديم مستخلص جديد</a></li>
+                            
+                           
+                        </ul>
+                    </div>
+                </div>
+                <span class="pull-left" style=" color: white; line-height: 30px; font-size: 20px; margin-left: 5px; font-weight: bold; margin-top: 10px;">مرحباً  @User.Identity.Name </span>
+            </div>
+        </header>
+
+        <!-- Left Sidebar Navigation -->
+        <!-- Content wraper -->
+        <section class="main-content-wrapper"style=" padding-top: 0px;">
+            <input type="hidden" id="hdnRequestCode" />
+            <div class="pageheader">
+                <h1>عمل مقايسة عن طريق الشركة</h1>
+                <div class="breadcrumb-wrapper hidden-xs">
+                    <span class="label">أنت الان علي :</span>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a style=" color: #fff;  " href="javascript:void(0);">العملية أو المشروع</a>
+                        </li>
+                        <li class="active">عمل مقايسة عن طريق الشركة</li>
+                    </ol>
+                </div>
+            </div>
+            <script src="~/lib/kendo/js/kendo.upload.min.js"></script>
+            <section id="main-content" class="animated fadeInUp">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="table-responsive">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Code"> العملية رقم</label>
+                                            @(Html.Kendo().MultiColumnComboBox()
+          .Name("RequestNo")
+          .DataTextField("RequestName")
+          .DataValueField("RequestId")
+          .Placeholder("رقم العملية")
+          .Columns(columns =>
+          {
+              columns.Add().Field("RequestCode").Title("كود الشركة");
+              columns.Add().Field("RequestName").Title("إسم العملية");
+              columns.Add().Field("RequestAmount").Title("مدة العملية");
+          })
+          .Filter("contains")
+          .FilterFields(new string[] { "RequestCode", "RequestName", "RequestAmount" })
+          .DataSource(source => {
+              source.Read(read =>
+              {
+                  read.Action("GetAllRequestsByUserCompanyID", "Request");
+              })
+              .ServerFiltering(false);
+          })
+          .Events(e=>e.Change("OnChangeRequest"))
+          .HtmlAttributes(new { style = "width:100%;" })
+    )
+                                            @*<input type="text" class="form-control" name="RequestNo" id="RequestNo" value="@Model.RequestNo" disabled>*@
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Code">تاريخ أمر الإسناد</label>
+                                            @(Html.Kendo().DatePicker()
+            .Name("RequestDate")
+               .Format("dd/MM/yyyy")
+            .Enable(false)
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Code">شركة المقاولات المسند إليها العملية</label>
+                                            <input type="text" class="form-control" name="Company" id="Company" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Code">العملية أو المشروع</label>
+                                            <input type="text" class="form-control" name="RequestName" id="RequestName" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Code">قيمة العملية</label>
+                                            <input type="number" class="form-control" name="RequestAmount" id="RequestAmount" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label for="Code">مدة العملية</label>
+                                            <input type="number" class="form-control" name="RequestDuration" id="RequestDuration" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <br />  <br />
+                                            <label for="Code">شهر</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Code">تاريخ إستلام الموقع</label>
+                                            @(Html.Kendo().DatePicker()
+            .Name("RequestStartDate")
+   .Format("dd/MM/yyyy")
+            .Enable(false)
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Code">تاريخ النهو التعاقدي</label>
+                                            @(Html.Kendo().DatePicker()
+            .Name("RequestEndDate")
+               .Format("dd/MM/yyyy")
+            .Enable(false)
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6" style=" margin-bottom: 50px;">
+                                        <div class="form-group">
+                                            <label for="Email">إختر صورة المقايسة</label>
+                                            <div class="demo-section k-content">
+                                                @(Html.Kendo().Upload()
+            .Name("FileName")
+            .HtmlAttributes(new { aria_label = "files" })
+            .Async(a => a
+               .Save("Async_Save_Details", "Request")
+               .Remove("Async_Remove_Details", "Request")
+               .AutoUpload(false)
+            )
+            .Events(events => events
+            .Select("onSelect")
+
+        )
+        )
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*@if (Model.RequestDetailsFileName != null)
+                                                                {
+                                                    <div class="col-md-2" id="Browse">
+                                                        <br />
+                                                        <a class="btn btn-success" onclick="browse('', '');">
+                                                            <i class="fa fa-download"></i> عرض صورة المقايسة
+                                                        </a>
+                                                    </div> }
+                                                else
+                                                {
+                                    <div class="col-md-2" id="Browse" style="display:none;">
+                                        <br />
+                                        <a class="btn btn-success" onclick="browse();">
+                                            <i class="fa fa-download"></i> عرض صورة المقايسة
+                                        </a>
+                                    </div>}*@
+                                    <div class="col-md-2">
+                                        <br />
+                                        <a class="btn btn-success" onclick="upload();">
+                                            <i class="fa fa-download"></i>رفع صورة المقايسة
+                                        </a>
+                                    </div>
+
+                                    <div id="GridView" class="k-rtl col-md-12">
+
+                                        @(Html.Kendo().Grid <Abstracts.Models.Refactored.RequestDetails>()
+    .Name("RequestDetailsGrid")
+    .Columns(columns =>
+    {
+        //columns.Select().Width(50);
+        columns.Bound(p => p.RequestDetailCode).Width(100).Title("كود البند").Locked(true).Lockable(false).ClientFooterTemplate("عدد البنود: #=count#");
+        columns.Bound(p => p.Request).Width(100).Title("إسم البند").Locked(true);
+        columns.Bound(p => p.RequestDetailName).Width(500).Title("الوصف");
+        columns.Bound(p => p.Unit).Width(100).Title("الوحدة");
+        columns.Bound(p => p.Qty).Width(200).Title("الكمية المقدرة");
+        columns.Bound(p => p.UnitPrice).Width(200).Title("سعر الوحدة بالجنيه");
+        columns.Bound(p => p.TotalPrice).Width(200).Title("السعر الإجمالي");
+        columns.Bound(p => p.Department).Width(100).Title("الفرع المختص");
+    })
+    //.ClientRowTemplate(
+    //    "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+    //        "<td role='gridcell'> " +
+    //        "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: RequestDetailCode# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: Request# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: RequestDetailName# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: Unit# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: Qty# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: UnitPrice# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: TotalPrice# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: Department# </span>" +
+    //        "</td>" +
+    //     "</tr>"
+    //).ClientAltRowTemplate(
+    //    "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+    //        "<td role='gridcell'> " +
+    //        "<input class=' k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+    //        "</td>" +
+    //         "<td role='gridcell'>" +
+    //           "<span> #: RequestDetailCode# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: Request# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: RequestDetailName# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: Unit# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: Qty# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: UnitPrice# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: TotalPrice# </span>" +
+    //        "</td>" +
+    //        "<td role='gridcell'>" +
+    //           "<span> #: Department# </span>" +
+    //        "</td>" +
+    //     "</tr>"
+    //)
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+        toolbar.Custom().Text("إضافة بند").Name("CreateModal");
+        //toolbar.Custom().Text("تعديل البند").Name("EditModal");
+    })
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Selectable(selectable => selectable
+            .Mode(GridSelectionMode.Single))
+    .Groupable(g => g.ShowFooter(true))
+    .PersistSelection(true)
+    .Events(ev => ev.Change("onChangeSelection")
+     .Page("onPaging"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+          .Aggregates(aggregates =>
+          {
+              aggregates.Add(p => p.RequestDetailCode).Count();
+          })
+          .ServerOperation(false)
+        .PageSize(8)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.RequestDetailId))
+    .Read(read => read.Action("GetRequestDetailForCompanyList", "Request"))
+    )
+)
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="modal fade" id="RequestDetailsCreateModalPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width:1300px">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel"> إنشاء مقايسة الأعمال</h4>
+                        </div>
+                        <div id="validation-summary">
+                        </div>
+                        <div class="panel-body">
+                            <form id="CreateRequestDetailsPopup">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">كود البند</label>
+                                        <input type="text" class="form-control" name="CreateRequestDetailCode" id="CreateRequestDetailCode" value="@ViewBag.RequestDetailsCode" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">البند</label>
+                                        <input type="number" class="form-control" name="CreateRequestDetailSerial" id="CreateRequestDetailSerial">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">فئة البند</label>
+                                        @(Html.Kendo().MultiSelect()
+          .Name("itemClass")
+          .AutoClose(false)
+          .Placeholder("إختر فئة البند")
+           .DataTextField("ItemClassName")
+          .DataValueField("ItemClassId")
+           .DataSource(source =>
+           {
+               source.Read(read =>
+               {
+                   read.Action("GetAllItemClass", "ItemClass");
+               })
+               .ServerFiltering(false);
+           })
+    )
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">الوصف</label>
+                                        <textarea class="form-control" name="CreateRequestDetailName" id="CreateRequestDetailName"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">الوحدة</label>
+                                        @(Html.Kendo().ComboBox()
+        .Name("CreateUnit")
+        .DataTextField("UnitName")
+        .DataValueField("UnitId")
+        .Placeholder("إختار الوحدة")
+        .HtmlAttributes(new { style = "width:100%" })
+        .Filter("contains")
+        .DataSource(source =>
+        {
+    source.Read(read =>
+    {
+        read.Action("GetAllUnits", "Unit");
+    })
+    .ServerFiltering(false);
+})
+    )
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">الكمية المقدرة</label>
+                                        <input type="number" class="form-control" name="CreateQty" id="CreateQty">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">سعر الوحدة بالجنيه</label>
+                                        <input type="number" class="form-control" name="CreateUnitPrice" id="CreateUnitPrice">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">السعر الإجمالي</label>
+                                        <input type="number" class="form-control" name="CreateTotalPrice" id="CreateTotalPrice" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">القسم المختص</label>
+                                        @(Html.Kendo().ComboBox()
+        .Name("CreateDepartment")
+        .DataTextField("DepartmentName")
+        .DataValueField("DepartmentId")
+        .Placeholder("إختار القسم المختص")
+        .HtmlAttributes(new { style = "width:100%" })
+        .Filter("contains")
+        .DataSource(source =>
+        {
+    source.Read(read =>
+    {
+        read.Action("GetAllDepartments", "Home");
+    })
+    .ServerFiltering(false);
+})
+    )
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <br />
+                                    <a id="savebutton" class="btn btn-success" onclick="saveRequestDetails();">
+                                        <i class="fa fa-save"></i> إضافة
+                                    </a>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="modal fade" id="RequestDetailsEditModalPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" style="width:1300px">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel"> إنشاء مقايسة الأعمال</h4>
+                        </div>
+                        <div id="validation-summary">
+                        </div>
+                        <div class="panel-body">
+                            <form id="EditRequestDetailsPopup">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">كود البند</label>
+                                        <input type="text" class="form-control" name="EditRequestDetailCode" id="EditRequestDetailCode" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">البند</label>
+                                        <input type="number" class="form-control" name="EditRequestDetailSerial" id="EditRequestDetailSerial">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">فئة البند</label>-->
+                                        @*<select id="EditItemClass"></select>*@
+                                        <!--@(Html.Kendo().MultiSelect()
+          .Name("EditItemClass")
+          .AutoClose(false)
+          .Placeholder("إختر فئة البند")
+          .DataTextField("ItemClassName")
+          .DataValueField("ItemClassId")
+          .DataSource(source =>
+           {
+               source.Read(read =>
+               {
+                   read.Action("GetAllItemClass", "ItemClass");
+               })
+               .ServerFiltering(false);
+           })
+    )
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">الوصف</label>
+                                        <textarea class="form-control" name="EditRequestDetailName" id="EditRequestDetailName"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">الوحدة</label>
+                                        @(Html.Kendo().ComboBox()
+        .Name("EditUnit")
+        .DataTextField("UnitName")
+        .DataValueField("UnitId")
+        .Placeholder("إختار الوحدة")
+        .HtmlAttributes(new { style = "width:100%" })
+        .Filter("contains")
+        .DataSource(source =>
+        {
+    source.Read(read =>
+    {
+        read.Action("GetAllUnits", "Unit");
+    })
+    .ServerFiltering(false);
+})
+    )
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">الكمية المقدرة</label>
+                                        <input type="number" class="form-control" name="EditQty" id="EditQty">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">سعر الوحدة بالجنيه</label>
+                                        <input type="number" class="form-control" name="EditUnitPrice" id="EditUnitPrice">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">السعر الإجمالي</label>
+                                        <input type="number" class="form-control" name="EditTotalPrice" id="EditTotalPrice" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Code">القسم المختص</label>
+                                        @(Html.Kendo().ComboBox()
+        .Name("EditDepartment")
+        .DataTextField("DepartmentName")
+        .DataValueField("DepartmentId")
+        .Placeholder("إختار القسم المختص")
+        .HtmlAttributes(new { style = "width:100%" })
+        .Filter("contains")
+        .DataSource(source =>
+        {
+    source.Read(read =>
+    {
+        read.Action("GetAllDepartments", "Home");
+    })
+    .ServerFiltering(false);
+})
+    )
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <br />
+                                    <a id="savebutton" class="btn btn-success" onclick="updateRequestDetails();">
+                                        <i class="fa fa-save"></i> إضافة
+                                    </a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+            @*<script src="~/Scripts/jszip.min.js"></script>*@
+            <script src="~/scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/Ajax/RequestDetailsForCompany.js"></script>
+
+
+
+            @section styles{
+                <style>
+                    .k-grid tr .checkbox-align {
+                        text-align: center;
+                        vertical-align: middle;
+                    }
+
+                    .k-header {
+                        text-align: center;
+                    }
+
+                    .product-photo {
+                        display: inline-block;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        background-size: 32px 35px;
+                        background-position: center center;
+                        vertical-align: middle;
+                        line-height: 32px;
+                        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+                        margin-right: 5px;
+                    }
+
+                    .product-name {
+                        display: inline-block;
+                        vertical-align: middle;
+                        line-height: 32px;
+                        padding-left: 3px;
+                    }
+
+                    .k-rating-container .k-rating-item {
+                        padding: 4px 0;
+                    }
+
+                        .k-rating-container .k-rating-item .k-icon {
+                            font-size: 16px;
+                        }
+
+                    .dropdown-country-wrap {
+                        display: flex;
+                        flex-wrap: nowrap;
+                        align-items: center;
+                        white-space: nowrap;
+                    }
+
+                        .dropdown-country-wrap img {
+                            margin-right: 10px;
+                        }
+
+                    #grid .k-grid-edit-row > td > .k-rating {
+                        margin-left: 0;
+                        width: 100%;
+                    }
+                </style>
+            }
+
+
+        </section>
+        <!-- /Content wraper-->
+
+    </section><!-- /Page Wrapper-->
+    <!-- Right Sidebar -->
+    @*@Html.Partial("~/Views/Shared/_RightSideBar.cshtml")*@
+
+    <!--Theme Config -->
+
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*<script src="~/NeuBoard/Scripts/jquery-1.11.1.min.js"></script>*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    <script src="~/NeuBoard/Scripts/bootstrap.js">
+    </script>
+    @*@Scripts.Render("~/plugins/navgoco")*@
+    <script src="~/NeuBoard/Scripts/plugins/navgoco/jquery.navgoco.min.js"></script>
+    @*@Scripts.Render("~/plugins/pace")*@
+    <script src="~/NeuBoard/Scripts/plugins/fullscreen/jquery.fullscreen-min.js">
+    </script>
+    @*@Scripts.Render("~/plugins/switchery")*@
+    <script src="~/NeuBoard/Scripts/plugins/switchery/switchery.min.js"></script>
+    @*@Scripts.Render("~/bundles/app")*@
+    @*<script src="~/Scripts/Ajax/common.js"></script>*@
+
+    @*@RenderSection("scripts", required: false)
+        @RenderSection("styles", required: false)*@
+</body>
+<style>
+    .parent {
+        display: block;
+        position: relative;
+        float: right;
+        text-align: center;
+        line-height: 30px;
+        background-color: #556b8d;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+        .parent a {
+            margin: 10px;
+            color: #FFFFFF;
+            text-decoration: none;
+        }
+
+        .parent:hover > ul {
+            display: block;
+            position: absolute;
+        }
+
+    .child {
+        display: none;
+    }
+
+        .child li {
+            background-color: #c3b3b5;
+            line-height: 30px;
+            border-bottom: #CCC 4px solid;
+            border-right: #CCC 1px solid;
+            width: 100%;
+        }
+
+            .child li a {
+                color: white;
+            }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0px;
+        min-width: 10em;
+    }
+
+        ul ul ul {
+            right: 100%;
+            top: 0;
+            margin-left: 1px;
+        }
+
+    li:hover {
+        background-color: #c3b3b5;
+    }
+
+    .parent li:hover {
+        background-color: #556b8d;
+    }
+
+    .expand {
+        font-size: 12px;
+        float: left;
+        margin-right: 5px;
+    }
+</style>
+</html>

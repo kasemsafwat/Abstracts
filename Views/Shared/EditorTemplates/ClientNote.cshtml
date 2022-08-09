@@ -1,0 +1,28 @@
+﻿@model Abstracts.Models.Refactored.WorkOrderNotes
+
+@(Html.Kendo().MultiColumnComboBox()
+    .Name("Notes")
+            .DataValueField("WorkOrderNoteId")
+            .DataTextField("WorkOrderNoteId")
+            .Columns(columns =>
+            {
+                columns.Add().Field("WorkOrderNoteId").Title("رقم الملاحظة");
+                columns.Add().Field("NoteStatusName").Title("بيان الملحوظة");
+                columns.Add().Field("NotePercentage").Title("النسبة");
+                columns.Add().Field("NoteTitle").Title("الوصف");
+            })
+            .Filter("contains")
+            .Events(e =>
+            {
+                e.Select("onChangeNote");
+            })
+            .DataSource(source =>
+            {
+                source.Read(read =>
+                {
+                    read.Action("GetAllNotes", "Note");
+                })
+                .ServerFiltering(false);
+            })
+           .BindTo((System.Collections.IEnumerable)ViewData["notes"])
+)

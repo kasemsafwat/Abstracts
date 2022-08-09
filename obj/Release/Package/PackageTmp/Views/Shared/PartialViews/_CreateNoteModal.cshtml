@@ -1,0 +1,147 @@
+﻿
+<div class="modal fade" id="CreateNoteModalPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:1300px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">ملاحظات</h4>
+            </div>
+            <div id="validation-summary">
+            </div>
+            <div class="panel-body">
+                <form id="Notefrm">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>رقم الملاحظة</label>
+                            <input type="text" class="form-control" name="WorkOrderNoteID" id="WorkOrderNoteID" disabled />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>بيان الملاحظة</label>
+                            <input type="text" class="form-control" name="NoteTitle" id="NoteTitle" />
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>نسبة</label>
+                            <input type="number" class="form-control" name="NotePercentage" id="NotePercentage" max="100" min="0" />
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group">
+                            <br />  <br />
+                            <label>%</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>الوصف</label>
+                            @(Html.Kendo().ComboBox()
+.Name("NoteStatus")
+.Filter("contains")
+.Placeholder("إختر الوصف")
+.DataTextField("Text")
+.DataValueField("Value")
+.BindTo(new List<SelectListItem> {
+              new SelectListItem {
+                Text = "تعلية", Value = "1"
+              },
+              new SelectListItem {
+                Text = "خصم", Value = "2"
+              }
+})
+.SelectedIndex(0)
+.HtmlAttributes(new { style = "width:100%;" })
+
+    )
+                        </div>
+                    </div>
+
+                </form>
+                <div class="col-md-12" style="text-align:center;">
+                    <br />
+                    <a id="savebutton" class="btn btn-success" onclick="saveNote();">
+                        <i class="fa fa-save"></i> إضافة
+                    </a>
+                </div>
+
+                <div id="GridViewNote" class="k-rtl col-md-12">
+
+                    @(Html.Kendo().Grid<Abstracts.Models.Refactored.WorkOrderNotes>()
+.Name("gridNotes")
+.Columns(columns =>
+{
+    columns.Select().Width(50);
+    columns.Bound(p => p.WorkOrderNoteId).Width(100).Title("رقم الملاحظة").ClientFooterTemplate("عدد الملاحظات: #=count#");
+    columns.Bound(p => p.NoteTitle).Width(100).Title("بيان الملاحظة");
+    columns.Bound(p => p.NoteStatusName).Width(100).Title("الوصف");
+    columns.Bound(p => p.NotePercentage).Width(100).Title("النسبة");
+}).ClientRowTemplate(
+"<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+"<td> " +
+"<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+"</td>" +
+"<td>" +
+"<span> #: WorkOrderNoteId# </span>" +
+"</td>" +
+"<td>" +
+"<span> #: NoteTitle# </span>" +
+"</td>" +
+"<td>" +
+"<span> #: NoteStatusName# </span>" +
+"</td>" +
+"<td>" +
+"<span> #: NotePercentage# </span>" +
+"</td>" +
+"</tr>"
+).ClientAltRowTemplate(
+"<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+"<td> " +
+"<input class=' k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+"</td>" +
+"<td>" +
+"<span> #: WorkOrderNoteId# </span>" +
+"</td>" +
+"<td>" +
+"<span> #: NoteTitle# </span>" +
+"</td>" +
+"<td>" +
+"<span> #: NoteStatusName# </span>" +
+"</td>" +
+"<td>" +
+"<span> #: NotePercentage# </span>" +
+"</td>" +
+"</tr>"
+).Editable(editable => editable.Mode(GridEditMode.InLine))
+.Pageable()
+.Selectable(selectable => selectable
+.Mode(GridSelectionMode.Single))
+.Resizable(r => r.Columns(true))
+.Reorderable(r => r.Columns(true))
+.Sortable()
+.PersistSelection(true)
+.Events(ev => ev.Change("onChangeSelectionNote")
+.Page("onNotePaging"))
+.Scrollable()
+.HtmlAttributes(new { style = "height:370px;" })
+.DataSource(dataSource => dataSource
+.Ajax()
+.Aggregates(aggregates =>
+{
+    aggregates.Add(p => p.WorkOrderNoteId).Count();
+})
+.PageSize(8)
+.ServerOperation(false)
+.Events(events => events.Error("error_handler"))
+.Model(model => model.Id(p => p.WorkOrderNoteId))
+.Read(read => read.Action("GetNoteList", "Note"))
+)
+)
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

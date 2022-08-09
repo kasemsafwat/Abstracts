@@ -1,0 +1,207 @@
+﻿@{ ViewData["Title"] = "محضر إستلام الموقع";}
+
+<div class="pageheader">
+    <h1>محضر إستلام الموقع</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff; font-size: 1em;  " href="javascript:void(0);">العملية أو المشروع</a>
+            </li>
+            <li class="active">محضر إستلام الموقع</li>
+        </ol>
+    </div>
+</div>
+
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <form id="requestfrm">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="Code"> العملية رقم</label>
+                                    @*@(Html.Kendo().MultiColumnComboBox()
+                          .Name("RequestCode")
+                          .DataTextField("RequestNo")
+                          .DataValueField("RequestId")
+                          .Placeholder("رقم العملية")
+                          .Columns(columns =>
+                          {
+                              columns.Add().Field("RequestNo").Title("رقم أمر الإسناد");
+                              columns.Add().Field("RequestName").Title("إسم العملية أو المشروع");
+                          })
+                          .Filter("contains")
+                          .FilterFields(new string[] { "RequestNo", "RequestName"})
+                          .DataSource(source => {
+                              source.Read(read =>
+                              {
+                                  read.Action("GetAllRequests", "Request");
+                              })
+                              .ServerFiltering(false);
+                          }).Events(e =>
+                          {
+                              //e.Select("onChangeRequest");
+                          })
+
+                          .HtmlAttributes(new { style = "width:100%;" })
+                    )*@
+                                    <input type="text" class="form-control" name="RequestNo" id="RequestNo">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ أمر الإسناد</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestDate")
+          .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <br />
+                                    <a href="#" class="btn btn-success" onclick="Search();"> <i class="fa fa-search"></i> بحث</a>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <br />
+                                    <a href="#" data-toggle="modal" class="btn btn-success" data-target="#RequestSearchModalPopup"> <i class="fa fa-search"></i> بحث مفصل</a>
+                                </div>
+                            </div>
+                        </form>
+                        <form id="requestResultfrm">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">شركة المقاولات المسند إليها العملية</label>
+                                    <input type="text" class="form-control" name="Company" id="Company" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">العملية أو المشروع</label>
+                                    <input type="text" class="form-control" name="RequestName" id="RequestName" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">قيمة العملية</label>
+                                    <input type="number" class="form-control" name="RequestAmount" id="RequestAmount" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="Code">مدة العملية</label>
+                                    <input type="number" class="form-control" name="RequestDuration" id="RequestDuration" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <br />  <br />
+                                    <label for="Code">شهر</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ إستلام الموقع</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestStartDate")
+         .Events(e =>
+        {
+            e.Change("onChangeRequestStartDate");
+        })
+            .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ النهو التعاقدي</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestEndDate")
+            .Enable(false)
+            .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Email">إختر صورة المحضر</label>
+                                    <div class="demo-section k-content">
+                                        @(Html.Kendo().Upload()
+            .Name("FileName")
+            .HtmlAttributes(new { aria_label = "files" })
+            .Async(a => a
+               .Save("Async_Save", "Request", new { })
+               .Remove("Async_Remove", "Request")
+               .AutoUpload(false)
+            )
+            .Events(events => events
+            .Select("onSelect")
+        )
+        )
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2" style="display:none" id="BrowseFile">
+                                <br />
+                                <a class="btn btn-success" onclick="browse();">
+                                    <i class="fa fa-download"></i> عرض صورة المحضر
+                                </a>
+                            </div>
+
+                            @*<div class="col-md-2" style="text-align: center;">
+                                <br />
+                                @(Html.Kendo().CheckBox()
+.Name("lock")
+)
+                                <label for="Code">
+                                    إيقاف العملية
+                                </label>
+
+                            </div>*@
+
+                            <div class="col-md-2">
+                                <br />
+                                <a id="savebutton" class="btn btn-success" onclick="saveRequest();">
+                                    <i class="fa fa-save"></i> إضافة
+                                </a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/lib/kendo/js/kendo.upload.min.js"></script>
+<script src="~/Scripts/Ajax/DeliverRequest.js"></script>
+@section styles{
+    <style>
+        .k-clear-selected, .k-upload-selected {
+            display: none !important;
+        }
+
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+}

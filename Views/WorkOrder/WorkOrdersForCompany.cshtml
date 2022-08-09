@@ -1,0 +1,587 @@
+﻿@{ ViewData["Title"] = "تقديم مستخلص جديد";
+    Layout = null; }
+
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جهاز تنمية حدائق أكتوبر | @ViewBag.Title</title>
+
+    <script src="~/lib/kendo/js/jquery.min.js"></script>
+    <script src="~/lib/kendo/js/kendo.all.min.js"></script>
+    <script src="~/lib/kendo/js/messages/kendo.ar-JO.js"></script>
+    <script src="~/lib/kendo/js/kendo.aspnetmvc.min.js"></script>
+
+    <link href="~/lib/kendo/css/web/kendo.default-v2.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/web/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/web/kendo.default.mobile.min.css" rel="stylesheet" />
+    <link href="~/lib/kendo/css/web/kendo.blueopal.min.css" rel="stylesheet" />
+
+    <script src="~/lib/kendo/js/kendo.grid.min.js"></script>
+    <script src="~/NeuBoard/Scripts/src/app.js"></script>
+    <script src="~/lib/kendo/js/kendo.upload.min.js"></script>
+    <link href="~/NeuBoard/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/NeuBoard/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/simple-line-icons.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/clndr.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/dropzone.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Scripts/plugins/switchery/switchery.min.css" rel="stylesheet" />
+
+    <link href="~/NeuBoard/Content/morris.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/animate.css" rel="stylesheet" />
+    <link href="~/NeuBoard/Content/main.css" rel="stylesheet" />
+
+    <script src="~/NeuBoard/Scripts/modernizr-2.6.2.js"></script>
+
+    <script src="~/NeuBoard/Scripts/html5shiv.min.js"></script>
+    <script src="~/NeuBoard/Scripts/respond.js"></script>
+    <style>
+        .dropbtn {
+            color: #bdbdbd !important;
+            padding: 15px 15px 15px 15px;
+            display: block;
+            font-size: 22px;
+            background-color: transparent;
+            line-height: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: max-content;
+            text-align: center;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: #556b8d;
+                padding: 12px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            color: white !important;
+        }
+
+        .parent {
+            display: block;
+            position: relative;
+            float: right;
+            text-align: center;
+            line-height: 30px;
+            background-color: #556b8d;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+            .parent a {
+                margin: 10px;
+                color: #FFFFFF;
+                text-decoration: none;
+            }
+
+            .parent:hover > ul {
+                display: block;
+                position: absolute;
+            }
+
+        .child {
+            display: none;
+        }
+
+            .child li {
+                background-color: #c3b3b5;
+                line-height: 30px;
+                border-bottom: #CCC 4px solid;
+                border-right: #CCC 1px solid;
+                width: 100%;
+            }
+
+                .child li a {
+                    color: white;
+                }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0px;
+            min-width: 10em;
+        }
+
+            ul ul ul {
+                right: 100%;
+                top: 0;
+                margin-left: 1px;
+            }
+
+        li:hover {
+            background-color: #c3b3b5;
+        }
+
+        .parent li:hover {
+            background-color: #556b8d;
+        }
+
+        .expand {
+            font-size: 12px;
+            float: left;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<!-- Page Wrapper-->
+<body style="font-family: Stc!important;background:#556b8d;">
+    <section id="main-wrapper" class="theme-default sidebar-mini" style="background: #556b8d;">
+
+        <!-- Top Header -->
+        <header style="margin-bottom: 68px;">
+            <div class="navbar navbar-header  navbar-fixed-top  pull-right" style=" background: #556b8d;">
+                <img id="siteLogo" src="/Images/logo.png" class="pull-right"
+                     style=" max-width: 100%; max-height: 50px; margin-left: 10px; margin-right: 10px;" />
+                <div class="container pull-right" style=" margin-top: 10px;">
+                    <div class="navbar-collapse collapse pull-right">
+                        <ul id="menu">
+
+                            <li class="parent pull-left"> <a href="/Home/Logout" style="color: #ff0000" class="nav-link text-center text-uppercase">تسجيل خروج</a></li>
+                            <li class="parent" style="margin-left: 15px;"><a href="@Url.Action("WorkOrdersForCompany", "Workorder")">تقديم مستخلص جديد</a></li>
+                            <li class="parent" style="margin-left: 15px;"><a href="@Url.Action("EditWorkOrdersForCompany", "Workorder")">تعديل مستخلص مقدم</a></li>
+                            <li class="parent" style="margin-left: 15px;"><a href="@Url.Action("WorkOrderStatusForCompany", "Company")">إستعلام عن حالة المستخلص</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <span class="pull-left" style=" color: white; line-height: 30px; font-size: 20px; margin-left: 5px; font-weight: bold; margin-top: 10px;">مرحباً  @User.Identity.Name </span>
+            </div>
+        </header>
+
+        <section class="main-content-wrapper" style=" padding-top: 0px;">
+            @{ bool WorkOrdersForCompany = false;
+                if (Html.IsSelected(controller: "WorkOrder", action: "WorkOrdersForCompany") == "active open") { WorkOrdersForCompany = true; } }
+            <div class="container body-content" style="        width: auto;
+        padding: 0 1.875em 1.875em 1.875em;
+        margin-top: 40px;
+        border: 1px solid transparent;
+        overflow: hidden;">
+
+
+                <div class="pageheader">
+                    <h1>تقديم مستخلص جديد</h1>
+                    <div class="breadcrumb-wrapper hidden-xs">
+                        <span class="label">أنت الان علي :</span>
+                        <ol class="breadcrumb">
+                            <li>
+                                <a style=" color: #fff;  " href="javascript:void(0);">المستلخصات</a>
+                            </li>
+                            <li class="active">تقديم مستخلص جديد</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <section id="main-content" class="animated fadeInUp">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <form id="requestfrm">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="Code"> العملية رقم</label>
+
+                                                    <input type="text" class="form-control" name="RequestNo" id="RequestNo">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="Code">تاريخ أمر الإسناد</label>
+                                                    @(Html.Kendo().DatePicker()
+                                                    .Name("RequestDate")
+                                                    .Format("dd/MM/yyyy")
+                                                    .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+                                                )
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <br />
+                                                    <a href="#" class="btn btn-success" onclick="Search();"> <i class="fa fa-search"></i> بحث</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <div class="form-group">
+                                                    <br />
+                                                    <a href="#" data-toggle="modal" class="btn btn-success" data-target="#RequestSearchModalPopup"> <i class="fa fa-search"></i> بحث مفصل</a>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="Code">شركة المقاولات المسند إليها العملية</label>
+                                                <input type="text" class="form-control" name="Company" id="Company" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="Code">العملية أو المشروع</label>
+                                                <input type="text" class="form-control" name="RequestName" id="RequestName" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="Code">قيمة العملية</label>
+                                                <input type="number" class="form-control" name="RequestAmount" id="RequestAmount" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label for="Code">مدة العملية</label>
+                                                <input type="number" class="form-control" name="RequestDuration" id="RequestDuration" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <br />  <br />
+                                                <label for="Code">شهر</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="Code">تاريخ إستلام الموقع</label>
+                                                @(Html.Kendo().DatePicker()
+            .Name("RequestStartDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label for="Code">تاريخ النهو التعاقدي</label>
+                                                @(Html.Kendo().DatePicker()
+            .Name("RequestEndDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                            </div>
+                                        </div>
+                                        <form id="requestDetailsfrm">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="Code">مستخلص جاري رقم</label>
+                                                    <input type="text" class="form-control" name="WorkOrderCode" id="WorkOrderCode" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="Code">الأعمال المنفذ من</label>
+                                                    @(Html.Kendo().DatePicker()
+            .Name("WorkOrderStartDate")
+            .Enable(false)
+            .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label for="Code">حتي</label>
+                                                    @(Html.Kendo().DatePicker()
+            .Name("WorkOrderEndDate")
+            .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label for="Code">ملاحظات</label>
+                                                    <input type="text" class="form-control" name="Note" id="Note">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3" style="margin-bottom: 40px;">
+                                                <div class="form-group">
+                                                    <label for="Email">إختر صورة المستخلص</label>
+                                                    <div class="demo-section k-content">
+                                                        @(Html.Kendo().Upload()
+            .Name("FileName")
+            .HtmlAttributes(new { aria_label = "files" })
+            .Async(a => a
+               .Save("Async_Save", "WorkOrder")
+               //.Remove("Async_Remove", "WorkOrder")
+               .AutoUpload(false)
+            )
+            .Events(events => events
+
+            .Select("onSelect")
+
+        )
+        )
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3" style="margin-bottom: 40px;">
+                                                <div class="form-group">
+                                                    <label for="Email">تحميل نموذج المستخلص</label>
+                                                    <div class="demo-section k-content">
+                                                        @(Html.Kendo().Upload()
+            .Name("WorkOrderExcelFileName")
+            .HtmlAttributes(new { aria_label = "files" })
+            .Async(a => a
+               .Save("Async_Save_WorkOrderExcel", "WorkOrder")
+               .AutoUpload(false)
+            )
+             .Events(events => events
+            .Select("onWorkOrderExcelSelect")
+
+        )
+
+        )
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br /><br />
+                                            <div class="col-md-2">
+                                                <br />
+                                                <a class="btn btn-success" href="/ImportData/ExportWorkOrderExcelData">
+                                                    <i class="fa fa-download"></i>تصدير نموذج المستخلص
+                                                </a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <br />
+                                                <a class="btn btn-success" href="javascript:void(0);" onclick="uploadExcel();">
+                                                    <i class="fa fa-upload"></i>رفع النموذج
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-2" style="text-align: center;">
+                                                <br />
+                                                <a class="btn btn-success" onclick="saveWorkOrder();">
+                                                    <i class="fa fa-save"></i>حفظ المستخلص
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-2" id="Browse" style="text-align: center; display:none;">
+                                                <br />
+                                                <a class="btn btn-success" onclick="browse();">
+                                                    <i class="fa fa-save"></i> عرض صورة المستخلص
+                                                </a>
+                                            </div>
+
+                                            <div class="col-md-2" id="submitbtn" style="display:none">
+                                                <br />
+                                                <a class="btn btn-success" onclick="SetWorkOrderSubmitted();">
+                                                    <i class="fa fa-save"></i> تأكيد المستخلص
+                                                </a>
+                                            </div>
+
+
+                                        </form>
+
+                                        <div id="GridViewWorkOrder" class="k-rtl col-md-12">
+
+                                            @(Html.Kendo().Grid <Abstracts.Models.Refactored.WorkOrderDetails>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.RequestDetailCode).Width(100).Title("كود البند").Editable("productNameEditable").Locked(true).Lockable(false).ClientFooterTemplate("عدد البنود: #=count#");
+        columns.Bound(p => p.RequestDetailSerial).Width(100).Title("البند").Editable("productNameEditable").Locked(true);
+        columns.Bound(p => p.RequestDetailName).Width(400).Title("الوصف").Editable("productNameEditable").Locked(true);
+        columns.Bound(p => p.Unit).Width(100).Title("الوحدة").Editable("productNameEditable");
+        columns.Bound(p => p.Qty).Width(128).Title("الكمية المقدرة").Editable("productNameEditable");
+        columns.Bound(p => p.UnitPrice).Width(184).Title("سعر الوحدة بالجنيه").Editable("productNameEditable").ClientFooterTemplate("إجمالي سعر الوحدة: #=sum#");
+        columns.Bound(p => p.TotalPrice).Width(185).Title("السعر الإجمالي").Editable("productNameEditable").ClientFooterTemplate("إجمالي السعر: #=sum#");
+        columns.Bound(p => p.PreviousQty).Width(400).Title("كمية الأعمال التى تمت حتى المستخلص السابق").Editable("productNameEditable");
+        columns.Bound(p => p.NowQty).Width(207).Title("كمية الأعمال التى تمت خلال الفترة");
+
+        columns.Bound(p => p.InventoryBookNo).Width(100).Title("رقم الدفتر");
+        columns.Bound(p => p.InventoryBookPage).Width(100).Title("رقم الصفحة");
+
+        columns.Bound(p => p.TotalQty).Width(207).Title("إجمالى كمية الأعمال التي تمت حتى الآن").Editable("productNameEditable");
+        columns.Bound(p => p.NowTotalPrice).Width(192).Title("قيمة جملة الأعمال التى تمت حتى الآن").Editable("productNameEditable");
+        columns.Bound(p => p.NotePercentagePrice).Width(203).Title("استقطاعات ومبالغ معلاه").Editable("productNameEditable").ClientFooterTemplate("إجمالي استقطاعات ومبالغ معلاه: #=sum#");
+        columns.Bound(p => p.WorkOrderNote).ClientTemplate("#=WorkOrderNote.WorkOrderNoteId# - #=WorkOrderNote.NoteTitle# - #=WorkOrderNote.NotePercentage# %").Title("رقم الملاحظه").Width(500);
+        columns.Bound(p => p.NeededPrice).Width(211).Title("صافى المستحق صرفه").Editable("productNameEditable").ClientFooterTemplate("إجمالي صافى المستحق صرفه: #=sum#");
+
+        columns.Command(command => { command.Edit().Text("تعديل"); }).Width(220);
+    })
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+        toolbar.Custom().Text("إختيار بند جديد").Name("CreateModal");
+        toolbar.Custom().Text("إضافة ملاحظة").Name("CreateNote");
+    })
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Groupable(g => g.ShowFooter(true))
+    .PersistSelection(true)
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.RequestDetailCode).Count();
+            aggregates.Add(p => p.Qty).Sum();
+            aggregates.Add(p => p.UnitPrice).Sum();
+            aggregates.Add(p => p.TotalPrice).Sum();
+            aggregates.Add(p => p.PreviousQty).Sum();
+            aggregates.Add(p => p.NowQty).Sum();
+            aggregates.Add(p => p.TotalQty).Sum();
+            aggregates.Add(p => p.NowTotalPrice).Sum();
+            aggregates.Add(p => p.NotePercentagePrice).Sum();
+            aggregates.Add(p => p.NeededPrice).Sum();
+        })
+        .PageSize(8)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => {
+            model.Id(p => p.RequestDetailId);
+            model.Field(p => p.Qty).Editable(false);
+            model.Field(p => p.WorkOrderNote).DefaultValue(
+                    ViewData["defaultCategory"] as Abstracts.Models.WorkOrderNotes);
+        }
+        )
+        .Update(update => update.Action("SaveWorkOrderDetailForGrid", "WorkOrder"))
+
+        .Read(read => read.Action("GetWorkOrderDetailListForCompany", "WorkOrder"))
+    )
+)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <script src="~/lib/kendo/js/kendo.upload.min.js"></script>
+                <script src="~/Scripts/jszip.min.js"></script>
+                <script src="~/scripts/jquery.validate.min.js"></script>
+                <script src="~/Scripts/Ajax/WorkorderForCompany.js"></script>
+
+
+
+                @section styles{
+                    <style>
+                        .k-clear-selected, .k-upload-selected {
+                            display: none !important;
+                        }
+
+                        .k-grid tr .checkbox-align {
+                            text-align: center;
+                            vertical-align: middle;
+                        }
+
+                        .product-photo {
+                            display: inline-block;
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 50%;
+                            background-size: 32px 35px;
+                            background-position: center center;
+                            vertical-align: middle;
+                            line-height: 32px;
+                            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+                            margin-right: 5px;
+                        }
+
+                        .product-name {
+                            display: inline-block;
+                            vertical-align: middle;
+                            line-height: 32px;
+                            padding-left: 3px;
+                        }
+
+                        .k-rating-container .k-rating-item {
+                            padding: 4px 0;
+                        }
+
+                            .k-rating-container .k-rating-item .k-icon {
+                                font-size: 16px;
+                            }
+
+                        .dropdown-country-wrap {
+                            display: flex;
+                            flex-wrap: nowrap;
+                            align-items: center;
+                            white-space: nowrap;
+                        }
+
+                            .dropdown-country-wrap img {
+                                margin-right: 10px;
+                            }
+
+                        #grid .k-grid-edit-row > td > .k-rating {
+                            margin-left: 0;
+                            width: 100%;
+                        }
+                    </style>
+                }
+            </div>
+
+            @if (WorkOrdersForCompany)
+            {
+@Html.Partial("~/Views/Shared/PartialViews/_WorkOrderModal.cshtml");
+@Html.Partial("~/Views/Shared/PartialViews/_RequestSearchModal3.cshtml");
+@Html.Partial("~/Views/Shared/PartialViews/_CreateNoteModal.cshtml");
+}
+
+
+        </section>
+        <!-- /Content wraper-->
+
+    </section><!-- /Page Wrapper-->
+    <!-- Right Sidebar -->
+    @Html.Partial("~/Views/Shared/_RightSideBar.cshtml")
+
+    <!--Theme Config -->
+
+    <script src="~/NeuBoard/Scripts/bootstrap.js"></script>
+
+    <script src="~/NeuBoard/Scripts/plugins/navgoco/jquery.navgoco.min.js"></script>
+
+    <script src="~/NeuBoard/Scripts/plugins/fullscreen/jquery.fullscreen-min.js"></script>
+
+    <script src="~/NeuBoard/Scripts/plugins/switchery/switchery.min.js"></script>
+    <script src="~/Scripts/Ajax/common.js"></script>
+
+    @*<script src="~/Scripts/Ajax/common.js"></script>*@
+
+</body>
+</html>

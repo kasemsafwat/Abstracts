@@ -1,0 +1,1202 @@
+﻿@{ ViewData["Title"] = "إضافة بيانات للمستخلص";}
+
+<div class="pageheader">
+    <h1>إضافة بيانات للمستخلص</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff;  " href="javascript:void(0);">المستلخصات</a>
+            </li>
+            <li class="active">إضافة بيانات للمستخلص</li>
+        </ol>
+    </div>
+</div>
+<script src="~/lib/kendo/js/kendo.upload.min.js"></script>
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <form id="requestDetailsfrm">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="Code"> رقم أمر الإسناد</label>
+                                    @(Html.Kendo().MultiColumnComboBox()
+          .Name("Request")
+          .DataTextField("RequestNo")
+          .DataValueField("RequestId")
+          .Placeholder("رقم العملية")
+          .Columns(columns =>
+          {
+              columns.Add().Field("RequestNo").Title("رقم أمر الإسناد");
+              columns.Add().Field("RequestName").Title("إسم العملية أو المشروع");
+          })
+          .Filter("contains")
+          .FilterFields(new string[] { "RequestNo", "RequestName" })
+          .DataSource(source => {
+              source.Read(read =>
+              {
+                  read.Action("GetAllRequests", "Request");
+              })
+              .ServerFiltering(false);
+          }).Events(e =>
+          {
+              e.Select("onChangeRequest");
+          })
+
+          .HtmlAttributes(new { style = "width:100%;" })
+    )
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <br />
+                                    <a href="#" data-toggle="modal" class="btn btn-success" data-target="#RequestSearchModalPopup"> <i class="fa fa-search"></i> بحث</a>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ أمر الإسناد</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">شركة المقاولات المسند إليها العملية</label>
+                                    <input type="text" class="form-control" name="Company" id="Company" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">العملية أو المشروع</label>
+                                    <input type="text" class="form-control" name="RequestName" id="RequestName" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">قيمة العملية</label>
+                                    <input type="number" class="form-control" name="RequestAmount" id="RequestAmount" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="Code">مدة العملية</label>
+                                    <input type="number" class="form-control" name="RequestDuration" id="RequestDuration" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <br />  <br />
+                                    <label for="Code">شهر</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ إستلام الموقع</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestStartDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ النهو التعاقدي</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestEndDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">مستخلص جاري رقم</label>
+                                    @(Html.Kendo().MultiColumnComboBox()
+          .Name("WorkOrder")
+          .DataTextField("WorkOrderCode")
+          .DataValueField("WorkOrderId")
+          .Placeholder("رقم المستخلص")
+          .Columns(columns =>
+          {
+              columns.Add().Field("WorkOrderCode").Title("كود المستخلص");
+              columns.Add().Field("WorkOrderStartDateString").Title("تايخ بدء المستخلص");
+              columns.Add().Field("WorkOrderEndDateString").Title("تاريخ إنتهاء المستخلص");
+          }).Events(e =>
+          {
+              e.Select("onChangeWorkOrder");
+          })
+          .Filter("contains")
+          .FilterFields(new string[] { "WorkOrderCode", "WorkOrderStartDateString", "WorkOrderEndDateString" })
+    )
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">الأعمال المنفذ من</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("WorkOrderStartDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">حتي</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("WorkOrderEndDate")
+            .Enable(false)
+               .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Email">إختر صورة المستخلص</label>
+                                    <div class="demo-section k-content">
+                                        @(Html.Kendo().Upload()
+            .Name("FileName")
+            .HtmlAttributes(new { aria_label = "files" })
+            .Async(a => a
+               .Save("Async_Save", "WorkOrder")
+               .Remove("Async_Remove", "WorkOrder")
+               .AutoUpload(false)
+            )
+            .Events(events => events
+
+            .Select("onSelect")
+
+        )
+        )
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3" style="text-align: center;">
+                                <br />
+                                <a class="btn btn-success" onclick="upload();">
+                                    <i class="fa fa-download"></i>رفع صورة المستخلص
+                                </a>
+                            </div>
+
+                            <div class="col-md-3" id="Browse" style="text-align: center; display:none;">
+                                <br />
+                                <a class="btn btn-success" onclick="browse();">
+                                    <i class="fa fa-save"></i> عرض صورة المستخلص
+                                </a>
+                            </div>
+
+
+                        </form>
+                        <div id="GridView" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid <Abstracts.Models.Refactored.WorkOrderDetails>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.RequestDetailCode).Width(100).Title("كود البند").Locked(true).Lockable(false).Editable("productNameEditable");
+        columns.Bound(p => p.RequestDetailSerial).Width(100).Title("البند").Locked(true).Editable("productNameEditable");
+        columns.Bound(p => p.RequestDetailName).Width(250).Title("الوصف").Locked(true).Editable("productNameEditable");
+        columns.Bound(p => p.Unit).Width(100).Title("الوحدة").Editable("productNameEditable");
+        columns.Bound(p => p.Qty).Width(100).Title("الكمية المقدرة").Editable("productNameEditable");
+        columns.Bound(p => p.UnitPrice).Width(150).Title("سعر الوحدة بالجنيه").Editable("productNameEditable");
+        columns.Bound(p => p.TotalPrice).Width(100).Title("السعر الإجمالي").Editable("productNameEditable");
+        columns.Bound(p => p.PreviousQty).Width(250).Title("كمية الأعمال التى تمت حتى المستخلص السابق").Editable("productNameEditable");
+        columns.Bound(p => p.NowQty).Width(200).Title("كمية الأعمال التى تمت خلال الفترة");
+
+        columns.Bound(p => p.InventoryBookNo).Width(100).Title("رقم الدفتر");
+        columns.Bound(p => p.InventoryBookPage).Width(100).Title("رقم الصفحة");
+
+        columns.Bound(p => p.TotalQty).Width(230).Title("إجمالى كمية الأعمال التي تمت حتى الآن").Editable("productNameEditable");
+        columns.Bound(p => p.NowTotalPrice).Width(230).Title("قيمة جملة الأعمال التى تمت حتى الآن").Editable("productNameEditable");
+        columns.Bound(p => p.NotePercentagePrice).Width(150).Title("استقطاعات ومبالغ معلاه").Editable("productNameEditable");
+        columns.Bound(p => p.WorkOrderNote).ClientTemplate("#=WorkOrderNote.WorkOrderNoteId# - #=WorkOrderNote.NoteTitle# - #=WorkOrderNote.NotePercentage# %").Title("رقم الملاحظه").Width(500);
+        columns.Bound(p => p.NeededPrice).Width(200).Title("صافى المستحق صرفه").Editable("productNameEditable");
+
+        columns.Command(command => { command.Edit().Text("تعديل"); command.Destroy().Text("مسح"); }).Width(172);
+    })
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+        toolbar.Custom().Text("إختيار بند جديد").Name("CreateModal");
+        toolbar.Custom().Text("إضافة ملاحظة").Name("CreateNote");
+    })
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Groupable(g => g.ShowFooter(true))
+    .PersistSelection(true)
+    .Events(ev => ev.Change("onChangeSelection"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(8)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => {
+            model.Id(p => p.RequestDetailId);
+            model.Field(p => p.Qty).Editable(false);
+            model.Field(p => p.WorkOrderNote).DefaultValue(
+                    ViewData["defaultCategory"] as Abstracts.Models.WorkOrderNotes);
+        }
+        )
+        .ServerOperation(false)
+        .Update(update => update.Action("SaveWorkOrderDetailForGrid", "WorkOrder"))
+        .Destroy(update => update.Action("DeleteWorkOrderDetail", "WorkOrder"))
+        .Read(read => read.Action("GetWorkOrderDetailList", "WorkOrder"))
+    )
+)
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Scripts/jszip.min.js"></script>
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script>
+
+    var selected = 0;
+    var lastSelected = "";
+    var row;
+    var RequestID = 0;
+    var locked = "";
+    var RequestName = "";
+    var RequestDate = "";
+    var RequestAmount = "";
+    var RequestStartDate = "";
+    var RequestDuration = "";
+    var RequestEndDate = "";
+    var Notes = "";
+    var WorkOrderID = 0;
+    var WorkOrderCode = "";
+    var FileName = "";
+
+    var RequestDetailID = 0;
+    var RequestDetailCode = "";
+    var RequestDetailSerial = "";
+    var RequestDetailName = "";
+    var UnitID = "";
+    var Qty = "";
+    var UnitPrice = "";
+    var TotalPrice = "";
+    var DepartmentID = "";
+    var WorkOrderNoteID = "";
+    var NoteTitle = "";
+    var NoteStatus = "";
+    var NotePercentage = "";
+
+    var url = "http://paradiseapps-001-site2.itempurl.com/UploadedFiles/WorkOrder/";
+    var WorkOrderStartDate = "";
+    var WorkOrderEndDate = "";
+
+    function AddWorkOrderDetails() {
+        if (WorkOrderID == 0) { alert('يجب إختيار المستخلص'); }
+        else {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SaveWorkOrderDetails", "WorkOrder")',
+                data: {
+                    WorkOrderDetailId: 0,
+                    WorkOrderId: WorkOrderID,
+                    RequestDetailIdList: RequestDetailID,
+                    Qty: Qty
+                },
+                error: function (result) {
+                    alert("error");
+                },
+                success: function (result) {
+                    $("#WorkOrderModalPopup").modal('hide');
+
+                    var grid = $("#grid").data("kendoGrid");
+                    grid.dataSource.read();
+
+
+                }
+            });
+        }
+    }
+
+    function upload() {
+        if (WorkOrderID == 0) {
+            alert('يجب اختيار المستخلص');
+
+        }
+        else {
+            if (FileName != null) {
+                var upload = $("#FileName").data("kendoUpload");
+                upload.upload();
+                alert('تم الرفع');
+                $("#Browse").css('display', 'block');
+            }
+        }
+    }
+    function productNameEditable() {
+        // do not allow editing for product with ProductID=3
+        return false;
+    }
+    function onChangeRequest(arg) {
+         $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetRequestDataByID", "Request")',
+                    data: {
+                        RequestId: arg.dataItem.RequestId
+                    },
+                    error: function (result) {
+                        alert("error");
+                    },
+             success: function (result) {
+                 fillWorkOrderCombobox(arg.dataItem.RequestId);
+                 $('#lock').prop('checked', result.IsLocked);
+                 locked = result.IsLocked;
+
+                 $("#RequestName").val(result.RequestName);
+                 RequestName = result.RequestName;
+                 $("#RequestDate").val(convertDate(result.RequestDateString));
+                 RequestDate = result.RequestDateString;
+                 $("#RequestAmount").val(result.RequestAmount);
+                 RequestAmount = result.RequestAmount;
+
+                 $("#Company").val(result.Company);
+                 CompanyID = result.CompanyId;
+                 RequestID = result.RequestId;
+                 $("#RequestDuration").val(result.RequestDuration);
+                 RequestDuration = result.RequestDuration;
+                 if (result.RequestStartDateString != null) {
+                     $("#RequestStartDate").val(convertDate(result.RequestStartDateString));
+                     RequestStartDate = result.RequestStartDateString;
+                 }
+                 else {
+                     $("#RequestStartDate").val("")
+                 }
+                 if (result.RequestEndDateString != null) {
+                     $("#RequestEndDate").val(convertDate(result.RequestEndDateString));
+                     RequestEndDate = result.RequestEndDateString;
+                 }
+                 else {
+                     $("#RequestEndDate").val("")
+                 }
+                 var grid = $("#gridRequestDetails").data("kendoGrid");
+                 grid.dataSource.read();
+
+
+             }
+         });
+    }
+    function onChangeNote(arg) {
+        //var dataItem = $("#Notes").data("kendoComboBox").dataItem();
+         $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("SetNoteIDForGrid", "WorkOrder")',
+                    data: {
+                        NoteID: arg.dataItem.WorkOrderNoteId
+                    },
+                    error: function (result) {
+                        alert("error");
+                    },
+             success: function (result) {
+
+
+
+             }
+         });
+    }
+
+    function onChangeSelectionRequestDetails(arg) {
+        var upload = $("#FileName").data("kendoUpload");
+        upload.clearAllFiles();
+        var grid = $("#gridRequestDetails").data("kendoGrid");
+
+        selected = this.selectedKeyNames();
+        if (selected.length == 0) {
+            grid.select(row);
+
+            //$('#lock').prop('checked', locked);
+            //$("#RequestCode").val(RequestCode);
+            //$("#RequestName").val(RequestName);
+            //$("#RequestDate").val(RequestDate);
+            //$("#RequestAmount").val(RequestAmount);
+            //$("#RequestStartDate").val(RequestStartDate);
+            //$("#RequestDuration").val(RequestDuration);
+            //$("#RequestEndDate").val(RequestEndDate);
+            //$("#Notes").val(Notes);
+            //$("#CompanyID").val(CompanyID);
+
+            return;
+        }
+        var selectedRows = this.select();
+        var selectedDataItems = [];
+        for (var i = 0; i < selectedRows.length; i++) {
+            var dataItem = this.dataItem(selectedRows[i]);
+            selectedDataItems.push(dataItem);
+        }
+
+        if (selectedDataItems.length <= 1 && selectedDataItems != []) {
+            //$("#EditRequestDetailsModalPopup").modal('show');
+            lastSelected = selectedDataItems[0].uid;
+            RequestID = selectedDataItems[0].RequestId;
+            RequestDetailID = selectedDataItems[0].RequestDetailId;
+
+            $("#EditRequestDetailCode").val(selectedDataItems[0].RequestDetailCode);
+            RequestDetailCode = selectedDataItems[0].RequestDetailCode;
+            $("#EditRequestDetailName").val(selectedDataItems[0].RequestDetailName);
+            RequestDetailName = selectedDataItems[0].RequestDetailName;
+            $("#EditRequestDetailSerial").val(selectedDataItems[0].RequestDetailSerial);
+            RequestDetailSerial = selectedDataItems[0].RequestDetailSerial;
+
+            //$("#EditUnit").val(selectedDataItems[0].UnitId);
+            //Unit = selectedDataItems[0].Unit;
+            //var unit = $("#EditUnit").data("kendoComboBox");
+            //unit.text(Unit);
+
+            $("#EditQty").val(selectedDataItems[0].Qty);
+            Qty = selectedDataItems[0].Qty;
+            $("#EditUnitPrice").val(selectedDataItems[0].UnitPrice);
+            UnitPrice = selectedDataItems[0].UnitPrice;
+            $("#EditTotalPrice").val(selectedDataItems[0].TotalPrice);
+            TotalPrice = selectedDataItems[0].TotalPrice;
+
+
+            //$("#EditDepartmentID").val(selectedDataItems[0].DepartmentId);
+            //DepartmentID = selectedDataItems[0].Department;
+            //var Department = $("#EditDepartment").data("kendoComboBox");
+            //Department.text(DepartmentID);
+            if (selectedDataItems[0].FileNameDetails == null) {
+                $("#Browse").css('display', 'none');
+            }
+            else {
+                FileNameDetails = selectedDataItems[0].FileNameDetails;
+                $("#Browse").css('display', 'block');
+            }
+
+
+        }
+        else {
+            $.each(selectedDataItems, function (index, value) {
+
+                if (lastSelected != value.uid) {
+                    row = grid.tbody.find("tr[data-uid='" + value.uid + "']");
+                    //RequestID = value.RequestId;
+                    //RequestCode = value.RequestCode;
+                    //RequestName = value.RequestName;
+                    //RequestDate = value.RequestDate;
+                    //RequestAmount = value.RequestAmount;
+                    //RequestStartDate = value.RequestStartDate;
+                    //RequestDuration = value.RequestDuration;
+                    //RequestEndDate = value.RequestEndDate;
+                    //Notes = value.Notes;
+                    //CompanyID = value.CompanyId;
+                    //locked = value.IsLocked;
+                }
+            });
+            grid.clearSelection();
+        }
+    }
+    function onChangeWorkOrder(arg) {
+        var dataItem = $("#WorkOrder").data("kendoComboBox").dataItem();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetWorkOrderDataByID", "WorkOrder")',
+            data: {
+                RequestID: RequestID,
+                WorkOrderId: dataItem.WorkOrderId
+            },
+            error: function (result) {
+                alert("error");
+            },
+            success: function (result) {
+                var grid = $("#grid").data("kendoGrid");
+                grid.dataSource.read();
+
+                WorkOrderID = dataItem.WorkOrderId;
+                WorkOrderStartDate = result.WorkOrderStartDateString;
+                WorkOrderEndDate = result.WorkOrderEndDateString;
+                WorkOrderCode = result.WorkOrderCode;
+
+                $("#WorkOrderStartDate").val(WorkOrderStartDate)
+                $("#WorkOrderEndDate").val(WorkOrderEndDate)
+                if (result.FileName == null) {
+                    $("#Browse").css('display', 'none');
+                }
+                else {
+                    FileName = result.FileName;
+                    $("#Browse").css('display', 'block');
+                }
+
+                //$('#lock').prop('checked', result.IsLocked);
+                //locked = result.IsLocked;
+
+                //$("#RequestName").val(result.RequestName);
+                //RequestName = result.RequestName;
+                //$("#RequestDate").val(convertDate(result.RequestDateString));
+                //RequestDate = result.RequestDateString;
+                //$("#RequestAmount").val(result.RequestAmount);
+                //RequestAmount = result.RequestAmount;
+
+                //$("#Company").val(result.Company);
+                //CompanyID = result.CompanyId;
+                //RequestID = result.RequestId;
+                //$("#RequestDuration").val(result.RequestDuration);
+                //RequestDuration = result.RequestDuration;
+                //if (result.RequestStartDateString != null) {
+                //    $("#RequestStartDate").val(convertDate(result.RequestStartDateString));
+                //    RequestStartDate = result.RequestStartDateString;
+                //}
+                //else {
+                //    $("#RequestStartDate").val("")
+                //}
+                //if (result.RequestEndDateString != null) {
+                //    $("#RequestEndDate").val(convertDate(result.RequestEndDateString));
+                //    RequestEndDate = result.RequestEndDateString;
+                //}
+                //else {
+                //    $("#RequestEndDate").val("")
+                //}
+
+
+
+            }
+        });
+    }
+    function onSelect(e) {
+        var upload = $("#FileName").data("kendoUpload");
+        upload.removeAllFiles();
+
+        if (e.files.length > 1) {
+            alert("Please select max 20 files.");
+            e.preventDefault();
+        }
+        FileName = e.files[0].name;
+        $(".k-action-buttons").hide();
+    }
+    function getFileInfo(e) {
+        return $.map(e.files, function (file) {
+            var info = file.name;
+            // File size is not available in all browsers
+            if (file.size > 0) {
+                info += " (" + Math.ceil(file.size / 1024) + " KB)";
+            }
+            return info;
+        }).join(", ");
+    }
+    function browse() {
+        window.open(url + WorkOrderCode + "/" + FileName, '_blank');
+    }
+    function onChangeSelection(arg) {
+        var upload = $("#FileName").data("kendoUpload");
+        upload.clearAllFiles();
+        var grid = $("#grid").data("kendoGrid");
+
+        selected = this.selectedKeyNames();
+        if (selected.length == 0) {
+            grid.select(row);
+
+            //$('#lock').prop('checked', locked);
+            //$("#RequestCode").val(RequestCode);
+            //$("#RequestName").val(RequestName);
+            //$("#RequestDate").val(RequestDate);
+            //$("#RequestAmount").val(RequestAmount);
+            //$("#RequestStartDate").val(RequestStartDate);
+            //$("#RequestDuration").val(RequestDuration);
+            //$("#RequestEndDate").val(RequestEndDate);
+            //$("#Notes").val(Notes);
+            //$("#CompanyID").val(CompanyID);
+
+            return;
+        }
+        var selectedRows = this.select();
+        var selectedDataItems = [];
+        for (var i = 0; i < selectedRows.length; i++) {
+            var dataItem = this.dataItem(selectedRows[i]);
+            selectedDataItems.push(dataItem);
+        }
+
+        if (selectedDataItems.length <= 1 && selectedDataItems != []) {
+            //$("#EditRequestDetailsModalPopup").modal('show');
+            lastSelected = selectedDataItems[0].uid;
+            RequestID = selectedDataItems[0].RequestId;
+            RequestDetailID = selectedDataItems[0].RequestDetailId;
+
+            $("#EditRequestDetailCode").val(selectedDataItems[0].RequestDetailCode);
+            RequestDetailCode = selectedDataItems[0].RequestDetailCode;
+            $("#EditRequestDetailName").val(selectedDataItems[0].RequestDetailName);
+            RequestDetailName = selectedDataItems[0].RequestDetailName;
+            $("#EditRequestDetailSerial").val(selectedDataItems[0].RequestDetailSerial);
+            RequestDetailSerial = selectedDataItems[0].RequestDetailSerial;
+
+            //$("#EditUnit").val(selectedDataItems[0].UnitId);
+            Unit = selectedDataItems[0].Unit;
+            var unit = $("#EditUnit").data("kendoComboBox");
+            unit.text(Unit);
+
+            $("#EditQty").val(selectedDataItems[0].Qty);
+            Qty = selectedDataItems[0].Qty;
+            $("#EditUnitPrice").val(selectedDataItems[0].UnitPrice);
+            UnitPrice = selectedDataItems[0].UnitPrice;
+            $("#EditTotalPrice").val(selectedDataItems[0].TotalPrice);
+            TotalPrice = selectedDataItems[0].TotalPrice;
+
+
+            //$("#EditDepartmentID").val(selectedDataItems[0].DepartmentId);
+            DepartmentID = selectedDataItems[0].Department;
+            var Department = $("#EditDepartment").data("kendoComboBox");
+            Department.text(DepartmentID);
+            if (selectedDataItems[0].FileNameDetails == null) {
+                $("#Browse").css('display', 'none');
+            }
+            else {
+                FileNameDetails = selectedDataItems[0].FileNameDetails;
+                $("#Browse").css('display', 'block');
+            }
+
+            var grid = $("#gridRequestDetails").data("kendoGrid");
+            grid.dataSource.read();
+
+        }
+        else {
+            $.each(selectedDataItems, function (index, value) {
+
+                if (lastSelected != value.uid) {
+                    row = grid.tbody.find("tr[data-uid='" + value.uid + "']");
+                    //RequestID = value.RequestId;
+                    //RequestCode = value.RequestCode;
+                    //RequestName = value.RequestName;
+                    //RequestDate = value.RequestDate;
+                    //RequestAmount = value.RequestAmount;
+                    //RequestStartDate = value.RequestStartDate;
+                    //RequestDuration = value.RequestDuration;
+                    //RequestEndDate = value.RequestEndDate;
+                    //Notes = value.Notes;
+                    //CompanyID = value.CompanyId;
+                    //locked = value.IsLocked;
+                }
+            });
+            grid.clearSelection();
+        }
+    }
+    function fillWorkOrderCombobox(reqID) {
+        $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetWorkOrderListByRequestID", "WorkOrder")',
+            data: {
+                RequestId: reqID
+            },
+                error: function (result) {
+                    alert("error");
+                },
+                success: function (result) {
+                    $("#WorkOrder").kendoComboBox({
+                        dataTextField: "WorkOrderCode",
+                        dataValueField: "WorkOrderId",
+                        dataSource: result,
+                        index: 1
+                    });
+                }
+            });
+    }
+    function onChangeSelectionNote(arg) {
+        var upload = $("#FileName").data("kendoUpload");
+        upload.clearAllFiles();
+        var grid = $("#gridNotes").data("kendoGrid");
+
+        selected = this.selectedKeyNames();
+        if (selected.length == 0) {
+            grid.select(row);
+            row = "";
+            lastSelected = "";
+            //$('#lock').prop('checked', locked);
+            //$("#RequestCode").val(RequestCode);
+            //$("#RequestName").val(RequestName);
+            //$("#RequestDate").val(RequestDate);
+            //$("#RequestAmount").val(RequestAmount);
+            //$("#RequestStartDate").val(RequestStartDate);
+            //$("#RequestDuration").val(RequestDuration);
+            //$("#RequestEndDate").val(RequestEndDate);
+            //$("#Notes").val(Notes);
+            //$("#CompanyID").val(CompanyID);
+            WorkOrderNoteID = 0;
+
+            $("#WorkOrderNoteId").val('');
+            $("#NoteTitle").val('');
+            $("#NotePercentage").val('');
+            $("#NoteStatus").val('');
+            window.stop();
+        }
+        var selectedRows = this.select();
+        var selectedDataItems = [];
+        for (var i = 0; i < selectedRows.length; i++) {
+            var dataItem = this.dataItem(selectedRows[i]);
+            selectedDataItems.push(dataItem);
+        }
+
+        if (selectedDataItems.length <= 1 && selectedDataItems != []) {
+            //$("#EditRequestDetailsModalPopup").modal('show');
+            lastSelected = selectedDataItems[0].uid;
+
+            WorkOrderNoteID = selectedDataItems[0].WorkOrderNoteId;
+            NoteTitle = selectedDataItems[0].NoteTitle;
+            NotePercentage = selectedDataItems[0].NotePercentage;
+            NoteStatus = selectedDataItems[0].NoteStatus;
+
+            $("#WorkOrderNoteId").val(WorkOrderNoteID);
+            $("#NoteTitle").val(NoteTitle);
+            $("#NotePercentage").val(NotePercentage);
+            $("#NoteStatus").val(NoteStatus);
+            window.stop();
+        }
+        else {
+            $.each(selectedDataItems, function (index, value) {
+
+                if (lastSelected != value.uid) {
+                    row = grid.tbody.find("tr[data-uid='" + value.uid + "']");
+                    //RequestID = value.RequestId;
+                    //RequestCode = value.RequestCode;
+                    //RequestName = value.RequestName;
+                    //RequestDate = value.RequestDate;
+                    //RequestAmount = value.RequestAmount;
+                    //RequestStartDate = value.RequestStartDate;
+                    //RequestDuration = value.RequestDuration;
+                    //RequestEndDate = value.RequestEndDate;
+                    //Notes = value.Notes;
+                    //CompanyID = value.CompanyId;
+                    //locked = value.IsLocked;
+                }
+            });
+            grid.clearSelection();
+        }
+    }
+    function onChangeSelection2(arg) {
+
+        var grid = $("#grid2").data("kendoGrid");
+
+        selected = this.selectedKeyNames();
+        if (selected.length == 0) {
+            grid.select(row);
+
+            $('#lock').prop('checked', locked);
+            $("#RequestCode").val(RequestCode);
+            $("#RequestName").val(RequestName);
+            $("#RequestDate").val(RequestDate);
+            $("#RequestAmount").val(RequestAmount);
+            $("#RequestStartDate").val(RequestStartDate);
+            $("#RequestDuration").val(RequestDuration);
+            $("#RequestEndDate").val(RequestEndDate);
+
+            $("#CompanyID").val(CompanyID);
+
+            return;
+        }
+        var selectedRows = this.select();
+        var selectedDataItems = [];
+        for (var i = 0; i < selectedRows.length; i++) {
+            var dataItem = this.dataItem(selectedRows[i]);
+            selectedDataItems.push(dataItem);
+        }
+
+        if (selectedDataItems.length <= 1 && selectedDataItems != []) {
+            //$("#RequestDetailsModalPopup").modal('show');
+            lastSelected = selectedDataItems[0].uid;
+            $('#lock').prop('checked', selectedDataItems[0].IsLocked);
+            locked = selectedDataItems[0].IsLocked;
+            $("#RequestCode").val(selectedDataItems[0].RequestCode);
+            RequestCode = selectedDataItems[0].RequestCode;
+            $("#RequestName").val(selectedDataItems[0].RequestName);
+            RequestName = selectedDataItems[0].RequestName;
+            $("#RequestDate").val(convertDate(selectedDataItems[0].RequestDateString));
+            RequestDate = selectedDataItems[0].RequestDateString;
+            $("#RequestAmount").val(selectedDataItems[0].RequestAmount);
+            RequestAmount = selectedDataItems[0].RequestAmount;
+
+            $("#Company").val(selectedDataItems[0].Company);
+            CompanyID = selectedDataItems[0].CompanyId;
+            RequestID = selectedDataItems[0].RequestId;
+            $("#RequestDuration").val(selectedDataItems[0].RequestDuration);
+            RequestDuration = selectedDataItems[0].RequestDuration;
+            if (selectedDataItems[0].RequestStartDateString != null) {
+                $("#RequestStartDate").val(convertDate(selectedDataItems[0].RequestStartDateString));
+                RequestStartDate = selectedDataItems[0].RequestStartDateString;
+            }
+            else {
+                $("#RequestStartDate").val("")
+            }
+            if (selectedDataItems[0].RequestEndDateString != null) {
+                $("#RequestEndDate").val(convertDate(selectedDataItems[0].RequestEndDateString));
+                RequestEndDate = selectedDataItems[0].RequestEndDateString;
+            }
+            else {
+                $("#RequestEndDate").val("")
+            }
+            $("#RequestSearchModalPopup").modal('hide');
+            var dropdownlist = $("#CreateRequestDetailCode").val(RequestCode);
+            var dropdownlist = $("#Request").data("kendoMultiColumnComboBox");
+            dropdownlist.text(selectedDataItems[0].RequestName);
+        }
+        else {
+            $.each(selectedDataItems, function (index, value) {
+
+                if (lastSelected != value.uid) {
+                    row = grid.tbody.find("tr[data-uid='" + value.uid + "']");
+                    RequestID = value.RequestId;
+                    RequestCode = value.RequestCode;
+                    RequestName = value.RequestName;
+                    RequestDate = value.RequestDate;
+                    RequestAmount = value.RequestAmount;
+                    RequestStartDate = value.RequestStartDate;
+                    RequestDuration = value.RequestDuration;
+                    RequestEndDate = value.RequestEndDate;
+
+                    CompanyID = value.CompanyId;
+                    locked = value.IsLocked;
+                }
+            });
+            grid.clearSelection();
+        }
+    }
+    function multiply(x, y) {
+        return x * y;
+    }
+    function convertDate(str) {
+        var date = new Date(str),
+            mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+            day = ("0" + date.getDate()).slice(-2);
+        year = date.getFullYear();
+        return [day, mnth, year].join("-");
+    }
+    $(document).ready(function () {
+        $("#Notefrm").validate({
+            rules:
+            {
+                NoteTitle:
+                {
+                    required: true
+                },
+                NotePercentage:
+                {
+                    required: true
+                },
+                NoteStatus:
+                {
+                    required: true
+                }
+            },
+            messages: {
+                NoteTitle:
+                {
+                    required: "من فضلك أدخل بيان الملاحظة"
+                },
+                NotePercentage:
+                {
+                    required: "من فضلك أدخلك نسبة الملاحظة"
+                },
+                NoteStatus:
+                {
+                    required: "من فضلك أدخل وصف الملاحظة"
+                }
+            }
+        });
+
+        $("#EditQty").on('input', function (e) {
+            $("#EditTotalPrice").val(multiply($("#EditQty").val(), $("#EditUnitPrice").val()));
+        });
+        $(".k-grid-update").on('click', function (e) {
+            var grid = $('#grid').data('kendoGrid');
+            grid.dataSource.read();
+        });
+        $(".k-grid-edit").on('click', function (e) {
+            var grid = $("#grid").data("kendoGrid");
+            grid.dataSource.read();
+        });
+        $("#EditUnitPrice").on('input', function (e) {
+            $("#EditTotalPrice").val(multiply($("#EditQty").val(), $("#EditUnitPrice").val()));
+        });
+        $("#CreateQty").on('input', function (e) {
+            $("#CreateTotalPrice").val(multiply($("#CreateQty").val(), $("#CreateUnitPrice").val()));
+        });
+        $("#CreateUnitPrice").on('input', function (e) {
+            $("#CreateTotalPrice").val(multiply($("#CreateQty").val(), $("#CreateUnitPrice").val()));
+        });
+
+        $("#RequestDate").addClass("form-control");
+        $("#WorkOrderStartDate").addClass("form-control");
+        $("#WorkOrderEndDate").addClass("form-control");
+        $("#RequestEndDate").addClass("form-control");
+        $("#RequestStartDate").addClass("form-control");
+        $("#EditUnit").addClass("form-control");
+        $("#CreateUnit").addClass("form-control");
+        $(".form-group .k-datepicker").addClass("form-control");
+        $(".form-group .k-content .k-upload").addClass("form-control");
+        $(".k-combobox").addClass("form-control");
+        $("#requestDetailsfrm").validate({
+            rules:
+            {
+                RequestCode:
+                {
+                    required: true
+                },
+                RequestName:
+                {
+                    required: true
+                },
+                RequestDate:
+                {
+                    required: true
+                },
+                RequestAmount:
+                {
+                    required: true
+                },
+                RequestStartDate:
+                {
+                    required: true
+                },
+                RequestDuration:
+                {
+                    required: true
+                },
+                RequestEndDate:
+                {
+                    required: true
+                },
+                Notes:
+                {
+                    required: true
+                },
+                CompanyID:
+                {
+                    required: true
+                }
+            },
+            messages: {
+                RequestCode:
+                {
+                    required: "من فضلك أدخل أمر الإسناد"
+                },
+                RequestName:
+                {
+                    required: "من فضلك أدخلك اسم المشروع او العملية"
+                },
+                RequestDate:
+                {
+                    required: "من فضلك أدخل تاريخ العملية"
+                },
+                RequestAmount:
+                {
+                    required: "من فضلك ادخل قيمة العملية"
+                },
+                RequestStartDate:
+                {
+                    required: "من فضلك أدخل أول تاريخ للعملية"
+                },
+                RequestDuration:
+                {
+                    required: "من فضلك أدخل مدة العملية"
+                },
+                RequestEndDate:
+                {
+                    required: "من فضلك أدخل أخر تاريخ العملية"
+                },
+                Notes:
+                {
+                    required: "من فضلك أدخل ملاحظات"
+                },
+                CompanyID:
+                {
+                    required: "من فضلك أدخل إسم الشركة"
+                }
+            }
+        });
+
+        //for search on any char like string or numbers or boolean or date
+        $('.k-input').on('input', function (e) {
+            var grid = $('#grid').data('kendoGrid');
+            var columns = grid.columns;
+
+            var filter = { logic: 'or', filters: [] };
+            columns.forEach(function (x) {
+                if (x.field) {
+                    var type = grid.dataSource.options.schema.model.fields[x.field].type;
+                    if (type == 'string') {
+                        filter.filters.push({
+                            field: x.field,
+                            operator: 'contains',
+                            value: e.target.value
+                        })
+                    }
+                }
+            });
+            grid.dataSource.filter(filter);
+        });
+        $('.k-grid-CreateNote').attr('data-toggle', 'modal');
+        $('.k-grid-CreateNote').attr('href', '#');
+        $('.k-grid-CreateNote').attr('data-target', '#CreateNoteModalPopup');
+        $('.k-grid-CreateModal').attr('data-toggle', 'modal');
+        $('.k-grid-CreateModal').attr('href', '#');
+        $('.k-grid-CreateModal').attr('data-target', '#WorkOrderModalPopup');
+        $('#popover-left,#popover-top,#popover-bottom,#popover-right').popover();
+        $('#tooltip-left,#tooltip-top,#tooltip-bottom,#tooltip-right').tooltip();
+        var element = document.querySelector('[aria-label="Select all rows"]');
+        element.disabled = true;
+    });
+    function saveWorkOrder() {
+        if (!$("#requestDetailsfrm").valid()) {
+            return;
+        }
+        $.ajax(
+            {
+                type: "POST",
+                url: '@Url.Action("SaveWorkOrder", "WorkOrder")',
+                data: {
+                    RequestId: RequestID,
+                    WorkOrderId : WorkOrderID,
+                    WorkOrderStartDate: $("#WorkOrderStartDate").val(),
+                    WorkOrderEndDate: $("#WorkOrderEndDate").val(),
+                    Notes: $("#Notes").val()
+                },
+                error: function (result) {
+                    alert("There is a Problem, Try Again!");
+                },
+                success: function (result) {
+                    if (result.Errors == null) {
+                        alert("تم الحفظ بنجاح");
+
+                        $("#WorkOrderCode").val(result);
+                    }
+                }
+            });
+    }
+    function saveNote() {
+        if (!$("#Notefrm").valid()) {
+            return;
+        }
+        $.ajax(
+            {
+                type: "POST",
+                url: '@Url.Action("saveNote", "Note")',
+                data: {
+                    WorkOrderNoteID: WorkOrderNoteID,
+                    NoteTitle: $("#NoteTitle").val(),
+                    NotePercentage: $("#NotePercentage").val(),
+                    NoteStatus: $("#NoteStatus").val()
+                },
+
+                error: function (result) {
+                    alert("There is a Problem, Try Again!");
+                },
+                success: function (result) {
+                    if (result.Errors == null) {
+
+                        var grid = $("#gridNotes").data("kendoGrid");
+                        grid.dataSource.read();
+
+                        $(".k-grid-search .k-input").val("");
+
+                        $("#NoteTitle").val('');
+                        $("#NotePercentage").val('');
+                        $("#NoteStatus").val('');
+                        alert("تم الحفظ بنجاح");
+                    }
+                }
+            });
+    }
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
+
+
+
+@section styles{
+    <style>
+        .k-clear-selected, .k-upload-selected {
+            display: none !important;
+        }
+
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .product-photo {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-size: 32px 35px;
+            background-position: center center;
+            vertical-align: middle;
+            line-height: 32px;
+            box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+            margin-right: 5px;
+        }
+
+        .product-name {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 32px;
+            padding-left: 3px;
+        }
+
+        .k-rating-container .k-rating-item {
+            padding: 4px 0;
+        }
+
+            .k-rating-container .k-rating-item .k-icon {
+                font-size: 16px;
+            }
+
+        .dropdown-country-wrap {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+            .dropdown-country-wrap img {
+                margin-right: 10px;
+            }
+
+        #grid .k-grid-edit-row > td > .k-rating {
+            margin-left: 0;
+            width: 100%;
+        }
+    </style>
+}

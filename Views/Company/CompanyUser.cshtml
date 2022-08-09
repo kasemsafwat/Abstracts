@@ -1,0 +1,204 @@
+﻿@using Kendo.Mvc.UI
+
+@{ ViewData["Title"] = "الشركات";}
+
+<div class="pageheader">
+    <h1>الشركات</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff;  " href="javascript:void(0);">البيانات الرئيسية</a>
+            </li>
+            <li class="active">الشركات</li>
+        </ol>
+    </div>
+</div>
+
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <form id="companyfrm">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">إسم الشركة</label>
+                                    @(Html.Kendo().MultiColumnComboBox()
+.Name("Company")
+.DataTextField("CompanyName")
+.DataValueField("CompanyId")
+.Placeholder("إسم الشركة")
+.Columns(columns =>
+{
+    columns.Add().Field("CompanyCode").Title("كود الشركة");
+    columns.Add().Field("CompanyName").Title("إسم الشركة");
+    columns.Add().Field("Email").Title("الإيميل");
+}).Events(e =>
+{
+    //e.Select("onChangeWorkOrder");
+}).DataSource(dataSource => dataSource
+    .Read(read => read.Action("GetAllCompanys", "Company"))
+    )
+
+.Filter("contains")
+ .HtmlAttributes(new { style = "width:100%;" })
+.FilterFields(new string[] { "CompanyCode", "CompanyName", "Email" })
+)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code"> رقم أمر الإسناد</label>
+                                    @(Html.Kendo().MultiColumnComboBox()
+          .Name("Request")
+          .DataTextField("RequestNo")
+          .DataValueField("RequestId")
+          .Placeholder("رقم العملية")
+          .Columns(columns =>
+          {
+              columns.Add().Field("RequestNo").Title("رقم أمر الإسناد");
+              columns.Add().Field("RequestName").Title("إسم العملية أو المشروع");
+          })
+          .Filter("contains")
+          .FilterFields(new string[] { "RequestNo", "RequestName" })
+          .DataSource(source => {
+              source.Read(read =>
+              {
+                  read.Action("GetAllRequestsForCompanyUsers", "Request").Data("FilterRequest");
+              })
+              .ServerFiltering(true);
+          })
+          .CascadeFrom("Company")
+          .HtmlAttributes(new { style = "width:100%;" })
+    )
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">الايميل</label>
+                                    <input type="email" class="form-control" name="UserName" id="UserName" placeholder="أدخل الايميل">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Code">الباسورد</label>
+                                    <input type="password" class="form-control" name="Password" id="Password" placeholder="أدخل الباسورد">
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-md-12" style="text-align: center;">
+                                <br />
+                                <a id="savebutton" class="btn btn-success" onclick="saveCompanyUsers();">
+                                    <i class="fa fa-save"></i> إضافة
+                                </a>
+                            </div>
+                        </form>
+
+                        <div id="GridView" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid <Abstracts.Models.Refactored.CompanyUsers>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Select().Width(50);
+        columns.Bound(p => p.CompanyName).Width(130).Title("إسم الشركة").ClientFooterTemplate("إجمالي عدد الشركات: #=count#");
+        columns.Bound(p => p.UserName).Width(160).Title("الإيميل");
+        columns.Bound(p => p.Password).Width(100).Title("الباسورد");
+        columns.Bound(p => p.RequestName).Width(130).Title("إسم العملية");
+    }).ClientRowTemplate(
+        "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'> " +
+            "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>"  +
+            "<td role='gridcell'>" +
+               "<span> #: CompanyName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: UserName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Password# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestName# </span>" +
+            "</td>" +
+         "</tr>"
+    ).ClientAltRowTemplate(
+        "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'> " +
+            "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: CompanyName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: UserName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Password# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestName# </span>" +
+            "</td>" +
+         "</tr>"
+    )
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+    })
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Selectable(selectable => selectable.Mode(GridSelectionMode.Single))
+    .PersistSelection(true)
+    .Events(ev => ev.Change("onChangeSelection")
+    .Page("onPaging"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.CompanyName).Count();
+        })
+        .ServerOperation(false)
+        .PageSize(8)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.CompanyUsersId))
+    .Read(read => read.Action("GetCompanyUsersList", "Company"))
+    )
+)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Ajax/CompanyUsers.js"></script>
+
+
+
+@section styles{
+    <style>
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+}

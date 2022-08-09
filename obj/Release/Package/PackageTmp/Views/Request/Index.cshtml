@@ -1,0 +1,243 @@
+﻿
+@{ ViewData["Title"] = "العملية أو المشروع";}
+
+<div class="pageheader">
+    <h1>العملية أو المشروع</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff;  " href="javascript:void(0);">العملية أو المشروع</a>
+            </li>
+            <li class="active">إنشاء العملية أو المشروع</li>
+        </ol>
+    </div>
+</div>
+
+<section id="main-content" class="animated fadeInUp">
+    @*<input type="hidden" value="@ViewBag.RequestCode" id="DefaultRequestCode" />*@
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+
+                        <form id="requestfrm">
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code"> رقم أمر الإسناد</label>
+                                    <input type="text" class="form-control" name="RequestNo" id="RequestNo" placeholder="أدخل رقم العملية">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ أمر الإسناد</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestDate")
+            .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="Code">شركة المقاولات المسند إليها العملية</label>
+                                    @(Html.Kendo().MultiColumnComboBox()
+          .Name("Company")
+          .DataTextField("CompanyName")
+          .DataValueField("CompanyId")
+          .Placeholder("إسم الشركة")
+          .Columns(columns =>
+          {
+              columns.Add().Field("CompanyCode").Title("كود الشركة");
+              columns.Add().Field("CompanyName").Title("إسم الشركة");
+              columns.Add().Field("InsuranceNo").Title("الرقم التأميني");
+          })
+          .Filter("contains")
+          .FilterFields(new string[] { "CompanyCode", "CompanyName", "InsuranceNo" })
+          .DataSource(source => {
+              source.Read(read =>
+              {
+                  read.Action("GetAllCompanys", "Company");
+              })
+              .ServerFiltering(false);
+          })
+          .HtmlAttributes(new { style = "width:100%;" })
+    )
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">العملية أو المشروع</label>
+                                    <input type="text" class="form-control" name="RequestName" id="RequestName" placeholder="أدخل العملية أو المشروع">
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">قيمة العملية</label>
+                                    <input type="number" class="form-control" name="RequestAmount" id="RequestAmount">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="Code">مدة العملية</label>
+                                    <input type="number" class="form-control" name="RequestDuration" id="RequestDuration" min="0" max="12000">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                  
+                                    <label for="Code">شهر</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="FullName">ملاحظات</label>
+                                    <input type="text" class="form-control" name="Notes" id="Notes" placeholder="أدخل ملاحظات">
+
+                                </div>
+                            </div>
+                          
+
+
+
+                            <div class="col-md-5" style="text-align:center;">
+                                <br />
+                                <a id="savebutton" class="btn btn-success" onclick="saveRequest();">
+                                    <i class="fa fa-save"></i> إضافة
+                                </a>
+                            </div>
+
+                        </form>
+
+                        <div id="GridView" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid<Abstracts.Models.Refactored.Requests>()
+    .Name("RequestGrid")
+    .Columns(columns =>
+    {
+        columns.Select().Width(50);
+        columns.Bound(p => p.RequestNo).Width(98).Title("رقم العملية").ClientFooterTemplate("عدد العمليات: #=count#");
+        columns.Bound(p => p.RequestDateString).Width(90).Title("تاريخ العملية");
+        columns.Bound(p => p.Company).Width(287).Title("شركة المقاولات");
+        columns.Bound(p => p.RequestName).Width(463).Title("إسم العملية");
+        columns.Bound(p => p.RequestAmount).Width(110).Title("قيمة العملية");
+        columns.Bound(p => p.RequestDuration).Width(72).Title("مدة العملية");
+        columns.Bound(p => p.Notes).Width(69).Title("ملاحظات");
+    }).ClientRowTemplate(
+        "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'> " +
+            "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestNo# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestDateString# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Company# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestAmount# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestDuration# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Notes# </span>" +
+            "</td>" +
+         "</tr>"
+    ).ClientAltRowTemplate(
+        "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'> " +
+            "<input class=' k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+              "<td role='gridcell'>" +
+               "<span> #: RequestNo# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestDateString# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Company# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestAmount# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: RequestDuration# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: Notes# </span>" +
+            "</td>" +
+         "</tr>"
+    )
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+    })
+    .Pageable()
+    .Selectable(selectable => selectable
+            .Mode(GridSelectionMode.Single))
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .PersistSelection(true)
+    .Events(ev => ev.Change("onChangeSelection")
+     .Page("onPaging"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.RequestNo).Count();
+        })
+        .PageSize(20)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.RequestId))
+    .Read(read => read.Action("GetRequestList", "Request"))
+    )
+)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/Ajax/Request.js"></script>
+
+
+
+@section styles{
+    <style>
+        .k-RequestGrid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+}

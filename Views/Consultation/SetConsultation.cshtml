@@ -1,0 +1,193 @@
+﻿@{ ViewData["Title"] = "تعيين المكاتب الإستشارية";}
+
+<div class="pageheader">
+    <h1>تعيين المكاتب الإستشارية</h1>
+    <div class="breadcrumb-wrapper hidden-xs">
+        <span class="label">أنت الان علي :</span>
+        <ol class="breadcrumb">
+            <li>
+                <a style=" color: #fff; font-size: 1em;  " href="javascript:void(0);">العملية أو المشروع</a>
+            </li>
+            <li class="active">تعيين المكاتب الإستشارية</li>
+        </ol>
+    </div>
+</div>
+
+<section id="main-content" class="animated fadeInUp">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <form id="requestfrm">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="Code"> العملية رقم</label>
+
+                                    <input type="text" class="form-control" name="RequestNo" id="RequestNo">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="Code">تاريخ أمر الإسناد</label>
+                                    @(Html.Kendo().DatePicker()
+            .Name("RequestDate")
+          .Format("dd/MM/yyyy")
+            .HtmlAttributes(new { style = "width: 100%", title = "datepicker" })
+        )
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <br />
+                                    <a href="#" class="btn btn-success" onclick="Search();"> <i class="fa fa-search"></i> بحث</a>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <br />
+                                    <a href="#" data-toggle="modal" class="btn btn-success" data-target="#RequestSearchModalPopup"> <i class="fa fa-search"></i> بحث مفصل</a>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="Code">إسم المكتب الإستشاري </label>
+                                @(Html.Kendo().ComboBox()
+.Name("ConsultationUser")
+.DataTextField("Name")
+.DataValueField("ID")
+.Placeholder("المكتب الإستشاري")
+.DataSource(source =>
+{
+    source.Read(read =>
+    {
+        read.Action("GetAllConsultationUsers", "Consultation");
+    });
+})
+.Filter("contains")
+)
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="Code">مستخلص جاري رقم من </label>
+                                <input type="number" class="form-control" name="WorkOrderNoFrom" id="WorkOrderNoFrom" placeholder="أدخل مستخلص جاري رقم من">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <input type="checkbox" id="IsHaveFinal" name="IsHaveFinal" />
+                                <label for="Code">تحديد نهاية الفترة </label>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="Code">مستخلص جاري رقم الي </label>
+                                <input type="number" class="form-control" name="WorkOrderNoTo" id="WorkOrderNoTo" placeholder="أدخل مستخلص جاري إلي">
+                            </div>
+                        </div>
+
+                        <div id="GridView" class="k-rtl col-md-12">
+
+                            @(Html.Kendo().Grid <Abstracts.Models.Refactored.ConsultationWorkOrder>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Select().Width(50);
+        columns.Bound(p => p.ConsultationUserName).Width(236).Title("إسم المكتب").ClientFooterTemplate("إجمالي: #=count#");
+        columns.Bound(p => p.WorkOrderNoFrom).Width(84).Title("من مستخلص");
+        columns.Bound(p => p.WorkOrderNoTo).Width(86).Title("إلي مستخلص");
+
+    }).ClientRowTemplate(
+        "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+            "<td role='gridcell'> " +
+            "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>"  +
+            "<td role='gridcell'>" +
+               "<span> #: ConsultationUserName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: WorkOrderNoFrom# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: WorkOrderNoTo# </span>" +
+            "</td>" +
+
+         "</tr>"
+    ).ClientAltRowTemplate(
+        "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+           "<td role='gridcell'> " +
+            "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox' disabled>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: ConsultationUserName# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: WorkOrderNoFrom# </span>" +
+            "</td>" +
+            "<td role='gridcell'>" +
+               "<span> #: WorkOrderNoTo# </span>" +
+            "</td>" +
+
+         "</tr>"
+    )
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+        toolbar.Custom().Name("AddConsulation").Text("إضافة مكتب إستشاري");
+        toolbar.Custom().Name("DeleteConsulation").Text("مسح");
+    })
+    .Pageable()
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Selectable(selectable => selectable.Mode(GridSelectionMode.Single))
+    //.Groupable(g => g.ShowFooter(true))
+    .PersistSelection(true)
+    .Events(ev => ev.Change("onChangeSelection")
+    .Page("onPaging"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:500px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.ConsultationUserName).Count();
+        })
+        .ServerOperation(false)
+        .PageSize(8)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.ConsultationWorkOrderId))
+    .Read(read => read.Action("GetConsultationWorkOrdersList", "Consultation"))
+    )
+)
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/lib/kendo/js/kendo.upload.min.js"></script>
+<script src="~/Scripts/Ajax/SetConsultation.js"></script>
+@section styles{
+    <style>
+        .k-clear-selected, .k-upload-selected {
+            display: none !important;
+        }
+
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+}

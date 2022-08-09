@@ -1,0 +1,752 @@
+Z:\October\Abstracts\Abstracts\bin\Abstracts.dll.config
+Z:\October\Abstracts\Abstracts\bin\Abstracts.dll
+Z:\October\Abstracts\Abstracts\bin\Abstracts.pdb
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Win32.Primitives.dll
+Z:\October\Abstracts\Abstracts\bin\netstandard.dll
+Z:\October\Abstracts\Abstracts\bin\System.AppContext.dll
+Z:\October\Abstracts\Abstracts\bin\System.Collections.Concurrent.dll
+Z:\October\Abstracts\Abstracts\bin\System.Collections.dll
+Z:\October\Abstracts\Abstracts\bin\System.Collections.NonGeneric.dll
+Z:\October\Abstracts\Abstracts\bin\System.Collections.Specialized.dll
+Z:\October\Abstracts\Abstracts\bin\System.ComponentModel.dll
+Z:\October\Abstracts\Abstracts\bin\System.ComponentModel.EventBasedAsync.dll
+Z:\October\Abstracts\Abstracts\bin\System.ComponentModel.Primitives.dll
+Z:\October\Abstracts\Abstracts\bin\System.ComponentModel.TypeConverter.dll
+Z:\October\Abstracts\Abstracts\bin\System.Console.dll
+Z:\October\Abstracts\Abstracts\bin\System.Data.Common.dll
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.Contracts.dll
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.Debug.dll
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.FileVersionInfo.dll
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.Process.dll
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.StackTrace.dll
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.TextWriterTraceListener.dll
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.Tools.dll
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.TraceSource.dll
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.Tracing.dll
+Z:\October\Abstracts\Abstracts\bin\System.Drawing.Primitives.dll
+Z:\October\Abstracts\Abstracts\bin\System.Dynamic.Runtime.dll
+Z:\October\Abstracts\Abstracts\bin\System.Globalization.Calendars.dll
+Z:\October\Abstracts\Abstracts\bin\System.Globalization.dll
+Z:\October\Abstracts\Abstracts\bin\System.Globalization.Extensions.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.Compression.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.Compression.ZipFile.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.FileSystem.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.FileSystem.DriveInfo.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.FileSystem.Primitives.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.FileSystem.Watcher.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.IsolatedStorage.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.MemoryMappedFiles.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.Pipes.dll
+Z:\October\Abstracts\Abstracts\bin\System.IO.UnmanagedMemoryStream.dll
+Z:\October\Abstracts\Abstracts\bin\System.Linq.dll
+Z:\October\Abstracts\Abstracts\bin\System.Linq.Expressions.dll
+Z:\October\Abstracts\Abstracts\bin\System.Linq.Parallel.dll
+Z:\October\Abstracts\Abstracts\bin\System.Linq.Queryable.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.Http.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.NameResolution.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.NetworkInformation.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.Ping.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.Primitives.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.Requests.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.Security.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.Sockets.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.WebHeaderCollection.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.WebSockets.Client.dll
+Z:\October\Abstracts\Abstracts\bin\System.Net.WebSockets.dll
+Z:\October\Abstracts\Abstracts\bin\System.ObjectModel.dll
+Z:\October\Abstracts\Abstracts\bin\System.Reflection.dll
+Z:\October\Abstracts\Abstracts\bin\System.Reflection.Extensions.dll
+Z:\October\Abstracts\Abstracts\bin\System.Reflection.Primitives.dll
+Z:\October\Abstracts\Abstracts\bin\System.Resources.Reader.dll
+Z:\October\Abstracts\Abstracts\bin\System.Resources.ResourceManager.dll
+Z:\October\Abstracts\Abstracts\bin\System.Resources.Writer.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.CompilerServices.VisualC.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.Extensions.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.Handles.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.InteropServices.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.Numerics.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.Serialization.Formatters.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.Serialization.Json.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.Serialization.Primitives.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.Serialization.Xml.dll
+Z:\October\Abstracts\Abstracts\bin\System.Security.Claims.dll
+Z:\October\Abstracts\Abstracts\bin\System.Security.Cryptography.Algorithms.dll
+Z:\October\Abstracts\Abstracts\bin\System.Security.Cryptography.Csp.dll
+Z:\October\Abstracts\Abstracts\bin\System.Security.Cryptography.Encoding.dll
+Z:\October\Abstracts\Abstracts\bin\System.Security.Cryptography.Primitives.dll
+Z:\October\Abstracts\Abstracts\bin\System.Security.Cryptography.X509Certificates.dll
+Z:\October\Abstracts\Abstracts\bin\System.Security.Principal.dll
+Z:\October\Abstracts\Abstracts\bin\System.Security.SecureString.dll
+Z:\October\Abstracts\Abstracts\bin\System.Text.Encoding.dll
+Z:\October\Abstracts\Abstracts\bin\System.Text.Encoding.Extensions.dll
+Z:\October\Abstracts\Abstracts\bin\System.Text.RegularExpressions.dll
+Z:\October\Abstracts\Abstracts\bin\System.Threading.dll
+Z:\October\Abstracts\Abstracts\bin\System.Threading.Overlapped.dll
+Z:\October\Abstracts\Abstracts\bin\System.Threading.Tasks.dll
+Z:\October\Abstracts\Abstracts\bin\System.Threading.Tasks.Parallel.dll
+Z:\October\Abstracts\Abstracts\bin\System.Threading.Thread.dll
+Z:\October\Abstracts\Abstracts\bin\System.Threading.ThreadPool.dll
+Z:\October\Abstracts\Abstracts\bin\System.Threading.Timer.dll
+Z:\October\Abstracts\Abstracts\bin\System.ValueTuple.dll
+Z:\October\Abstracts\Abstracts\bin\System.Xml.ReaderWriter.dll
+Z:\October\Abstracts\Abstracts\bin\System.Xml.XDocument.dll
+Z:\October\Abstracts\Abstracts\bin\System.Xml.XmlDocument.dll
+Z:\October\Abstracts\Abstracts\bin\System.Xml.XmlSerializer.dll
+Z:\October\Abstracts\Abstracts\bin\System.Xml.XPath.dll
+Z:\October\Abstracts\Abstracts\bin\System.Xml.XPath.XDocument.dll
+Z:\October\Abstracts\Abstracts\bin\Antlr3.Runtime.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.CrystalReports.Engine.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.Shared.dll
+Z:\October\Abstracts\Abstracts\bin\EPPlus.dll
+Z:\October\Abstracts\Abstracts\bin\Kendo.Mvc.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Bcl.AsyncInterfaces.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Bcl.HashCode.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Data.SqlClient.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Abstractions.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Design.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Relational.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.SqlServer.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Caching.Abstractions.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Caching.Memory.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.Binder.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.DependencyInjection.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Logging.Abstractions.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Logging.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Options.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Primitives.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Identity.Client.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Logging.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Protocols.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Tokens.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IO.RecyclableMemoryStream.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Practices.ServiceLocation.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Practices.Unity.Configuration.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Practices.Unity.dll
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Web.Infrastructure.dll
+Z:\October\Abstracts\Abstracts\bin\Newtonsoft.Json.dll
+Z:\October\Abstracts\Abstracts\bin\System.Buffers.dll
+Z:\October\Abstracts\Abstracts\bin\System.Collections.Immutable.dll
+Z:\October\Abstracts\Abstracts\bin\System.ComponentModel.Annotations.dll
+Z:\October\Abstracts\Abstracts\bin\System.Data.SqlClient.dll
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.DiagnosticSource.dll
+Z:\October\Abstracts\Abstracts\bin\System.IdentityModel.Tokens.Jwt.dll
+Z:\October\Abstracts\Abstracts\bin\System.Memory.dll
+Z:\October\Abstracts\Abstracts\bin\System.Numerics.Vectors.dll
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.CompilerServices.Unsafe.dll
+Z:\October\Abstracts\Abstracts\bin\System.Threading.Tasks.Extensions.dll
+Z:\October\Abstracts\Abstracts\bin\System.Web.Helpers.dll
+Z:\October\Abstracts\Abstracts\bin\System.Web.Mvc.dll
+Z:\October\Abstracts\Abstracts\bin\System.Web.Optimization.dll
+Z:\October\Abstracts\Abstracts\bin\System.Web.Razor.dll
+Z:\October\Abstracts\Abstracts\bin\System.Web.WebPages.Deployment.dll
+Z:\October\Abstracts\Abstracts\bin\System.Web.WebPages.dll
+Z:\October\Abstracts\Abstracts\bin\System.Web.WebPages.Razor.dll
+Z:\October\Abstracts\Abstracts\bin\Unity.Mvc3.dll
+Z:\October\Abstracts\Abstracts\bin\WebGrease.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+Z:\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+Z:\October\Abstracts\Abstracts\bin\stdole.dll
+Z:\October\Abstracts\Abstracts\bin\Antlr3.Runtime.pdb
+Z:\October\Abstracts\Abstracts\bin\EPPlus.xml
+Z:\October\Abstracts\Abstracts\bin\Kendo.Mvc.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Bcl.AsyncInterfaces.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Bcl.HashCode.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Data.SqlClient.pdb
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Data.SqlClient.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Abstractions.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Design.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Relational.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.SqlServer.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Caching.Abstractions.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Caching.Memory.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.Binder.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.DependencyInjection.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Logging.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Logging.Abstractions.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Options.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Primitives.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Identity.Client.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Logging.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Protocols.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Tokens.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.IO.RecyclableMemoryStream.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Practices.ServiceLocation.pdb
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Practices.ServiceLocation.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Practices.Unity.xml
+Z:\October\Abstracts\Abstracts\bin\Microsoft.Practices.Unity.Configuration.xml
+Z:\October\Abstracts\Abstracts\bin\Newtonsoft.Json.xml
+Z:\October\Abstracts\Abstracts\bin\System.Buffers.xml
+Z:\October\Abstracts\Abstracts\bin\System.Collections.Immutable.xml
+Z:\October\Abstracts\Abstracts\bin\System.Diagnostics.DiagnosticSource.xml
+Z:\October\Abstracts\Abstracts\bin\System.IdentityModel.Tokens.Jwt.xml
+Z:\October\Abstracts\Abstracts\bin\System.Memory.xml
+Z:\October\Abstracts\Abstracts\bin\System.Numerics.Vectors.xml
+Z:\October\Abstracts\Abstracts\bin\System.Runtime.CompilerServices.Unsafe.xml
+Z:\October\Abstracts\Abstracts\bin\System.Threading.Tasks.Extensions.xml
+Z:\October\Abstracts\Abstracts\bin\System.Web.Helpers.xml
+Z:\October\Abstracts\Abstracts\bin\System.Web.Mvc.xml
+Z:\October\Abstracts\Abstracts\bin\System.Web.Optimization.xml
+Z:\October\Abstracts\Abstracts\bin\System.Web.Razor.xml
+Z:\October\Abstracts\Abstracts\bin\System.Web.WebPages.xml
+Z:\October\Abstracts\Abstracts\bin\System.Web.WebPages.Deployment.xml
+Z:\October\Abstracts\Abstracts\bin\System.Web.WebPages.Razor.xml
+Z:\October\Abstracts\Abstracts\bin\ar-AE\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\bg-BG\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\cs-CZ\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\da-DK\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\de-DE\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\el-GR\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\es-ES\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\fr-CA\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\fr-FR\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\he-IL\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\it-IT\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\nl-NL\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\pl-PL\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\pt-BR\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\pt-PT\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\ro-RO\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\ru-RU\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\sk-SK\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\sv-SE\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\tr-TR\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\uk-UA\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\zh-CN\Kendo.Mvc.resources.dll
+Z:\October\Abstracts\Abstracts\bin\de\Microsoft.Data.SqlClient.resources.dll
+Z:\October\Abstracts\Abstracts\bin\es\Microsoft.Data.SqlClient.resources.dll
+Z:\October\Abstracts\Abstracts\bin\fr\Microsoft.Data.SqlClient.resources.dll
+Z:\October\Abstracts\Abstracts\bin\it\Microsoft.Data.SqlClient.resources.dll
+Z:\October\Abstracts\Abstracts\bin\ja\Microsoft.Data.SqlClient.resources.dll
+Z:\October\Abstracts\Abstracts\bin\ko\Microsoft.Data.SqlClient.resources.dll
+Z:\October\Abstracts\Abstracts\bin\pt-BR\Microsoft.Data.SqlClient.resources.dll
+Z:\October\Abstracts\Abstracts\bin\ru\Microsoft.Data.SqlClient.resources.dll
+Z:\October\Abstracts\Abstracts\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+Z:\October\Abstracts\Abstracts\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+Z:\October\Abstracts\Abstracts\obj\Release\Abstracts.csprojAssemblyReference.cache
+Z:\October\Abstracts\Abstracts\obj\Release\Abstracts.dll.config
+Z:\October\Abstracts\Abstracts\obj\Release\Abstracts.csproj.CoreCompileInputs.cache
+Z:\October\Abstracts\Abstracts\obj\Release\Abstracts.csproj.CopyComplete
+Z:\October\Abstracts\Abstracts\obj\Release\Abstracts.dll
+Z:\October\Abstracts\Abstracts\obj\Release\Abstracts.pdb
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Abstracts.dll.config
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Abstracts.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Abstracts.pdb
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Win32.Primitives.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\netstandard.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.AppContext.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Collections.Concurrent.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Collections.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Collections.NonGeneric.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Collections.Specialized.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.ComponentModel.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.ComponentModel.EventBasedAsync.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.ComponentModel.Primitives.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.ComponentModel.TypeConverter.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Console.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Data.Common.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.Contracts.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.Debug.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.Process.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.StackTrace.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.TextWriterTraceListener.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.Tools.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.TraceSource.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.Tracing.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Drawing.Primitives.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Dynamic.Runtime.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Globalization.Calendars.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Globalization.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Globalization.Extensions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.Compression.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.Compression.ZipFile.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.FileSystem.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.FileSystem.DriveInfo.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.FileSystem.Primitives.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.FileSystem.Watcher.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.IsolatedStorage.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.MemoryMappedFiles.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.Pipes.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IO.UnmanagedMemoryStream.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Linq.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Linq.Expressions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Linq.Parallel.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Linq.Queryable.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.Http.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.NameResolution.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.NetworkInformation.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.Ping.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.Primitives.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.Requests.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.Security.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.Sockets.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.WebHeaderCollection.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.WebSockets.Client.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Net.WebSockets.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.ObjectModel.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Reflection.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Reflection.Extensions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Reflection.Primitives.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Resources.Reader.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Resources.ResourceManager.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Resources.Writer.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.CompilerServices.VisualC.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.Extensions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.Handles.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.InteropServices.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.Numerics.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.Serialization.Formatters.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.Serialization.Json.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.Serialization.Primitives.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.Serialization.Xml.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Security.Claims.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Security.Cryptography.Algorithms.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Security.Cryptography.Csp.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Security.Cryptography.Encoding.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Security.Cryptography.Primitives.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Security.Principal.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Security.SecureString.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Text.Encoding.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Text.Encoding.Extensions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Text.RegularExpressions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Threading.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Threading.Overlapped.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Threading.Tasks.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Threading.Tasks.Parallel.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Threading.Thread.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Threading.ThreadPool.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Threading.Timer.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.ValueTuple.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Xml.ReaderWriter.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Xml.XDocument.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Xml.XmlDocument.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Xml.XmlSerializer.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Xml.XPath.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Xml.XPath.XDocument.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Antlr3.Runtime.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.Shared.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\EPPlus.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Kendo.Mvc.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Bcl.HashCode.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Data.SqlClient.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Logging.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Options.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Primitives.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Identity.Client.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Practices.Unity.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Newtonsoft.Json.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Buffers.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Collections.Immutable.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.ComponentModel.Annotations.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Data.SqlClient.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Memory.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Numerics.Vectors.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Threading.Tasks.Extensions.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.Helpers.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.Mvc.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.Optimization.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.Razor.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.WebPages.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.WebPages.Razor.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Unity.Mvc3.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\WebGrease.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\stdole.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Antlr3.Runtime.pdb
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\EPPlus.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Kendo.Mvc.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Bcl.HashCode.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Data.SqlClient.pdb
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Data.SqlClient.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Abstractions.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Design.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.Relational.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.EntityFrameworkCore.SqlServer.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Caching.Abstractions.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Caching.Memory.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Configuration.Binder.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Logging.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Options.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Extensions.Primitives.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Identity.Client.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Logging.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Protocols.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Practices.ServiceLocation.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Practices.Unity.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\Newtonsoft.Json.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Buffers.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Collections.Immutable.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Memory.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Numerics.Vectors.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.Helpers.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.Mvc.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.Optimization.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.Razor.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.WebPages.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\System.Web.WebPages.Razor.xml
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\ar-AE\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\bg-BG\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\cs-CZ\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\da-DK\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\de-DE\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\el-GR\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\es-ES\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\fr-CA\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\fr-FR\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\he-IL\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\it-IT\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\nl-NL\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\pl-PL\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\pt-BR\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\pt-PT\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\ro-RO\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\ru-RU\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\sk-SK\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\sv-SE\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\tr-TR\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\uk-UA\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\zh-CN\Kendo.Mvc.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\de\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\es\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\fr\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\it\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\ja\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\ko\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\pt-BR\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\ru\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\obj\Release\Abstracts.csproj.AssemblyReference.cache
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\obj\Release\Abstracts.dll.config
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\obj\Release\Abstracts.csproj.CoreCompileInputs.cache
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\obj\Release\Abstracts.csproj.CopyComplete
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\obj\Release\Abstracts.dll
+C:\Users\Ahmed Arafa\Desktop\October\Abstracts\Abstracts\obj\Release\Abstracts.pdb
+D:\October\Abstracts\bin\Abstracts.dll.config
+D:\October\Abstracts\bin\Abstracts.dll
+D:\October\Abstracts\bin\Abstracts.pdb
+D:\October\Abstracts\bin\Microsoft.Win32.Primitives.dll
+D:\October\Abstracts\bin\netstandard.dll
+D:\October\Abstracts\bin\System.AppContext.dll
+D:\October\Abstracts\bin\System.Collections.Concurrent.dll
+D:\October\Abstracts\bin\System.Collections.dll
+D:\October\Abstracts\bin\System.Collections.NonGeneric.dll
+D:\October\Abstracts\bin\System.Collections.Specialized.dll
+D:\October\Abstracts\bin\System.ComponentModel.dll
+D:\October\Abstracts\bin\System.ComponentModel.EventBasedAsync.dll
+D:\October\Abstracts\bin\System.ComponentModel.Primitives.dll
+D:\October\Abstracts\bin\System.ComponentModel.TypeConverter.dll
+D:\October\Abstracts\bin\System.Console.dll
+D:\October\Abstracts\bin\System.Data.Common.dll
+D:\October\Abstracts\bin\System.Diagnostics.Contracts.dll
+D:\October\Abstracts\bin\System.Diagnostics.Debug.dll
+D:\October\Abstracts\bin\System.Diagnostics.FileVersionInfo.dll
+D:\October\Abstracts\bin\System.Diagnostics.Process.dll
+D:\October\Abstracts\bin\System.Diagnostics.StackTrace.dll
+D:\October\Abstracts\bin\System.Diagnostics.TextWriterTraceListener.dll
+D:\October\Abstracts\bin\System.Diagnostics.Tools.dll
+D:\October\Abstracts\bin\System.Diagnostics.TraceSource.dll
+D:\October\Abstracts\bin\System.Diagnostics.Tracing.dll
+D:\October\Abstracts\bin\System.Drawing.Primitives.dll
+D:\October\Abstracts\bin\System.Dynamic.Runtime.dll
+D:\October\Abstracts\bin\System.Globalization.Calendars.dll
+D:\October\Abstracts\bin\System.Globalization.dll
+D:\October\Abstracts\bin\System.Globalization.Extensions.dll
+D:\October\Abstracts\bin\System.IO.Compression.dll
+D:\October\Abstracts\bin\System.IO.Compression.ZipFile.dll
+D:\October\Abstracts\bin\System.IO.dll
+D:\October\Abstracts\bin\System.IO.FileSystem.dll
+D:\October\Abstracts\bin\System.IO.FileSystem.DriveInfo.dll
+D:\October\Abstracts\bin\System.IO.FileSystem.Primitives.dll
+D:\October\Abstracts\bin\System.IO.FileSystem.Watcher.dll
+D:\October\Abstracts\bin\System.IO.IsolatedStorage.dll
+D:\October\Abstracts\bin\System.IO.MemoryMappedFiles.dll
+D:\October\Abstracts\bin\System.IO.Pipes.dll
+D:\October\Abstracts\bin\System.IO.UnmanagedMemoryStream.dll
+D:\October\Abstracts\bin\System.Linq.dll
+D:\October\Abstracts\bin\System.Linq.Expressions.dll
+D:\October\Abstracts\bin\System.Linq.Parallel.dll
+D:\October\Abstracts\bin\System.Linq.Queryable.dll
+D:\October\Abstracts\bin\System.Net.Http.dll
+D:\October\Abstracts\bin\System.Net.NameResolution.dll
+D:\October\Abstracts\bin\System.Net.NetworkInformation.dll
+D:\October\Abstracts\bin\System.Net.Ping.dll
+D:\October\Abstracts\bin\System.Net.Primitives.dll
+D:\October\Abstracts\bin\System.Net.Requests.dll
+D:\October\Abstracts\bin\System.Net.Security.dll
+D:\October\Abstracts\bin\System.Net.Sockets.dll
+D:\October\Abstracts\bin\System.Net.WebHeaderCollection.dll
+D:\October\Abstracts\bin\System.Net.WebSockets.Client.dll
+D:\October\Abstracts\bin\System.Net.WebSockets.dll
+D:\October\Abstracts\bin\System.ObjectModel.dll
+D:\October\Abstracts\bin\System.Reflection.dll
+D:\October\Abstracts\bin\System.Reflection.Extensions.dll
+D:\October\Abstracts\bin\System.Reflection.Primitives.dll
+D:\October\Abstracts\bin\System.Resources.Reader.dll
+D:\October\Abstracts\bin\System.Resources.ResourceManager.dll
+D:\October\Abstracts\bin\System.Resources.Writer.dll
+D:\October\Abstracts\bin\System.Runtime.CompilerServices.VisualC.dll
+D:\October\Abstracts\bin\System.Runtime.dll
+D:\October\Abstracts\bin\System.Runtime.Extensions.dll
+D:\October\Abstracts\bin\System.Runtime.Handles.dll
+D:\October\Abstracts\bin\System.Runtime.InteropServices.dll
+D:\October\Abstracts\bin\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\October\Abstracts\bin\System.Runtime.Numerics.dll
+D:\October\Abstracts\bin\System.Runtime.Serialization.Formatters.dll
+D:\October\Abstracts\bin\System.Runtime.Serialization.Json.dll
+D:\October\Abstracts\bin\System.Runtime.Serialization.Primitives.dll
+D:\October\Abstracts\bin\System.Runtime.Serialization.Xml.dll
+D:\October\Abstracts\bin\System.Security.Claims.dll
+D:\October\Abstracts\bin\System.Security.Cryptography.Algorithms.dll
+D:\October\Abstracts\bin\System.Security.Cryptography.Csp.dll
+D:\October\Abstracts\bin\System.Security.Cryptography.Encoding.dll
+D:\October\Abstracts\bin\System.Security.Cryptography.Primitives.dll
+D:\October\Abstracts\bin\System.Security.Cryptography.X509Certificates.dll
+D:\October\Abstracts\bin\System.Security.Principal.dll
+D:\October\Abstracts\bin\System.Security.SecureString.dll
+D:\October\Abstracts\bin\System.Text.Encoding.dll
+D:\October\Abstracts\bin\System.Text.Encoding.Extensions.dll
+D:\October\Abstracts\bin\System.Text.RegularExpressions.dll
+D:\October\Abstracts\bin\System.Threading.dll
+D:\October\Abstracts\bin\System.Threading.Overlapped.dll
+D:\October\Abstracts\bin\System.Threading.Tasks.dll
+D:\October\Abstracts\bin\System.Threading.Tasks.Parallel.dll
+D:\October\Abstracts\bin\System.Threading.Thread.dll
+D:\October\Abstracts\bin\System.Threading.ThreadPool.dll
+D:\October\Abstracts\bin\System.Threading.Timer.dll
+D:\October\Abstracts\bin\System.ValueTuple.dll
+D:\October\Abstracts\bin\System.Xml.ReaderWriter.dll
+D:\October\Abstracts\bin\System.Xml.XDocument.dll
+D:\October\Abstracts\bin\System.Xml.XmlDocument.dll
+D:\October\Abstracts\bin\System.Xml.XmlSerializer.dll
+D:\October\Abstracts\bin\System.Xml.XPath.dll
+D:\October\Abstracts\bin\System.Xml.XPath.XDocument.dll
+D:\October\Abstracts\bin\Antlr3.Runtime.dll
+D:\October\Abstracts\bin\EPPlus.dll
+D:\October\Abstracts\bin\Kendo.Mvc.dll
+D:\October\Abstracts\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\October\Abstracts\bin\Microsoft.Bcl.HashCode.dll
+D:\October\Abstracts\bin\Microsoft.Data.SqlClient.dll
+D:\October\Abstracts\bin\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\October\Abstracts\bin\Microsoft.EntityFrameworkCore.Design.dll
+D:\October\Abstracts\bin\Microsoft.EntityFrameworkCore.dll
+D:\October\Abstracts\bin\Microsoft.EntityFrameworkCore.Relational.dll
+D:\October\Abstracts\bin\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.Caching.Abstractions.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.Caching.Memory.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.Configuration.Binder.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.Configuration.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.DependencyInjection.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.Logging.Abstractions.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.Logging.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.Options.dll
+D:\October\Abstracts\bin\Microsoft.Extensions.Primitives.dll
+D:\October\Abstracts\bin\Microsoft.Identity.Client.dll
+D:\October\Abstracts\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\October\Abstracts\bin\Microsoft.IdentityModel.Logging.dll
+D:\October\Abstracts\bin\Microsoft.IdentityModel.Protocols.dll
+D:\October\Abstracts\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\October\Abstracts\bin\Microsoft.IdentityModel.Tokens.dll
+D:\October\Abstracts\bin\Microsoft.IO.RecyclableMemoryStream.dll
+D:\October\Abstracts\bin\Microsoft.Practices.ServiceLocation.dll
+D:\October\Abstracts\bin\Microsoft.Practices.Unity.Configuration.dll
+D:\October\Abstracts\bin\Microsoft.Practices.Unity.dll
+D:\October\Abstracts\bin\Microsoft.Web.Infrastructure.dll
+D:\October\Abstracts\bin\Newtonsoft.Json.dll
+D:\October\Abstracts\bin\System.Buffers.dll
+D:\October\Abstracts\bin\System.Collections.Immutable.dll
+D:\October\Abstracts\bin\System.ComponentModel.Annotations.dll
+D:\October\Abstracts\bin\System.Data.SqlClient.dll
+D:\October\Abstracts\bin\System.Diagnostics.DiagnosticSource.dll
+D:\October\Abstracts\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\October\Abstracts\bin\System.Memory.dll
+D:\October\Abstracts\bin\System.Numerics.Vectors.dll
+D:\October\Abstracts\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\October\Abstracts\bin\System.Threading.Tasks.Extensions.dll
+D:\October\Abstracts\bin\System.Web.Helpers.dll
+D:\October\Abstracts\bin\System.Web.Mvc.dll
+D:\October\Abstracts\bin\System.Web.Optimization.dll
+D:\October\Abstracts\bin\System.Web.Razor.dll
+D:\October\Abstracts\bin\System.Web.WebPages.Deployment.dll
+D:\October\Abstracts\bin\System.Web.WebPages.dll
+D:\October\Abstracts\bin\System.Web.WebPages.Razor.dll
+D:\October\Abstracts\bin\Unity.Mvc3.dll
+D:\October\Abstracts\bin\WebGrease.dll
+D:\October\Abstracts\bin\stdole.dll
+D:\October\Abstracts\bin\Antlr3.Runtime.pdb
+D:\October\Abstracts\bin\EPPlus.xml
+D:\October\Abstracts\bin\Kendo.Mvc.xml
+D:\October\Abstracts\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\October\Abstracts\bin\Microsoft.Bcl.HashCode.xml
+D:\October\Abstracts\bin\Microsoft.Data.SqlClient.pdb
+D:\October\Abstracts\bin\Microsoft.Data.SqlClient.xml
+D:\October\Abstracts\bin\Microsoft.EntityFrameworkCore.xml
+D:\October\Abstracts\bin\Microsoft.EntityFrameworkCore.Abstractions.xml
+D:\October\Abstracts\bin\Microsoft.EntityFrameworkCore.Design.xml
+D:\October\Abstracts\bin\Microsoft.EntityFrameworkCore.Relational.xml
+D:\October\Abstracts\bin\Microsoft.EntityFrameworkCore.SqlServer.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.Caching.Abstractions.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.Caching.Memory.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.Configuration.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.Configuration.Binder.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.DependencyInjection.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.Logging.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.Logging.Abstractions.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.Options.xml
+D:\October\Abstracts\bin\Microsoft.Extensions.Primitives.xml
+D:\October\Abstracts\bin\Microsoft.Identity.Client.xml
+D:\October\Abstracts\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+D:\October\Abstracts\bin\Microsoft.IdentityModel.Logging.xml
+D:\October\Abstracts\bin\Microsoft.IdentityModel.Protocols.xml
+D:\October\Abstracts\bin\Microsoft.IdentityModel.Protocols.OpenIdConnect.xml
+D:\October\Abstracts\bin\Microsoft.IdentityModel.Tokens.xml
+D:\October\Abstracts\bin\Microsoft.IO.RecyclableMemoryStream.xml
+D:\October\Abstracts\bin\Microsoft.Practices.ServiceLocation.pdb
+D:\October\Abstracts\bin\Microsoft.Practices.ServiceLocation.xml
+D:\October\Abstracts\bin\Microsoft.Practices.Unity.xml
+D:\October\Abstracts\bin\Microsoft.Practices.Unity.Configuration.xml
+D:\October\Abstracts\bin\Newtonsoft.Json.xml
+D:\October\Abstracts\bin\System.Buffers.xml
+D:\October\Abstracts\bin\System.Collections.Immutable.xml
+D:\October\Abstracts\bin\System.Diagnostics.DiagnosticSource.xml
+D:\October\Abstracts\bin\System.IdentityModel.Tokens.Jwt.xml
+D:\October\Abstracts\bin\System.Memory.xml
+D:\October\Abstracts\bin\System.Numerics.Vectors.xml
+D:\October\Abstracts\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\October\Abstracts\bin\System.Threading.Tasks.Extensions.xml
+D:\October\Abstracts\bin\System.Web.Helpers.xml
+D:\October\Abstracts\bin\System.Web.Mvc.xml
+D:\October\Abstracts\bin\System.Web.Optimization.xml
+D:\October\Abstracts\bin\System.Web.Razor.xml
+D:\October\Abstracts\bin\System.Web.WebPages.xml
+D:\October\Abstracts\bin\System.Web.WebPages.Deployment.xml
+D:\October\Abstracts\bin\System.Web.WebPages.Razor.xml
+D:\October\Abstracts\bin\ar-AE\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\bg-BG\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\cs-CZ\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\da-DK\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\de-DE\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\el-GR\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\es-ES\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\fr-CA\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\fr-FR\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\he-IL\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\it-IT\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\nl-NL\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\pl-PL\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\pt-BR\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\pt-PT\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\ro-RO\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\ru-RU\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\sk-SK\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\sv-SE\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\tr-TR\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\uk-UA\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\zh-CN\Kendo.Mvc.resources.dll
+D:\October\Abstracts\bin\de\Microsoft.Data.SqlClient.resources.dll
+D:\October\Abstracts\bin\es\Microsoft.Data.SqlClient.resources.dll
+D:\October\Abstracts\bin\fr\Microsoft.Data.SqlClient.resources.dll
+D:\October\Abstracts\bin\it\Microsoft.Data.SqlClient.resources.dll
+D:\October\Abstracts\bin\ja\Microsoft.Data.SqlClient.resources.dll
+D:\October\Abstracts\bin\ko\Microsoft.Data.SqlClient.resources.dll
+D:\October\Abstracts\bin\pt-BR\Microsoft.Data.SqlClient.resources.dll
+D:\October\Abstracts\bin\ru\Microsoft.Data.SqlClient.resources.dll
+D:\October\Abstracts\bin\zh-Hans\Microsoft.Data.SqlClient.resources.dll
+D:\October\Abstracts\bin\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+D:\October\Abstracts\obj\Release\Abstracts.csproj.AssemblyReference.cache
+D:\October\Abstracts\obj\Release\Abstracts.csproj.SuggestedBindingRedirects.cache
+D:\October\Abstracts\obj\Release\Abstracts.dll.config
+D:\October\Abstracts\obj\Release\Abstracts.csproj.CoreCompileInputs.cache
+D:\October\Abstracts\obj\Release\Abstracts.csproj.CopyComplete
+D:\October\Abstracts\obj\Release\Abstracts.dll
+D:\October\Abstracts\obj\Release\Abstracts.pdb

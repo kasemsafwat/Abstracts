@@ -1,0 +1,149 @@
+﻿<div class="modal fade" id="WorkOrderModalPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1300px; height: 1300px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">بيانات المستخلص</h4>
+            </div>
+            <div id="validation-summary">
+            </div>
+            <div class="panel-body">
+                <div class="col-md-2" style="text-align:center; margin-right: 500px; margin-top: 15px;">
+                    <label>مستخلص تشوينات</label>
+                    <input type="checkbox" id="stored"/>
+                </div>
+                <div class="col-md-1" style="text-align:center;">
+                    <br />
+                    <a class="btn btn-success" onclick="AddWorkOrderDetails();">
+                        <i class="fa fa-save"></i> إضافة بند
+                    </a>
+                </div>
+                <div id="GridViewRequestDetails" class="k-rtl col-md-12">
+
+                    @(Html.Kendo().Grid <Abstracts.Models.Refactored.RequestDetails>()
+    .Name("gridRequestDetails")
+    .Columns(columns =>
+    {
+        columns.Select().Width(50);
+        columns.Bound(p => p.RequestDetailCode).Width(100).Title("كود البند").ClientFooterTemplate("عدد البنود: #=count#");
+        columns.Bound(p => p.Request).Width(100).Title("إسم البند");
+        columns.Bound(p => p.RequestDetailName).Width(500).Title("الوصف");
+        columns.Bound(p => p.Unit).Width(100).Title("الوحدة");
+        columns.Bound(p => p.Qty).Width(100).Title("الكمية المقدرة");
+        columns.Bound(p => p.UnitPrice).Width(100).Title("سعر الوحدة بالجنيه");
+        columns.Bound(p => p.TotalPrice).Width(100).Title("السعر الإجمالي");
+        columns.Bound(p => p.Department).Width(100).Title("الفرع المختص");
+    })
+    //.ClientRowTemplate(
+    //    "<tr class='k-master-row' data-uid='#: uid #' role='row'>" +
+    //        "<td> " +
+    //        "<input class='k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox'>" +
+    //        "</td>" +
+    //        "<td>" +
+    //        "<span> #: RequestDetailCode# </span>" +
+    //        "</td>" +
+    //        "<td>" + 
+    //        "<span> #: Request# </span>" +
+    //        "</td>" +
+    //        "<td>" +
+    //           "<span> #: RequestDetailName# </span>" +
+    //        "</td>" +
+    //        "<td>" +
+    //           "<span> #: Unit# </span>" +
+    //        "</td>" +
+    //        "<td>" +
+    //           "<span> #: Qty# </span>" +
+    //        "</td>" +
+    //          "</td>" +
+    //        "<td>" +
+    //           "<span> #: UnitPrice# </span>" +
+    //        "</td>" +
+    //          "</td>" +
+    //        "<td>" +
+    //           "<span> #: TotalPrice# </span>" +
+    //        "</td>" +
+    //          "</td>" +
+    //        "<td>" +
+    //           "<span> #: Department# </span>" +
+    //        "</td>" +
+    //     "</tr>"
+    //).ClientAltRowTemplate(
+    //    "<tr class='k-alt k-master-row' data-uid='#: uid #' role='row'>" +
+    //        "<td> " +
+    //        "<input class=' k-checkbox' data-role='checkbox' aria-label='Select row' aria-checked='false' type='checkbox'>" +
+    //        "</td>" +
+    //         "<td>" +
+    //           "<span> #: RequestDetailCode# </span>" +
+    //        "</td>" +
+    //        "<td>" +
+    //           "<span> #: Request# </span>" +
+    //        "</td>" +
+    //        "<td>" +
+    //           "<span> #: RequestDetailName# </span>" +
+    //        "</td>" +
+    //        "<td>" +
+    //           "<span> #: Unit# </span>" +
+    //        "</td>" +
+    //        "<td>" +
+    //           "<span> #: Qty# </span>" +
+    //        "</td>" +
+    //          "</td>" +
+    //        "<td>" +
+    //           "<span> #: UnitPrice# </span>" +
+    //        "</td>" +
+    //          "</td>" +
+    //        "<td>" +
+    //           "<span> #: TotalPrice# </span>" +
+    //        "</td>" +
+    //          "</td>" +
+    //        "<td>" +
+    //           "<span> #: Department# </span>" +
+    //        "</td>" +
+    //     "</tr>"
+    //)
+    .ToolBar(toolbar =>
+    {
+        toolbar.Search().Text("بحث");
+    })
+                        .Search(x => { x.Field(s => s.RequestDetailCode);
+                            x.Field(s => s.Request);
+                            x.Field(s => s.Unit);
+                            x.Field(s => s.Department);
+                            x.Field(s => s.RequestDetailName);
+                            x.Field(s => s.Qty);
+                            x.Field(s => s.UnitPrice);
+                            x.Field(s => s.TotalPrice); })
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .Pageable()
+     .Selectable(selectable =>
+         selectable
+.Mode(GridSelectionMode.Multiple))
+    .Resizable(r => r.Columns(true))
+    .Reorderable(r => r.Columns(true))
+    .Sortable()
+    .Scrollable(x=>x.Height(450))
+    .PersistSelection(true)
+    .Events(ev => ev.Change("onChangeSelectionRequestDetails"))
+    .Scrollable()
+    .HtmlAttributes(new { style = "height:700px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .Aggregates(aggregates =>
+        {
+            aggregates.Add(p => p.RequestDetailCode).Count();
+        })
+        .PageSize(8)
+        .ServerOperation(false)
+        .Events(events => events.Error("error_handler"))
+        .Model(model => model.Id(p => p.RequestDetailId))
+    .Read(read => read.Action("GetRequestDetailList", "Request"))
+    )
+)
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
